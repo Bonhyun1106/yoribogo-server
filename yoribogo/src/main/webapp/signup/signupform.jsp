@@ -8,21 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script>
-         $("#login-button").click(function(event){
-		 event.preventDefault();
-	 
-	         $('form').fadeOut(500);
-	         $('.wrapper').addClass('form-success');
-        });
-    </script>
-    <script src="../script/jquery-3.3.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-   <link rel="stylesheet" href="../css/signup.css">
+  <link rel="stylesheet" href="../css/signup.css">
 
    <title>Document</title>
 </head>
@@ -69,13 +61,12 @@
                     <a id="back" href="../login/loginform.jsp" >이전</a>
                 
                 <script>
-                
-//                 <input id="email" type="text" placeholder="이메일" name="email">
-//                 <h5 id="emailChecked"></h5>
-                                   
-//                 <input type="text" placeholder="회원 아이디" name="id">
-//                 <input type="password" placeholder="비밀번호" name="pass">
-//                 <input type="password" placeholder="비밀번호 확인" name="passCheck">
+            	$("#login-button").click(function(event){
+        			event.preventDefault();
+
+                	$('form').fadeOut(500);
+                	$('.wrapper').addClass('form-success');
+           		});
         			let emailFlag = false;
         			let idFlag = false;
                     let passFlag = false;
@@ -87,104 +78,89 @@
             		$("input[name='email']").on("keyup",function(){			
             			
             			$.ajax({
-            				url : "redundancycheckByEmail.do",
+            				url : "checkbyemail.do",
             				data: "email=" + $("input[name='email']").val(),
             				success : function(result){
             					if(result == 0){
             					$("#emailChecked").html("사용가능한 이메일입니다.");	
-            					$("#emailChecked").css({
-            						"color" : "springgreen"
-            					});	
+            					$("#emailChecked").css({"color" : "springgreen"});	
             					emailFlag = true;
             					email = $("input[name='email']");
             					
-            					}else if($("input").val() == ""){
-            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
-	            					$("#emailChecked").css({
-    	        						"color" : "red"
-        	    					});	
+            					}else if($("input[name='email']").val() == ""){
+            						$("#emailChecked").html("");				
             							
             					}else{
             						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
-            						$("#emailChecked").css({
-            							"color" : "red"
-            						});	
+            						$("#emailChecked").css({"color" : "red"});	
             					}
             				}
             			});	
-            		}            		
+            			}            		
             		);
+            		
+            		
+            		
             		$("input[name='id']").on("keyup",function(){			
             			
             			$.ajax({
-            				url : "redundancycheckById.do",
+            				url : "checkbyid.do",
             				data: "id=" + $("input[name='id']").val(),
             				success : function(result){
             					if(result == 0){
             					$("#idChecked").html("사용가능한 아이디입니다.");	
             				
-            					$("#idChecked").css({
-            						"color" : "springgreen"
-            					});	
+            					$("#idChecked").css({"color" : "springgreen"});	
             					idFlag = true;
             					id = $("input[name='id']");
             					
-            					}else if($("input").val() == ""){
-            						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
-	            					$("#idChecked").css({
-    	        						"color" : "red"
-        	    					});	
-            							
+            					}else if($("input[name='id']").val() == ""){
+            						$("#idChecked").html("");					
             					}else{
             						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
-	            					$("#idChecked").css({
-    	        						"color" : "red"
-        	    					});	
+	            					$("#idChecked").css({"color" : "red"});	
             							
             					}
             				}
             			});	
             		}            		
             		);
-            		let pass; 
+            		
+            		
+            		
+            		let passCheck; 
             		$("input[name='pass']").on("keyup",function(){			
-            			pass = $("input[name='pass']").val();
-            			if(pass.length < 8){
+            			passCheck = $("input[name='pass']").val();
+            			if(passCheck = ""){
+            				return;            				
+            			}
+            			if(passCheck.length < 8){
             						$("#passChecked").html("비밀번호는 8자 이상입니다.");									
-	            					$("#passChecked").css({
-    	        						"color" : "red"
-        	    					});	
+	            					$("#passChecked").css({"color" : "red"});	
             				
-            			}else if(pass.length > 13){
+            			}else if(passCheck.length > 13){
             						$("#passChecked").html("비밀번호는 13자 이하입니다.");									
-	            					$("#passChecked").css({
-    	        						"color" : "red"
-        	    					});	
+	            					$("#passChecked").css({"color" : "red"});	
             			}else{
             						$("#passChecked").html("사용가능한 비밀번호입니다.");									            				
-	            					$("#passChecked").css({
-    	        						"color" : "springgreen"
-        	    					});	
+	            					$("#passChecked").css({"color" : "springgreen"});	
 	            					passFlag = true;
-	            					pass = $("input[name='pass']").val();
+	            					passCheck = $("input[name='pass']").val();
             			}
             			
-            			}            		
-            		);
+            			});
+            		
             		$("input[name='pass2']").on("keyup",function(){			
-            			
-            			if(pass != $("input[name='pass2']").val()){
+            			if(passCheck = "" || $("input[name='pass2']").val().length == 0){
+            				return;            				
+            			}
+            			if(passCheck !== $("input[name='pass2']").val()){
             						$("#pass2Checked").html("비밀번호를 확인해주세요.");									
-	            					$("#pass2Checked").css({
-    	        						"color" : "red"
-        	    					});	
+	            					$("#pass2Checked").css({"color" : "red"});	
             			}else{
             						$("#pass2Checked").html("확인했습니다.");									            				
-	            					$("#pass2Checked").css({
-    	        						"color" : "springgreen"
-        	    					});	
+	            					$("#pass2Checked").css({"color" : "springgreen"});	
 	            					pass2Flag = true;
-
 	            					pass2 = $("input[name='pass2']");
             			}
             			
@@ -192,20 +168,20 @@
             		);
             		
             		$("#login-button").click(
-           				if(idFlag && emailFlag && passFlag && pass2Flag){
-            				$.ajax({
-            					url:"signup.do",
-            					data: "id=" + "email="+"pass=",
-            					success:function(){
+            			function(){
+	           				if(idFlag && emailFlag && passFlag && pass2Flag){
+    	        				$.ajax({
+        	    					url:"signup.do",
+            						data: "id=" + "email="+"pass=",
+            						success:function(){
             						
-            					}
-            				});
+            						}
+            					});
             					
-           				}else{
-    						alert("입력 내용을 확인해주세요.");       					
-           				}
-           				
-           					
+           					}else{
+    							alert("입력 내용을 확인해주세요.");       					
+           					}
+            			}
             		);
             		
                     </script>

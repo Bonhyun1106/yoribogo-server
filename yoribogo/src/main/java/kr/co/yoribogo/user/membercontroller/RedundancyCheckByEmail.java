@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.SignupMapper;
 
-@WebServlet("/login/redundancycheck.do")
+@WebServlet("/login/checkbyemail.do")
 public class RedundancyCheckByEmail extends HttpServlet{
 	
 	
