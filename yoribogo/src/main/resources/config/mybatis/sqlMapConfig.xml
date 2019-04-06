@@ -25,5 +25,6 @@
 
 	<mappers>
 		<mapper resource="config/mapper/login.xml"/>
+		<mapper resource="config/mapper/signup.xml"/>
 	</mappers>
 </configuration>

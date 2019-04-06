@@ -11,6 +11,8 @@
   		<param-value>
   			/login/login.do;
   			/login/loginform.do;
+  			/signup/checkemail.do;
+  			/signup/checkid.do;
   		</param-value>
   	</init-param>
   </filter>
