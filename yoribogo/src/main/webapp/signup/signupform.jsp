@@ -32,45 +32,26 @@
             <div class="container">
                 <h1>Welcome</h1>
                 
-                <form class="form">
+                <form class="form" id="signup">
                     <h5>프로필 사진</h5>
                     <a id="profilePhoto" href="#" >+</a>
                     
                     <script>
-                    	$("#profilePhoto").onclick(
+                    /*
+                    	$("#profilePhoto").click(
                     				
                     	);
+                    */
                     </script>
-                    
                     <input id="email" type="text" placeholder="이메일" name="email">
                     <h5 id="emailChecked"></h5>
-                    <script>
-            		$("input[name='email']").on("keyup",function(){
-            			$.ajax({
-            				url : "redundancycheck.do",
-            				data: "email=" + $("input[name='email']").val(),
-            				success : function(result){
-            					if(result == 0){
-            					$("#emailChecked").html("사용가능한 아이디입니다.");									
-            						
-            					}else if($("input").val() == ""){
-            						$("#emailChecked").html("사용할 수 없는 아이디입니다.");									
-            							
-            					}else{
-            						$("#emailChecked").html("사용할 수 없는 아이디입니다.");									
-            					}
-            				}
-            			});	
-            		}
-            		
-            		);
-                    </script>
-                    
-                    
+                                       
                     <input type="text" placeholder="회원 아이디" name="id">
-                    <!-- <a id="checkRedundancy" href="" >중복 체크</a> -->
+                    <h5 id="idChecked"></h5>
                     <input type="password" placeholder="비밀번호" name="pass">
-                    <input type="password" placeholder="비밀번호 확인" name="passCheck">
+                    <h5 id="passChecked"></h5>
+                    <input type="password" placeholder="비밀번호 확인" name="pass2">
+                    <h5 id="pass2Checked"></h5>
                     
                     <div id = "favorite">
                     <div>키워드</div>
@@ -86,6 +67,151 @@
                     </div>
                     <button type="submit" id="login-button">회원가입</button>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
+                
+                <script>
+                
+//                 <input id="email" type="text" placeholder="이메일" name="email">
+//                 <h5 id="emailChecked"></h5>
+                                   
+//                 <input type="text" placeholder="회원 아이디" name="id">
+//                 <input type="password" placeholder="비밀번호" name="pass">
+//                 <input type="password" placeholder="비밀번호 확인" name="passCheck">
+        			let emailFlag = false;
+        			let idFlag = false;
+                    let passFlag = false;
+        			let pass2Flag = false;
+        			
+        			let email;
+        			let id;
+        			let pass;
+            		$("input[name='email']").on("keyup",function(){			
+            			
+            			$.ajax({
+            				url : "redundancycheckByEmail.do",
+            				data: "email=" + $("input[name='email']").val(),
+            				success : function(result){
+            					if(result == 0){
+            					$("#emailChecked").html("사용가능한 이메일입니다.");	
+            					$("#emailChecked").css({
+            						"color" : "springgreen"
+            					});	
+            					emailFlag = true;
+            					email = $("input[name='email']");
+            					
+            					}else if($("input").val() == ""){
+            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
+	            					$("#emailChecked").css({
+    	        						"color" : "red"
+        	    					});	
+            							
+            					}else{
+            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
+            						$("#emailChecked").css({
+            							"color" : "red"
+            						});	
+            					}
+            				}
+            			});	
+            		}            		
+            		);
+            		$("input[name='id']").on("keyup",function(){			
+            			
+            			$.ajax({
+            				url : "redundancycheckById.do",
+            				data: "id=" + $("input[name='id']").val(),
+            				success : function(result){
+            					if(result == 0){
+            					$("#idChecked").html("사용가능한 아이디입니다.");	
+            				
+            					$("#idChecked").css({
+            						"color" : "springgreen"
+            					});	
+            					idFlag = true;
+            					id = $("input[name='id']");
+            					
+            					}else if($("input").val() == ""){
+            						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
+	            					$("#idChecked").css({
+    	        						"color" : "red"
+        	    					});	
+            							
+            					}else{
+            						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
+	            					$("#idChecked").css({
+    	        						"color" : "red"
+        	    					});	
+            							
+            					}
+            				}
+            			});	
+            		}            		
+            		);
+            		let pass; 
+            		$("input[name='pass']").on("keyup",function(){			
+            			pass = $("input[name='pass']").val();
+            			if(pass.length < 8){
+            						$("#passChecked").html("비밀번호는 8자 이상입니다.");									
+	            					$("#passChecked").css({
+    	        						"color" : "red"
+        	    					});	
+            				
+            			}else if(pass.length > 13){
+            						$("#passChecked").html("비밀번호는 13자 이하입니다.");									
+	            					$("#passChecked").css({
+    	        						"color" : "red"
+        	    					});	
+            			}else{
+            						$("#passChecked").html("사용가능한 비밀번호입니다.");									            				
+	            					$("#passChecked").css({
+    	        						"color" : "springgreen"
+        	    					});	
+	            					passFlag = true;
+	            					pass = $("input[name='pass']").val();
+            			}
+            			
+            			}            		
+            		);
+            		$("input[name='pass2']").on("keyup",function(){			
+            			
+            			if(pass != $("input[name='pass2']").val()){
+            						$("#pass2Checked").html("비밀번호를 확인해주세요.");									
+	            					$("#pass2Checked").css({
+    	        						"color" : "red"
+        	    					});	
+            			}else{
+            						$("#pass2Checked").html("확인했습니다.");									            				
+	            					$("#pass2Checked").css({
+    	        						"color" : "springgreen"
+        	    					});	
+	            					pass2Flag = true;
+
+	            					pass2 = $("input[name='pass2']");
+            			}
+            			
+            			}            		
+            		);
+            		
+            		$("#login-button").click(
+           				if(idFlag && emailFlag && passFlag && pass2Flag){
+            				$.ajax({
+            					url:"signup.do",
+            					data: "id=" + "email="+"pass=",
+            					success:function(){
+            						
+            					}
+            				});
+            					
+           				}else{
+    						alert("입력 내용을 확인해주세요.");       					
+           				}
+           				
+           					
+            		);
+            		
+                    </script>
+                    
+                
+                
                 </form>
                 
                 
