@@ -85,7 +85,8 @@
            						$("#emailChecked").html("사용가능한 이메일입니다.");	
            						$("#emailChecked").css({"color" : "springgreen"});	
            						emailFlag = true;
-           						email = $("input[name='email']");           			    		
+           						email = $("input[name='email']");
+               					console.log("finally email is " + email);
            			  		}
            			  		else {
            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
@@ -110,7 +111,7 @@
            					$("#idChecked").css({"color" : "springgreen"});	
            					idFlag = true;
            					id = $("input[name='id']");
-           					
+           					console.log("finally id is " + id);
            					}else if($("input[name='id']").val() == ""){
            						$("#idChecked").html("");					
            					}else{
@@ -157,6 +158,8 @@
             					$("#pass2Checked").css({"color" : "springgreen"});	
             					pass2Flag = true;
             					pass2 = $("input[name='pass2']");
+
+               					console.log("finally password is " + pass);
            			}
            			
            			}            		
@@ -169,7 +172,7 @@
        	    					url:"signup.do",
            						data: "id=" + "email="+"pass=",
            						success:function(){
-           						
+           							
            						}
            					});
            					
