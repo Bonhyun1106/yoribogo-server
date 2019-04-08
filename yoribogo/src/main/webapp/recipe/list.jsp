@@ -18,7 +18,6 @@
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <title>Document</title>
-
 </head>
 
 <body>
@@ -40,11 +39,11 @@
 					<tr>
 						<th>
 							<div class="inputSort">
-								<label>평점순</label> 
-								<input id="sort_gradeDESC" value="gradeDESC" type="radio" name="sort" /> 
-								<label class="sort_desc" for="sort_gradeDESC"></label> 
-								<input id="sort_gradeASC" value="gradeASC" type="radio" name="sort" />
-								<label class="sort_asc" for="sort_gradeASC"></label>
+								<label>평점순</label> <input id="sort_gradeDESC" value="gradeDESC"
+									type="radio" name="sort" /> <label class="sort_desc"
+									for="sort_gradeDESC"></label> <input id="sort_gradeASC"
+									value="gradeASC" type="radio" name="sort" /> <label
+									class="sort_asc" for="sort_gradeASC"></label>
 							</div>
 						</th>
 						<th>
@@ -68,8 +67,8 @@
 						<th>
 							<div class="inputSort">
 								<label>최신순</label> <input id="sort_latestDESC"
-									value="latestDESC" type="radio" name="sort" checked="checked" /> <label
-									class="sort_desc" for="sort_latestDESC"></label> <input
+									value="latestDESC" type="radio" name="sort" checked="checked" />
+								<label class="sort_desc" for="sort_latestDESC"></label> <input
 									id="sort_latestASC" value="latestASC" type="radio" name="sort" />
 								<label class="sort_asc" for="sort_latestASC"></label>
 							</div>
@@ -80,7 +79,9 @@
 		</div>
 
 		<div class="wrapper">
-			<c:forEach var='list' items='${recipe}' var='list2' items='${recipe2}'>
+		
+		
+			<c:forEach var='list' items='${recipe}'>
 		
 				<div class="recipe">
 					<a href="#.">
@@ -162,28 +163,68 @@
 		</div>
 
 	</footer>
-	
-		<script>
-			$("input").on("click", function () {
-				if ($("#sort_statusDESC").is(":checked")) {
-					$.ajax({
-						url: "list.do",
-						data: "sort=0",
-						success: function () {
-							
-						}
-					});
-				} else if ($("#sort_statusASC").is(":checked")) {
-					$.ajax({
-						url: "list.do",
-						data: "sort=1",
-						success: function () {
-						}
-					});
+
+	<script>
+	$("input").on("click", function () {
+		console.log($("#sort_latestASC").is(":checked"));
+		if ($("#sort_latestASC").is(":checked")) {
+			
+			
+			$.ajax({
+				type: "POST",
+				url: "listajax.do",
+				data: "sort=latestASC",
+				dataType: "json",
+				success: function (result) {
+					console.log(result);
+					for (let i=0; i<result.length; i++) {
+						let list = result[i];
+						console.log(`${list.viewCnt}`);
+						
+						 let html = '<div class="recipe">';
+							html += '<a href="#.">';
+							html +=	'<div class="image">';
+							html +=	'<div class="quality">';
+							html +=	'<i class="fas fa-eye fa-2x"></i>';
+							html +=	`${list.viewCnt}`;
+							html +=	'<i class="fas fa-heart fa-2x"></i>';
+							html +=	`${list.likeCnt}`;
+							html +=	'<i class="fas fa-level-up-alt fa-2x"></i>';
+							html +=	`${list.level}'단계'`;
+							html +=	'</div>';
+							html +=	'<img src="../images/f1.jpg" />';
+							html +=	'</div>';
+							html +=	'<div class="body">';
+							html +=	'<div class="mid">';
+							html +=	'<div class="date">';
+							html +=	'<div class="dateWriter">By <span id="writer_id"></span></div>';
+							html +=	'<div>';
+							html +=	'<i class="fas fa-star"></i>3.5/5';
+							html +=	'</div>';
+							html +=	'<time>';
+							html +=	`${list.regDate}`;
+							html +=	'</time>';
+							html +=	'</div>';
+							html +=	'</div>';
+							html +=	'<div class="title">';
+							html +=	`'<h3>'${list.title}'</h3>'`;
+							html +=	'</div>';
+							html +=	'<div class="content">';
+							html +=	`'<div class="content_inner">'${list.summary}'</div>'`;
+							html +=	'</div>';
+							html += '</div>';
+							html += '</a>';
+							html += '</div>';
+							console.log(html);
+							$(".wrapper").html(html);
+						
+					} 
 				}
 			});
-		
-		</script>
+		}
+	});
+	
+</script>
 
 </body>
 

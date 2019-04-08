@@ -11,6 +11,7 @@
 		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
 		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
 		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
+		<typeAlias alias="sort" type="kr.co.yoribogo.repository.vo.Sort" />
 	</typeAliases>
 	 
 	<environments default="development">

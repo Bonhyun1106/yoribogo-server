@@ -42,20 +42,39 @@
           from (select rownum rnum, a.*
                   from (select *
                           from tb_recipe
-                         order by recipe_no desc) a
+                       
+							<choose>
+								<when test="sortType == 'latestASC'">
+									order by recipe_no asc
+								</when>
+								<when test="sortType == 'gradeDESC'">
+									order by recipe_no asc
+								</when>
+								<when test="sortType == 'gradeASC'">
+									order by recipe_no asc
+								</when>
+								<when test="sortType == 'likeDESC'">
+									order by recipe_like_cnt asc
+								</when>
+								<when test="sortType == 'likeASC'">
+									order by recipe_like_cnt asc
+								</when>
+								<when test="sortType == 'levelDESC'">
+									order by recipe_level asc
+								</when>
+								<when test="sortType == 'levelASC'">
+									order by recipe_level asc
+								</when>
+								<otherwise>
+									order by recipe_no desc
+								</otherwise>
+							</choose>
+					) a
                )
          where rnum between #{begin} and #{end}
+         
 	</select>
 	
-	<select id="selectRecipeSortByRegDateASC" parameterType="page" resultMap="recipeMap">
-		select * 
-          from (select rownum rnum, a.*
-                  from (select *
-                          from tb_recipe
-                         order by recipe_no asc) a
-               )
-         where rnum between #{begin} and #{end}
-	</select>
 	
 	<select id="selectRecipeCount" resultType="int">
 		select count(*)
