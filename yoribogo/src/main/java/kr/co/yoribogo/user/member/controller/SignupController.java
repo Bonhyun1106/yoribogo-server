@@ -27,16 +27,11 @@ public class SignupController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8"); 
 		
-		System.out.println("받긴 함?");
 		MemberVO member = new MemberVO(); 
 		member.setMemId(request.getParameter("id"));
 		member.setMemPassword(request.getParameter("pass"));
-		member.setMemEmail(
-				request.getParameter("emaila") + "@"
-				+ request.getParameter("emailb") + "."
-				+ request.getParameter("emailc")
-				);
-		
+
+		member.setMemEmail(request.getParameter("email"));
 		System.out.println("input id : " + member.getMemId() + 
 				"| input pass : " + member.getMemPassword()	+
 				"| input email : " + member.getMemEmail()				
