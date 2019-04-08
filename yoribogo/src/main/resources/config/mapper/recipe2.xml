@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.yoribogo.repository.dao.ListRecipeMapper">
+<mapper namespace="kr.co.yoribogo.repository.dao.RecipeMapper">
 	<resultMap id="recipeMap" type="recipe">
 		<result column="recipe_no" property="no" />
 		<result column="mem_no"	 property="memNo" />
@@ -16,6 +16,7 @@
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
 		<result column="recipe_weather" property="weather" />
+		<result column="mem_id" property="memId" />
 	</resultMap>
 	
 	<resultMap id="memberMap" type="member">
@@ -42,39 +43,20 @@
           from (select rownum rnum, a.*
                   from (select *
                           from tb_recipe
-                       
-							<choose>
-								<when test="sortType == 'latestASC'">
-									order by recipe_no asc
-								</when>
-								<when test="sortType == 'gradeDESC'">
-									order by recipe_no asc
-								</when>
-								<when test="sortType == 'gradeASC'">
-									order by recipe_no asc
-								</when>
-								<when test="sortType == 'likeDESC'">
-									order by recipe_like_cnt asc
-								</when>
-								<when test="sortType == 'likeASC'">
-									order by recipe_like_cnt asc
-								</when>
-								<when test="sortType == 'levelDESC'">
-									order by recipe_level asc
-								</when>
-								<when test="sortType == 'levelASC'">
-									order by recipe_level asc
-								</when>
-								<otherwise>
-									order by recipe_no desc
-								</otherwise>
-							</choose>
-					) a
+                         order by recipe_no desc) a
                )
          where rnum between #{begin} and #{end}
-         
 	</select>
 	
+	<select id="selectRecipeSortByRegDateASC" parameterType="page" resultMap="recipeMap">
+		select * 
+          from (select rownum rnum, a.*
+                  from (select *
+                          from tb_recipe
+                         order by recipe_no asc) a
+               )
+         where rnum between #{begin} and #{end}
+	</select>
 	
 	<select id="selectRecipeCount" resultType="int">
 		select count(*)
@@ -134,8 +116,30 @@
 			rec_block_no, recipe_no, rec_block_img
 		) values(
 			s_rec_block_no.nextval, #{no}, #{blockImg}
-		);
+		)
 	</insert>
+	
+	
+	<!-- ================================== 레 시 피 상 세 조 회  ======================================== -->
+	<select id="selectDetailRecipe" parameterType="recipe" resultMap="recipeMap">
+		select r.recipe_no,
+               m.mem_id,
+			   r.recipe_title,
+			   r.recipe_summary,
+			   r.recipe_view_cnt,
+			   r.recipe_like_cnt,
+			   r.recipe_reg_date,
+			   (select category_name from tb_category where category_no = recipe_country) as recipe_country,
+			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
+			   r.recipe_kcal,
+			   r.recipe_time,
+			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
+			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather
+    	  from tb_recipe
+    	 inner join tb_member m
+    	    on tb_recipe.mem_no = m.mem_no
+		 where recipe_no = #{no}
+	</select>
 	
 	
 </mapper>

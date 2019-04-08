@@ -3,7 +3,6 @@
   <display-name>yoribogo</display-name>
   
   <!-- 필터 등록 -->
-  <!-- 
   <filter>
   	<filter-name>authFilter</filter-name>
   	<filter-class>kr.co.yoribogo.filter.AuthFilter</filter-class>
@@ -17,15 +16,14 @@
   		</param-value>
   	</init-param>
   </filter>
-   -->
   
   <!-- 모든 클래스에서 사용할 수 있도록 필터와 클래스 맵핑   -->
-  <!--  
+
   <filter-mapping>
   	<filter-name>authFilter</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
-  -->
+
   
   <filter>
   	<filter-name>encoding</filter-name>
