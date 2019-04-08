@@ -18,6 +18,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
 		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
@@ -51,6 +52,10 @@
 		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
 >>>>>>> parent of 15d1a6a... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
+=======
+		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
+		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
+>>>>>>> parent of ff28d7b... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
 	</typeAliases>
 	 
 	<environments default="development">
@@ -69,5 +74,9 @@
 		<mapper resource="config/mapper/login.xml"/>
 		<mapper resource="config/mapper/signup.xml"/>
 		<mapper resource="config/mapper/recipe.xml"/>
+<<<<<<< HEAD
+=======
+		<mapper resource="config/mapper/admin.xml"/>
+>>>>>>> parent of ff28d7b... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
 	</mappers>
 </configuration>
