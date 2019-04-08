@@ -3,6 +3,10 @@
   <display-name>yoribogo</display-name>
   
   <!-- 필터 등록 -->
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 143d2e508c31883e6c0de694fabd701a0ec3bec6
   <filter>
   	<filter-name>authFilter</filter-name>
   	<filter-class>kr.co.yoribogo.filter.AuthFilter</filter-class>
@@ -13,17 +17,29 @@
   			/login/loginform.do;
   			/signup/checkemail.do;
   			/signup/checkid.do;
+  			/signup/signupsuccess.do;
   		</param-value>
   	</init-param>
   </filter>
+<<<<<<< HEAD
   
   <!-- 모든 클래스에서 사용할 수 있도록 필터와 클래스 맵핑   -->
 
+=======
+  
+  
+  <!-- 모든 클래스에서 사용할 수 있도록 필터와 클래스 맵핑   -->
+   
+>>>>>>> 143d2e508c31883e6c0de694fabd701a0ec3bec6
   <filter-mapping>
   	<filter-name>authFilter</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 143d2e508c31883e6c0de694fabd701a0ec3bec6
   
   <filter>
   	<filter-name>encoding</filter-name>

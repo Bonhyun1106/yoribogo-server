@@ -11,8 +11,13 @@
 		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
 		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
 		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
+
+		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
+		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
+
 		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
+
 	</typeAliases>
 	 
 	<environments default="development">
@@ -31,6 +36,12 @@
 		<mapper resource="config/mapper/login.xml"/>
 		<mapper resource="config/mapper/signup.xml"/>
 		<mapper resource="config/mapper/recipe.xml"/>
+<<<<<<< HEAD
 		<mapper resource="config/mapper/recipe2.xml"/>
+=======
+
+		<mapper resource="config/mapper/admin.xml"/>
+
+>>>>>>> 143d2e508c31883e6c0de694fabd701a0ec3bec6
 	</mappers>
 </configuration>
