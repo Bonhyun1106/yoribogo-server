@@ -180,11 +180,13 @@
    	        				alert("회원가입 중...");
            					$.ajax({
        	    					url:"signupsuccess.do",
-           						data: "id=" + id +
-           						"&emaila="  + at[0] + 
-           						"&emailb="  + dot[0] + 
-           						"&emailc="  + dot[1] + 
-           						"&pass=" + pass2,
+           						data: {
+               						"id" : id,
+               						"emaila" : at[0],
+               						"emailb" : dot[0], 
+               						"emailc" : dot[1],
+               						"pass" : pass2
+           						},
            						success:function(result){
            							alert(result);
            							window.location.href = "../login/loginform.jsp";	
