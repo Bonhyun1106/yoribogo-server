@@ -42,7 +42,7 @@
                         
                     </div>
                     </div>
-                    <button id="login-button">회원가입</button>
+                    <a id="login-button" href="#">회원가입</a>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
                 
                 <script>
@@ -58,11 +58,12 @@
 				$("#passChecked").html("");	
        			$("#pass2Checked").html("");		
 				 	
-       			let email;
-       			let id;
-       			let pass;
+       			let email = " ";
+       			let id = " ";
+       			let pass = " ";
        			
            		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+           		let idReg = /^[A-za-z0-9]{5,15}/g;
            		
            		$("input[name='email']").on("keyup",function(){			
            			
@@ -81,8 +82,8 @@
            						$("#emailChecked").html("사용가능한 이메일입니다.");	
            						$("#emailChecked").css({"color" : "springgreen"});	
            						emailFlag = true;
-           						email = $("input[name='email']");
-               					//console.log("finally email is " + email);
+           						email = $("input[name='email']").val();
+               					console.log("finally email is " + email);
            			  		}
            			  		else {
            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
@@ -105,15 +106,15 @@
            					if($("input[name='id']").val() == ""){
            						$("#idChecked").html("아이디를 입력해주세요.");					
            						$("#idChecked").css({"color" : "red"});	
-           					}else if(result == 0){
+           					}else if($("input[name='id']").val().match(idReg) != null && result == 0){
            					$("#idChecked").html("사용가능한 아이디입니다.");	
            				
            					$("#idChecked").css({"color" : "springgreen"});	
            					idFlag = true;
-           					id = $("input[name='id']");
+           					id = $("input[name='id']").val();
            					//console.log("finally id is " + id);
            					}else{
-           						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
+           						$("#idChecked").html("아이디는 영문 대문자 또는 소문자 또는 숫자로 시작하며 길이는 5~15자여야합니다.");									
             					$("#idChecked").css({"color" : "red"});	
            							
            					}
@@ -155,46 +156,50 @@
            						$("#pass2Checked").html("확인했습니다.");									            				
             					$("#pass2Checked").css({"color" : "springgreen"});	
             					pass2Flag = true;
-            					pass2 = $("input[name='pass2']");
+            					pass2 = $("input[name='pass2']").val();
 
                					//console.log("finally password is " + pass);
            			}
            			
            			}            		
            		);
-           		
-             
+
            		$("#login-button").click(
            			function(){
               	        $('form').fadeOut(500);
                	        $('.wrapper').addClass('form-success');
 
-           				alert("회원가입 진입");
 
-           				let at = [];
-           				at = email.split("@");
-           				dot = at[1].split(".");
-						
-   	        			console.log(idFlag+emailFlag+passFlag+pass2Flag);
+                   	 	console.log(email);
+
+                 		let atTmp = [];
+                  	    atTmp = email.split("@");
+                   	    let dotTmp = atTmp[1].split(".");
+                   	    
+                   	    address = atTmp[0];
+                   	    at = dotTmp[0];
+                   	    dot = dotTmp[1];
+                   	  
+                   	    
+                   	    
            				if(idFlag && emailFlag && passFlag && pass2Flag){
+   	        			console.log("추출 결과 : "+address + at + dot);
    	        				alert("회원가입 중...");
            					$.ajax({
        	    					url:"signupsuccess.do",
-           						data: {
-               						"id" : id,
-               						"emaila" : at[0],
-               						"emailb" : dot[0], 
-               						"emailc" : dot[1],
-               						"pass" : pass2
-           						},
+           						data: 
+               						"id=" + id +
+               						"&email=" + email +
+//                						"&emailaddress=" + address+
+//                						"&emailat=" + at+
+//                						"&emaildot=" + dot+
+               						"&pass=" + pass2,
            						success:function(result){
            							alert(result);
            							window.location.href = "../login/loginform.jsp";	
            						}
            					});
            					
-          					}else{
-   							alert("입력 내용을 확인해주세요.");       					
           					}
            			}
            		);

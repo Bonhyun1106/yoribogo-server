@@ -176,7 +176,8 @@
     background: ghostwhite;
     
 }
-#back{
+
+#back,#login-button{
     width: 250px;
     height: 48px;
     line-height: 49px;
@@ -193,6 +194,9 @@
 }
 #back:hover{
     background: ghostwhite;
+}
+#login-button:hover{
+    background: ghostwhite;	
 }
 #loginButton{
   position: absolute;
