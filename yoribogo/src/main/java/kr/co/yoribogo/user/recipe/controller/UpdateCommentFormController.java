@@ -1,5 +1,5 @@
 package kr.co.yoribogo.user.recipe.controller;
 
-public class UpdateFormCommentController {
+public class UpdateCommentFormController {
 
 }
