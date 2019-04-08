@@ -7,8 +7,8 @@ public class RecipeVO {
    private int memNo;
    private String title;
    private String summary;
-   private int viewCnt;		// default 0
-   private int likeCnt;		// default 0
+   private int viewCnt;
+   private int likeCnt;
    private Date regDate;
    private int country; 
    private int type;
