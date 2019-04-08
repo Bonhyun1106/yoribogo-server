@@ -2,8 +2,6 @@ package kr.co.yoribogo.admin.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.BannerVO;
+import kr.co.yoribogo.utility.FunnyFileRenamePolicy;
 
 
 
