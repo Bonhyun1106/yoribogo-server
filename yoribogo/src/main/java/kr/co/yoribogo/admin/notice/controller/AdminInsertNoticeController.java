@@ -36,7 +36,6 @@ private AdminMapper mapper;
 
 		
 
-		
 	//  작성하고 다시 그냥 작성 폼으로 돌아오는지 or 등록한 리스트 메뉴로 가는지 
 		response.sendRedirect(request.getContextPath() + "/admin/writeform.do");
 	}

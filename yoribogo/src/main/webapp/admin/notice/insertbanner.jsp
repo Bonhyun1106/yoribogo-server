@@ -57,7 +57,7 @@
                            <p> </p>
                     <br>
                     <br>
-                    <form method='post' action="insertbanner.do"> 
+                    <form method="post" enctype="multipart/form-data" action="insertbanner.do"> 
                     <div class="filebox"> 업로드할 파일을 선택하세요 !
                       <label for="ex_file">파일 선택</label>
                       <input type="file" name="banner" id="ex_file">
@@ -65,19 +65,19 @@
 
                   <div class="content">
                         업로드 제목 :
-                        <input type="text" name="title"  placeholder="  업로드할 글 제목을 입력하세요!"/>
+                        <input type="text" name="title"  placeholder="업로드할 글 제목을 입력하세요!"/>
                     </div>
                     <div class="content">
                         업로드 내용 :
-                        <input type="text" name="content"  placeholder="  업로드할 글 내용을 입력하세요!">
+                        <input type="text" name="content"  placeholder="업로드할 글 내용을 입력하세요!">
                     </div>
 					
-		
-		
                     <div class="bannersubmit"> 
                     <input type="submit" value="등록">
                     </div>
                     </form>
+                    
+                    
                     <table>
                         <tr>
                             <th>파일명</th>

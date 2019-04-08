@@ -72,9 +72,9 @@
                       </label>
                       <div>
                             <select id="Field106" name="writer" class="field select medium" tabindex="11"> 
-                                    <option value="First Choice"> 운영자 </option>
-                                    <option value="Second Choice"> 게시판관리자 </option>
-                                    <option value="Third Choice"> 댓글관리자 </option>
+                                    <option value="운영자"> 운영자 </option>
+                                    <option value="게시판관리자"> 게시판관리자 </option>
+                                    <option value="댓글관리자"> 댓글관리자 </option>
                             </select>
                      </div>
                     </div>
