@@ -11,6 +11,8 @@
 		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
 		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
 		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
+		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
+		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
 	</typeAliases>
 	 
 	<environments default="development">
