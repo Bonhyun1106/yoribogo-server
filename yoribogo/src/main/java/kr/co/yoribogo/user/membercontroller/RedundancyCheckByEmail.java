@@ -22,7 +22,7 @@ public class RedundancyCheckByEmail extends HttpServlet{
 	      SignupMapper mapper = MyAppSqlConfig.getSqlSession().getMapper(SignupMapper.class);
 	      String email = request.getParameter("email");
 	      int emailCnt = mapper.getMemEmailOnly(email);
-	      System.out.println("이것좀 출력해줘 제발:" + email);
+//	      System.out.println("이것좀 출력해줘 제발:" + email);
 	      
 	      PrintWriter out = response.getWriter();
 	    

@@ -15,6 +15,10 @@ import kr.co.yoribogo.repository.vo.MemberVO;
 
 @WebServlet("/login/login.do")
 public class LoginController extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LoginMapper mapper;
 	public LoginController() {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(LoginMapper.class);

@@ -9,6 +9,8 @@
 	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모 **-->
 	<typeAliases>
 		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
+		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
+		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
 	</typeAliases>
 	 
 	<environments default="development">
@@ -26,5 +28,6 @@
 	<mappers>
 		<mapper resource="config/mapper/login.xml"/>
 		<mapper resource="config/mapper/signup.xml"/>
+		<mapper resource="config/mapper/recipe.xml"/>
 	</mappers>
 </configuration>

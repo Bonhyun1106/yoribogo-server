@@ -22,8 +22,8 @@ public class RedundancyCheckById extends HttpServlet{
 	      SignupMapper mapper = MyAppSqlConfig.getSqlSession().getMapper(SignupMapper.class);
 	      String id = request.getParameter("id");
 	      int idcnt = mapper.getMemIdOnly(id.trim());
-	      System.out.println(id);
-	      System.out.println(idcnt);
+//	      System.out.println(id);
+//	      System.out.println(idcnt);
 	      
 	      PrintWriter out = response.getWriter();
 	    

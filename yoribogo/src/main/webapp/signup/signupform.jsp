@@ -8,14 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script>
-         $("#login-utton").click(function(event){
-		 event.preventDefault();
-	 
-	         $('form').fadeOut(500);
-	         $('.wrapper').addClass('form-success');
-        });
-    </script>
     <script src="../script/jquery-3.3.1.min.js" type="text/javascript"></script>
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -50,7 +42,7 @@
                         
                     </div>
                     </div>
-                    <button type="submit" id="login-button">회원가입</button>
+                    <button id="login-button">회원가입</button>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
                 
                 <script>
@@ -74,18 +66,23 @@
            		
            		$("input[name='email']").on("keyup",function(){			
            			
-	           		console.log($("input[name='email']").val());
+	           		//console.log($("input[name='email']").val());
            			$.ajax({
            				url :"checkemail.do",
            				data: "email=" + $("input[name='email']").val(),
            				success : function(result){
 	           			  // 정규식 변수 regExp
-	           			 	console.log("result: " + result);
-           			  		if ($("input[name='email']").val().match(regExp) != null && result == 0) {
+	           			 	//console.log("result: " + result);
+           			  	  if($("input[name='email']").val() == ""){
+           						$("#emailChecked").html("이메일을 입력해주세요.");	
+           						$("#emailChecked").css({"color" : "red"});	
+           			  		  
+           			  	  }else if ($("input[name='email']").val().match(regExp) != null && result == 0) {
            						$("#emailChecked").html("사용가능한 이메일입니다.");	
            						$("#emailChecked").css({"color" : "springgreen"});	
            						emailFlag = true;
-           						email = $("input[name='email']");           			    		
+           						email = $("input[name='email']");
+               					//console.log("finally email is " + email);
            			  		}
            			  		else {
            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
@@ -104,15 +101,17 @@
            				url : "checkid.do",
            				data: "id=" + $("input[name='id']").val(),
            				success : function(result){
-           					if(result == 0){
+           					
+           					if($("input[name='id']").val() == ""){
+           						$("#idChecked").html("아이디를 입력해주세요.");					
+           						$("#idChecked").css({"color" : "red"});	
+           					}else if(result == 0){
            					$("#idChecked").html("사용가능한 아이디입니다.");	
            				
            					$("#idChecked").css({"color" : "springgreen"});	
            					idFlag = true;
            					id = $("input[name='id']");
-           					
-           					}else if($("input[name='id']").val() == ""){
-           						$("#idChecked").html("");					
+           					//console.log("finally id is " + id);
            					}else{
            						$("#idChecked").html("사용할 수 없는 아이디입니다.");									
             					$("#idChecked").css({"color" : "red"});	
@@ -128,7 +127,7 @@
            			if(this == ""){
            				return;            				
            			}
-           			console.log($("input[name='pass']").val().length);
+           			//console.log($("input[name='pass']").val().length);
            			if($("input[name='pass']").val().length < 8){
            						$("#passChecked").html("비밀번호는 8자 이상입니다.");									
             					$("#passChecked").css({"color" : "red"});	
@@ -148,7 +147,7 @@
            			if($("input[name='pass']").val().length == 0 || $("input[name='pass2']").val().length == 0){
            				return;            				
            			}
-           			console.log($("input[name='pass']").val());
+           			//console.log($("input[name='pass']").val());
            			if($("input[name='pass']").val() != $("input[name='pass2']").val()){
            						$("#pass2Checked").html("비밀번호를 확인해주세요.");									
             					$("#pass2Checked").css({"color" : "red"});	
@@ -157,19 +156,38 @@
             					$("#pass2Checked").css({"color" : "springgreen"});	
             					pass2Flag = true;
             					pass2 = $("input[name='pass2']");
+
+               					//console.log("finally password is " + pass);
            			}
            			
            			}            		
            		);
            		
+             
            		$("#login-button").click(
            			function(){
+              	        $('form').fadeOut(500);
+               	        $('.wrapper').addClass('form-success');
+
+           				alert("회원가입 진입");
+
+           				let at = [];
+           				at = email.split("@");
+           				dot = at[1].split(".");
+						
+   	        			console.log(idFlag+emailFlag+passFlag+pass2Flag);
            				if(idFlag && emailFlag && passFlag && pass2Flag){
-   	        				$.ajax({
-       	    					url:"signup.do",
-           						data: "id=" + "email="+"pass=",
-           						success:function(){
-           						
+   	        				alert("회원가입 중...");
+           					$.ajax({
+       	    					url:"signupsuccess.do",
+           						data: "id=" + id +
+           						"&emaila="  + at[0] + 
+           						"&emailb="  + dot[0] + 
+           						"&emailc="  + dot[1] + 
+           						"&pass=" + pass2,
+           						success:function(result){
+           							alert(result);
+           							window.location.href = "../login/loginform.jsp";	
            						}
            					});
            					

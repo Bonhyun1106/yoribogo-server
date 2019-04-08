@@ -3,6 +3,18 @@ package kr.co.yoribogo.repository.vo;
 import java.util.Date;
 
 public class MemberVO {
+	private int memNo;
+	private String memId;
+	private String memPassword;
+	private String memEmail;
+	private String memFavor1;
+	private String memFavor2;
+	private String memFavor3;
+	private Date memJoinDate;
+	private String memProfile;
+	private int memReportCount;
+	private char memIsOut;
+	
 	public int getMemNo() {
 		return memNo;
 	}
@@ -45,33 +57,28 @@ public class MemberVO {
 	public void setMemFavor3(String memFavor3) {
 		this.memFavor3 = memFavor3;
 	}
-	public String getMemProfile() {
-		return memProfile;
-	}
-	public void setMemProfile(String memProfile) {
-		this.memProfile = memProfile;
-	}
-	public String getMemReportCount() {
-		return memReportCount;
-	}
-	public void setMemReportCount(String memReportCount) {
-		this.memReportCount = memReportCount;
-	}
 	public Date getMemJoinDate() {
 		return memJoinDate;
 	}
 	public void setMemJoinDate(Date memJoinDate) {
 		this.memJoinDate = memJoinDate;
 	}
-	private int memNo;
-	private String memId;
-	private String memPassword;
-	private String memEmail;
-	private String memFavor1;
-	private String memFavor2;
-	private String memFavor3;
-	private String memProfile;
-	private String memReportCount;
-	private Date memJoinDate;
-	
+	public String getMemProfile() {
+		return memProfile;
+	}
+	public void setMemProfile(String memProfile) {
+		this.memProfile = memProfile;
+	}
+	public int getMemReportCount() {
+		return memReportCount;
+	}
+	public void setMemReportCount(int memReportCount) {
+		this.memReportCount = memReportCount;
+	}
+	public char getMemIsOut() {
+		return memIsOut;
+	}
+	public void setMemIsOut(char memIsOut) {
+		this.memIsOut = memIsOut;
+	}
 }
