@@ -15,4 +15,17 @@
 		 where mem_email =#{email}
 	</select>
 	
+	
+	
+	<insert id="insertMember" parameterType="member">
+		insert into tb_member (
+			mem_no,mem_id,mem_password,
+			mem_email) values (
+			s_mem_no.nextval,
+			#{memId},
+			CryptString.encrypt(#{memPassword},'key'),
+			#{memEmail}
+			)
+	</insert>
+	
 </mapper>
