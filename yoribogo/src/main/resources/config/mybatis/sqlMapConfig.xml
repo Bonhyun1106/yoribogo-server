@@ -17,6 +17,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
 		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
@@ -26,6 +27,10 @@
 
 =======
 >>>>>>> parent of 67bf882... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
+=======
+		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
+		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
+>>>>>>> parent of 15d1a6a... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
 =======
 		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
