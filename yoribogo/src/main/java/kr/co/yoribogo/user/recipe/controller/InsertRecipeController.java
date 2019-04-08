@@ -32,51 +32,48 @@ public class InsertRecipeController extends HttpServlet{
 		request.setCharacterEncoding("utf-8");
 		
 		// 이미지 저장 경로 동적 생성
-		String uploadRoot = "c:/bit2019/upload";
-		String path = "/recipe";
-		File file = new File(uploadRoot + path);
-		if (file.exists() == false) file.mkdirs();
+//		String uploadRoot = "c:/bit2019/upload";
+//		String path = "/recipe";
+//		File file = new File(uploadRoot + path);
+//		if (file.exists() == false) file.mkdirs();
+//		
+//		MultipartRequest mRequest = new MultipartRequest(
+//				request, 
+//				uploadRoot + path,
+//				1024 * 1024 * 100,
+//				"utf-8",
+//				new FunnyFileRenamePolicy()
+//		);
+//		try {
+//			// 레시피 등록
+//			RecipeVO recipe = new RecipeVO();
+//			recipe.setTitle(request.getParameter("title"));
+//			recipe.setSummary(request.getParameter("summary"));
+//						System.out.println(request.getParameter("kcal"));
+//			recipe.setKcal(Integer.parseInt(request.getParameter("kcal")));
+//			recipe.setCountry(Integer.parseInt(request.getParameter("country")));
+////			mapper.insertRecipe(recipe);
+//			
+//			// 이미지 저장
+//			String name = "attach";
+//			File f = mRequest.getFile(name);
+//			if (f != null) {
+//				//String oriName = mRequest.getOriginalFileName(name);
+//				//String systemName = mRequest.getFilesystemName(name);
+//				//long fileSize = f.length();
+//				
+//				// 데이터베이스에 파일 정보 저장
+//				FileVO fileVO = new FileVO();
+//				fileVO.setRecipeNo(recipe.getNo());
+//				fileVO.setBlockImg(path);
+//				System.out.println(path);
+//				//mapper.insertFile(fileVO);
+//			}
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 		
-		MultipartRequest mRequest = new MultipartRequest(
-				request, 
-				uploadRoot + path,
-				1024 * 1024 * 100,
-				"utf-8",
-				new FunnyFileRenamePolicy()
-		);
-		try {
-			// 레시피 등록
-			RecipeVO recipe = new RecipeVO();
-			recipe.setTitle(request.getParameter("title"));
-			recipe.setSummary(request.getParameter("summary"));
-			// System.out.println(request.getParameter("kcal"));
-			recipe.setKcal(Integer.parseInt(request.getParameter("kcal")));
-			recipe.setCountry(Integer.parseInt(request.getParameter("country")));
-//			mapper.insertRecipe(recipe);
-			
-			// 이미지 저장
-			String name = "attach";
-			File f = mRequest.getFile(name);
-			if (f != null) {
-				//String oriName = mRequest.getOriginalFileName(name);
-				//String systemName = mRequest.getFilesystemName(name);
-				//long fileSize = f.length();
-				
-				// 데이터베이스에 파일 정보 저장
-				FileVO fileVO = new FileVO();
-				fileVO.setRecipeNo(recipe.getNo());
-				fileVO.setBlockImg(path);
-				System.out.println(path);
-				//mapper.insertFile(fileVO);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-//		response.sendRedirect("detailrecipe.jsp");
-//		PrintWriter pw = response.getWriter();
-//		pw.println(recipe);
-//		pw.close();
+
+		
 	}
-	
-	
 }

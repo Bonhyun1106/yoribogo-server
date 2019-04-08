@@ -31,5 +31,6 @@
 		<mapper resource="config/mapper/login.xml"/>
 		<mapper resource="config/mapper/signup.xml"/>
 		<mapper resource="config/mapper/recipe.xml"/>
+		<mapper resource="config/mapper/recipe2.xml"/>
 	</mappers>
 </configuration>
