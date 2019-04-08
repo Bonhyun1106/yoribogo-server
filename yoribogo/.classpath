@@ -38,6 +38,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of b2e7d21... merge
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
@@ -46,6 +49,7 @@
 			<attribute name="test" value="true"/>
 =======
 >>>>>>> parent of 67bf882... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
+<<<<<<< HEAD
 =======
 >>>>>>> parent of ff28d7b... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
 =======
@@ -56,6 +60,8 @@
 >>>>>>> parent of 67bf882... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
 =======
 >>>>>>> parent of 67bf882... Merge branch 'master' of https://github.com/kwj3682/yoribogo-server
+=======
+>>>>>>> parent of b2e7d21... merge
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
