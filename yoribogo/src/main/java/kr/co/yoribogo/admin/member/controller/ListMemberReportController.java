@@ -1,5 +1,5 @@
 package kr.co.yoribogo.admin.member.controller;
 
-public class AdminListReportMemberController {
+public class ListMemberReportController {
 
 }
