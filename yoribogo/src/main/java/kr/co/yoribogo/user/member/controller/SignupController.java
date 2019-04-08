@@ -15,7 +15,9 @@ import kr.co.yoribogo.repository.vo.MemberVO;
 
 @WebServlet("/signup/signupsuccess.do")
 public class SignupController extends HttpServlet{
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private SignupMapper mapper;
 	public SignupController() {

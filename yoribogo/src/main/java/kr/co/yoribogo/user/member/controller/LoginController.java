@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
 		session.setAttribute("user", user);
 		
 		// 로그인 성공시 메인페이지로 이동(url변경)
-		response.sendRedirect(request.getContextPath() + "/mypage/mypage.jsp");
+		response.sendRedirect(request.getContextPath() + "/main/main.jsp");
 	
 	}
 	

@@ -7,33 +7,33 @@
   <name>yoribogo</name>
   <description>yoribogo</description>
   <dependencies>
-	  		<dependency>
+  		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
 		    <version>3.5.0</version>
 		</dependency>
-			
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+
 		<dependency>
 		    <groupId>com.oracle</groupId>
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-	
-
-		<!-- https://mvnrepository.com/artifact/com.servlets/cos -->
-		<dependency>
-    		<groupId>com.servlets</groupId>
-    		<artifactId>cos</artifactId>
-    		<version>05Nov2002</version>
-		</dependency>
-<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		
+		  <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.servlets/cos -->
+<dependency>
+    <groupId>com.servlets</groupId>
+    <artifactId>cos</artifactId>
+    <version>05Nov2002</version>
+    <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+ </dependency>
 <dependency>
     <groupId>net.coobird</groupId>
     <artifactId>thumbnailator</artifactId>

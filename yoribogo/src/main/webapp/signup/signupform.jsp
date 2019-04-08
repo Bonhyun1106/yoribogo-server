@@ -12,8 +12,7 @@
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
    <link rel="stylesheet" href="../css/signup.css">
-   <title>sign up</title>
-
+   <title>Document</title>
 </head>
 <body>
   <jsp:include page="../include/logoutmenubar.jsp" />
@@ -43,7 +42,7 @@
                         
                     </div>
                     </div>
-                    <a id="login-button" href="">회원가입</a>
+                    <a id="login-button" href="#">회원가입</a>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
                 
                 <script>
@@ -85,10 +84,8 @@
            						emailFlag = true;
            						email = $("input[name='email']").val();
                					console.log("finally email is " + email);
-           			  		}else if(result == 1){
-           						$("#emailChecked").html("이미 사용 중인 이메일입니다.");									
-            					$("#emailChecked").css({"color" : "red"});	           						
-           					}else {
+           			  		}
+           			  		else {
            						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
            						$("#emailChecked").css({"color" : "red"});	
            			  		}
@@ -116,9 +113,6 @@
            					idFlag = true;
            					id = $("input[name='id']").val();
            					//console.log("finally id is " + id);
-           					}else if(result == 1){
-           						$("#idChecked").html("이미 사용 중인 아이디입니다.");									
-            					$("#idChecked").css({"color" : "red"});	           						
            					}else{
            						$("#idChecked").html("아이디는 영문 대문자 또는 소문자 또는 숫자로 시작하며 길이는 5~15자여야합니다.");									
             					$("#idChecked").css({"color" : "red"});	
@@ -172,14 +166,10 @@
 
            		$("#login-button").click(
            			function(){
-
-
-                   	  
-                   	    
               	        $('form').fadeOut(500);
-                   	    
-           				if(idFlag && emailFlag && passFlag && pass2Flag){
                	        $('.wrapper').addClass('form-success');
+
+
                    	 	console.log(email);
 
                  		let atTmp = [];
@@ -189,6 +179,10 @@
                    	    address = atTmp[0];
                    	    at = dotTmp[0];
                    	    dot = dotTmp[1];
+                   	  
+                   	    
+                   	    
+           				if(idFlag && emailFlag && passFlag && pass2Flag){
    	        			console.log("추출 결과 : "+address + at + dot);
    	        				alert("회원가입 중...");
            					$.ajax({
@@ -206,8 +200,6 @@
            						}
            					});
            					
-          					}else{
-          						alert("입력된 정보를 확인해주세요.");
           					}
            			}
            		);
