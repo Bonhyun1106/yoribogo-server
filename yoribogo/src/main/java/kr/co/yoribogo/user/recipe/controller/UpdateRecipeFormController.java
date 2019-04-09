@@ -21,6 +21,7 @@ public class UpdateRecipeFormController extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		int no = 2; // request.getParameter();
 		request.setAttribute("recipe", mapper.updateRecipe(no));
+		
 		request.setAttribute("ingredient", mapper.selectIngredient(no));
 		
 		request.getRequestDispatcher("updateform.jsp").forward(request, response);
