@@ -9,7 +9,6 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
-  			/signup/signupform.do;
   			/recipe/updateform.do;
   			/recipe/listajax.do;
   			/recipe/list.do;
@@ -17,6 +16,7 @@
   			/login/loginform.do;
   			/signup/checkemail.do;
   			/signup/checkid.do;
+  			/signup/signupform.do;
   			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
   			/admin/notice/write.do;
