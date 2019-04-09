@@ -22,7 +22,8 @@
   			/admin/notice/noticeform.do;
   			/admin/notice/write.do;
   			/admin/notice/bannerform.do;
-  			/admin/insertbanner.do;
+  			/admin/notice/insertbanner.do;
+  			/admin/recipe/listrecipe.do;
   		</param-value>
   	</init-param>
   </filter>
