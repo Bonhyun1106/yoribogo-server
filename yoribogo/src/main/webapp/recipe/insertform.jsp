@@ -30,14 +30,12 @@
         
         
         
-        
-        
 		<form method='post' action="insertrecipe.do" enctype="multipart/form-data">
         <div id="top-wrapper">
             <div class="top-left">
 			
                 <div class="title">
-                    <input name="title" id="titleinput" type=text placeholder="제목을 입력하세요" />
+                    <input name="title" id="titleinput" type="text" placeholder="제목을 입력하세요" />
                 </div>
                 <div>
                     <textarea name="summary" id="textareatitle" cols="55" rows="14" placeholder="내용을 입력하세요"></textarea>
