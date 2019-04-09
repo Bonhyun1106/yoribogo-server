@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>insert recipe</title>
-    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="<c:url value="/script/jquery-3.3.1.min.js"/>"></script>
     <script src="../js/insertrecipeform.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/insertform.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
@@ -43,7 +43,7 @@
             </div>
             <div class="top-right">
                 <input type="file" name="mainImg" id="mainImg" placeholder="파일을 첨부하세요" />
-                <div id="main_img"></div>
+                <div id="main_img"><img style="width: 450px; height: 250px;"></div>
             </div>
         </div>
 
@@ -178,18 +178,15 @@
 
 
 <script>
-	function readURL(input) {
-	   if (input.files && input.files[0]) {
-	      var reader = new FileReader();
-
-	       reader.onload = function(e) {
-	         $('#main_img').attr('src', e.target.result);
-	       }
-	       reader.readAsDataURL(input.files[0]);
-	     }
-	}
 	$("#mainImg").change(function() {
-		   readURL(this);
+		 if (this.files && this.files[0]) {
+			  var reader = new FileReader();
+
+			  reader.onload = function(e) {
+			         $('#main_img > img').attr('src', e.target.result);
+			  }
+		      reader.readAsDataURL(this.files[0]);
+		}	
 	});
 
 
