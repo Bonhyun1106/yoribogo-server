@@ -65,40 +65,42 @@
                    <div class="bottom_2"> 
                   <c:forEach var="list" items="${recipe}">
                      <div>${list.title}</div> 
-                   </c:forEach>
+                  </c:forEach>
                     </div>
             </div>
 
             <div class="content2">
                   <div class="top">작성일</div>
                     <div class="bottom"> 
-                     <c:forEach var="list" items="${recipe}">
+                  <c:forEach var="list" items="${recipe}">
                       <div>${list.regDate}</div>
-                      </c:forEach> 
+                  </c:forEach>
                     </div>
             </div>
             <div class="content2">
                 <div class="top">조회수</div>
                   <div class="bottom">
-                   <c:forEach var="list" items="${recipe}">
+                  <c:forEach var="list" items="${recipe}">
                       <div>${list.viewCnt}</div> 
-                    </c:forEach>
+                  </c:forEach>
                   </div>
-            </div>
+            </div> 
 
             <div class="content2">
               <div class="top">작성자</div>
                 <div class="bottom">
-                 <c:forEach var="list" items="${recipe}">
-                    <div>${list.memNo}</div> 
+                  <c:forEach var="list" items="${recipe}">
+                    <div>${list.memId}</div> 
                   </c:forEach>
               </div>
             </div>
-            
+           
             <div class="content2">
               <div class="top">글 삭제</div>
                 <div class="bottom">
+                  <c:forEach var="list" items="${recipe}">
                   <div><button class="btn"> 삭제 </button></div> 
+                  </c:forEach>
                </div> 
             </div>
         </div>

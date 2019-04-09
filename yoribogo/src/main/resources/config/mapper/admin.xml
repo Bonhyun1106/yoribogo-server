@@ -33,6 +33,7 @@
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
 		<result column="recipe_weather" property="weather" />
+		<result column="mem_id" property="memId" />		
 	</resultMap>
 	
 	
@@ -91,9 +92,7 @@
 	
    
 	<select id="selectListRecipe" parameterType="page" resultMap="recipeMap">
-		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, (select m.mem_id
-                                                                            from tb_member m , tb_recipe t
-                                                                      where t.MEM_NO = m.MEM_NO ) as mem_id
+		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt,  m.mem_id
            from tb_recipe r
            inner join tb_member m 
              on r.mem_no = m.mem_no
