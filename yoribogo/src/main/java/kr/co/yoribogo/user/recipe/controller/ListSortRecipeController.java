@@ -1,4 +1,4 @@
-package kr.co.yoribogo.user.recipecontroller;
+package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

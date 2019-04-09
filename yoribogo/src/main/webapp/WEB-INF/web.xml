@@ -13,6 +13,10 @@
   			/login/loginform.do;
   			/signup/checkemail.do;
   			/signup/checkid.do;
+  			/admin/notice/insertbanner.do;
+  			/admin/notice/noticeform.do;
+  			/admin/notice/write.do;
+  			/admin/recipe/listrecipe.do
   		</param-value>
   	</init-param>
   </filter>

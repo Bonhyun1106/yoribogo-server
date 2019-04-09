@@ -11,12 +11,10 @@
 		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
 		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
 		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
-<<<<<<< HEAD
-		<typeAlias alias="sort" type="kr.co.yoribogo.repository.vo.Sort" />
-=======
 		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
+		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
+		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
->>>>>>> 09cd6b5fde5f9de77e999424c5c6b96d40cbda8b
 	</typeAliases>
 	 
 	<environments default="development">
