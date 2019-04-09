@@ -8,6 +8,7 @@
 		<result column="ad_notice_content" property="content"/>
 		<result column="ad_notice_reg_date" property="regDate"/>
 		<result column="ad_notice_writer" property="writer"/>
+		<result column="ad_notice_title" property="title"/>
 	</resultMap>
 	
 	<resultMap type="banner" id="BannerMap">
@@ -68,13 +69,26 @@
 	
 	
 	
-	<!-- 2. 게시글 관리  -->
+	<!-- 2. 게시글 관리 
 	
+	select recipe_no, recipe_title, recipe_reg_date, recipe_view_cnt, (select m.mem_id
+                                                                     from  tb_recipe r  
+                                                                     inner join tb_member m 
+                                                                     on r.MEM_NO = m.mem_no) as mem_id
+		  from (select rownum rnum, a.*
+		          from ( select *
+		                   from tb_recipe
+		                  order by recipe_no desc) a
+		       )   
+		  where rnum between 1 and 2;
+		  
 	
-	
-	<!-- 게시글 관리 
+	 게시글 관리
 	<select id="selectRecipe" parameterType="page" resultMap="recipeMap">
-		select  r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, m.mem_id
+		select  r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt,  (select m.mem_id
+		                                                                              from tb_recipe r
+		                                                                              inner join tb_member m 
+		                                                                              on r.mem_no = m.mem_no) as mem_id
 		  from (select rownum rnum, a.*
 		          from ( select *
 		                   from tb_recipe r, tb_member m where r.MEM_NO =  m.mem_no
@@ -90,14 +104,14 @@
 	</select>
 	
 	
-	 -->
+	  -->
 	 
 	<!-- 공지사항 등록-->
 	<insert id="insertNotice" parameterType="notice">
 		insert into tb_admin_notice (
-			ad_notice_no, ad_notice_content, ad_notice_reg_date, ad_notice_writer
+			ad_notice_no, ad_notice_title, ad_notice_content, ad_notice_reg_date, ad_notice_writer
 		) values (
-			s_ad_notice_no.nextval, #{content}, sysdate, #{writer}
+			s_ad_notice_no.nextval,  #{title}, #{content}, sysdate, #{writer}
 		)
 	</insert>
 	

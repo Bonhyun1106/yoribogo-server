@@ -32,6 +32,7 @@ private AdminMapper mapper;
 		
 		notice.setWriter(request.getParameter("writer"));
 		notice.setContent(request.getParameter("content"));
+		notice.setTitle(request.getParameter("title"));
 		mapper.insertNotice(notice);
 
 		

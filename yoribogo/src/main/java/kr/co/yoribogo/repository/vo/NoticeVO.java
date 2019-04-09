@@ -8,7 +8,15 @@ public class NoticeVO {
 	private String content;
 	private Date regDate;
 	private String writer;
+	private String title;
 	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public int getNo() {
 		return no;
