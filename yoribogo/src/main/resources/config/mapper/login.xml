@@ -37,6 +37,7 @@
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
 		<result column="recipe_weather" property="weather" />
+		<result column="recipe_grade" property="grade" />
 		<result column="mem_id" property="memId" />
 	</resultMap>
 	 
@@ -54,7 +55,8 @@
 			   recipe_kcal,
 			   recipe_time,
 			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
-			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather
+			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather,
+			   recipe_grade
     	  from tb_recipe
     	 inner join tb_member m
     	    on tb_recipe.mem_no = m.mem_no

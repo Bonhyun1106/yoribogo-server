@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +26,7 @@
   <span id="header">
       <div>
           <div id="settingProfile" style="cursor: pointer;" onclick="location.href='setUserInfo.html';"><i class="fas fa-cog fa-3x"></i></div>
-          <img id="profile" src="@!@profile"    onclick="location.href='mypage.html';"></img>
+          <img id="profile" src="${user.memProfile}"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		
@@ -47,25 +47,26 @@
           <hr>
           <div class="recentPost">
             <div class="recentPost_body">
-            
-            
-                <div class="profileBlock_body_inner" style="background-image: url(@!@backimage); background-size: cover;">
-                  <div  class="innerWrapper">  
-                  <img id = "profileBlock_body_inner_profile" src="@!@"/>  
-                   <div class="innerWrapper_inner">
-                     <div>@!@list.regdate</div>
-                     <div>@!@list.id</div>
-                     <div><i class="fas fa-star"></i>@!@list.grade</div>
-                    </div>
-                    <div class="paragraph">@!@list.content</div>
-                  </div>
-                </div>
-                
-
-  
-             <div id="moreInfo" style="cursor: pointer;" onclick="location.href='list.html';">
+			<c:if test="${userRecipe.size() > 0}">
+            	<c:forEach var="recipe" items="${userRecipe}" begin="0" end="2">
+                	<div class="profileBlock_body_inner" style="background-image: url(@!@backimage); background-size: cover;">
+                  		<div  class="innerWrapper">  
+                  		<img id = "profileBlock_body_inner_profile" src="${user.memProfile}"/>  
+		                   <div class="innerWrapper_inner">
+        		             <div><fmt:formatDate value="${recipe.regDate}" pattern="MM.dd hh:mm" /></div>
+                 		     <div>${user.memId}</div>
+                     		 <div><i class="fas fa-star"></i>${recipe.grade}/5</div>
+                    	   </div>
+                    		 <div class="paragraph">${recipe.summary}</div>
+                  		</div>
+                	</div>
+                </c:forEach>
+             <div id="moreInfo" style="cursor: pointer;">
                  <i class="fas fa-chevron-right"></i>
              </div>
+		  	</c:if>
+
+  
             </div>
         </div>
       </div>

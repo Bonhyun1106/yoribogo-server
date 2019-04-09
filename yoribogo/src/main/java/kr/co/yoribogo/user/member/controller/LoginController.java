@@ -46,6 +46,7 @@ public class LoginController extends HttpServlet {
 		}
 		System.out.println("LoginCotroller : login Success.");
 		List<RecipeVO> userRecipeList = mapper.selectRecipeByUser(user.getMemNo());
+
 		System.out.println("작성한 레시피 개수 : " + userRecipeList.size());
 		// 로그인 성공시 : 세션에 사용자 정보를 등록시킨다!!!!
 		HttpSession session = request.getSession();
