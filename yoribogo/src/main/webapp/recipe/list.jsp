@@ -17,6 +17,9 @@
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+
+
 <title>Document</title>
 </head>
 
@@ -33,18 +36,17 @@
 		<div class="top"></div>
 
 		<div class="sort">
-
 			<table>
 				<thead>
 					<tr>
 						<th>
 							<div class="inputSort">
-								<label>평점순</label> <input id="sort_gradeDESC" value="gradeDESC"
-									type="radio" name="sort" /> <label class="sort_desc"
-									for="sort_gradeDESC"></label> <input id="sort_gradeASC"
-									value="gradeASC" type="radio" name="sort" /> <label
-									class="sort_asc" for="sort_gradeASC"></label>
-							</div>
+				                <label>평점순</label>
+				                <input id="sort_gradeDESC" value="gradeDESC" type="radio" name="sort" />
+				                <label class="sort_desc" for="sort_gradeDESC"></label>
+				                <input id="sort_gradeASC" value="gradeASC" type="radio" name="sort" />
+				                <label class="sort_asc" for="sort_gradeASC"></label>
+			                </div>
 						</th>
 						<th>
 							<div class="inputSort">
@@ -102,17 +104,17 @@
 								<div class="date">
 									<c:forEach var='member' items='${member}'>
 										<c:choose>
-											<c:when test="${list.no eq member.memNo}">
+											<c:when test="${list.memNo eq member.memNo}">
 												<div class="dateWriter">By <span id="writer_id">${member.memId}</span></div>
 											</c:when>
 										</c:choose>
 									</c:forEach>
 									<div>
-										<i class="fas fa-star"></i>3.5/5
+										<i class="fas fa-star"></i>${list.grade}/5
 									</div>
 									<time>
 										<fmt:formatDate value="${list.regDate}"
-											pattern="yyyy년 MM월 dd일" />
+											pattern="yy.MM.dd" />
 									</time>
 								</div>
 							</div>
@@ -165,66 +167,75 @@
 	</footer>
 
 	<script>
-	$("input").on("click", function () {
-		console.log($("#sort_latestASC").is(":checked"));
-		if ($("#sort_latestASC").is(":checked")) {
-			
-			
+		$("input").on("click", function () {
+		let sort = $('input[name="sort"]:checked').attr("value");
 			$.ajax({
 				type: "POST",
 				url: "listajax.do",
-				data: "sort=latestASC",
+				data: "sort=" + sort,
 				dataType: "json",
 				success: function (result) {
-					console.log(result);
-					for (let i=0; i<result.length; i++) {
-						let list = result[i];
-						console.log(`${list.viewCnt}`);
-						
-						 let html = '<div class="recipe">';
+					let recipe = result[0];
+					let member = result[1];
+					let memId = "";
+					console.log(recipe);
+					let html = "";
+					for (let i = 0; i < recipe.length; i++) {
+						let list = recipe[i];
+						for (let j = 0; j < member.length; j++) {
+							let mList = member[j]; 
+							if (list.memNo == mList.memNo) {
+								memId = mList.memId;
+								break;
+							}
+						}
+						console.log(list.regDate);	
+						let date = moment(list.regDate).format("YY.MM.DD");
+						 	html += '<div class="recipe">';
 							html += '<a href="#.">';
 							html +=	'<div class="image">';
 							html +=	'<div class="quality">';
 							html +=	'<i class="fas fa-eye fa-2x"></i>';
-							html +=	`${list.viewCnt}`;
+							html +=	list.viewCnt;
 							html +=	'<i class="fas fa-heart fa-2x"></i>';
-							html +=	`${list.likeCnt}`;
+							html +=	list.likeCnt;
 							html +=	'<i class="fas fa-level-up-alt fa-2x"></i>';
-							html +=	`${list.level}'단계'`;
+							html +=	list.level + '단계';
 							html +=	'</div>';
-							html +=	'<img src="../images/f1.jpg" />';
+							html +=	'<img src="../images/' + list.photo + '.jpg" />';
+							console.log(list.photo);
 							html +=	'</div>';
 							html +=	'<div class="body">';
 							html +=	'<div class="mid">';
 							html +=	'<div class="date">';
-							html +=	'<div class="dateWriter">By <span id="writer_id"></span></div>';
+							html +=	'<div class="dateWriter">By <span id="writer_id">' + memId + '</span></div>';
 							html +=	'<div>';
-							html +=	'<i class="fas fa-star"></i>3.5/5';
+							html +=	'<i class="fas fa-star"></i>' + list.grade + '/5';
 							html +=	'</div>';
 							html +=	'<time>';
-							html +=	`${list.regDate}`;
+							html +=	date;
 							html +=	'</time>';
 							html +=	'</div>';
 							html +=	'</div>';
 							html +=	'<div class="title">';
-							html +=	`'<h3>'${list.title}'</h3>'`;
+							html +=	'<h3>' + list.title + '</h3>';
 							html +=	'</div>';
 							html +=	'<div class="content">';
-							html +=	`'<div class="content_inner">'${list.summary}'</div>'`;
+							html +=	'<div class="content_inner">' + list.summary + '</div>';
 							html +=	'</div>';
 							html += '</div>';
 							html += '</a>';
 							html += '</div>';
 							console.log(html);
+							console.log(memId);
 							$(".wrapper").html(html);
-						
 					} 
 				}
 			});
-		}
-	});
+		});
 	
 </script>
+
 
 </body>
 

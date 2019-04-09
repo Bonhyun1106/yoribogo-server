@@ -16,6 +16,8 @@
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
 		<result column="recipe_weather" property="weather" />
+		<result column="recipe_grade" property="grade" />
+		<result column="recipe_photo" property="photo" />
 	</resultMap>
 	
 	<resultMap id="memberMap" type="member">
@@ -48,19 +50,19 @@
 									order by recipe_no asc
 								</when>
 								<when test="sortType == 'gradeDESC'">
-									order by recipe_no asc
+									order by recipe_grade desc
 								</when>
 								<when test="sortType == 'gradeASC'">
-									order by recipe_no asc
+									order by recipe_grade asc
 								</when>
 								<when test="sortType == 'likeDESC'">
-									order by recipe_like_cnt asc
+									order by recipe_like_cnt desc
 								</when>
 								<when test="sortType == 'likeASC'">
 									order by recipe_like_cnt asc
 								</when>
 								<when test="sortType == 'levelDESC'">
-									order by recipe_level asc
+									order by recipe_level desc
 								</when>
 								<when test="sortType == 'levelASC'">
 									order by recipe_level asc
@@ -85,59 +87,6 @@
 		select *
 		  from tb_member
 	</select>
-	
-	
-	
-	<!-- ================================== 레 시 피 등 록  ======================================== -->
-	<insert id="insertRecipe" parameterType="recipe">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-	   		select s_recipe_no.nextval from dual
-	   	</selectKey>
-		insert into tb_recipe(
-			recipe_no, 
-			mem_no,
-			recipe_title, 
-			recipe_summary, 
-			recipe_reg_date, 
-			recipe_country,
-			recipe_type,
-			recipe_kcal,
-			recipe_time,
-			recipe_level,
-			recipe_weather
-		) values(
-			#{no},
-			#{memNo},
-			#{title}, 
-			#{summary}, 
-			sysdate, 
-			#{country},
-			#{type},
-			#{kcal},
-			#{time},
-			#{level},
-			#{weather}
-		)
-	</insert>
-	
-	
-	<!-- ======================================= 파 일  ======================================== -->
-	<resultMap id="fileMap" type="file">
-		<result column="rec_block_no" property="blockNo" />
-		<result column="recipe_no" property="no" />
-		<result column="rec_block_con" property="blockCon" />
-		<result column="rec_block_img" property="blockImg" />
-	</resultMap>
-	
-	<insert id="insertFile" parameterType="file">
-		insert into tb_recipe_block(
-			rec_block_no, recipe_no, rec_block_img
-		) values(
-			s_rec_block_no.nextval, #{no}, #{blockImg}
-		);
-	</insert>
-	
-	
 </mapper>
 
 

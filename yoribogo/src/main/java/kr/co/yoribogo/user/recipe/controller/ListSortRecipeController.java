@@ -2,6 +2,8 @@ package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,19 +35,18 @@ public class ListSortRecipeController extends HttpServlet {
 		} catch (Exception e) {
 
 		}
-		System.out.println("===================");
-		System.out.println(request.getParameter("sort"));
-		System.out.println("===================");
-		if (request.getParameter("sort") != null) {
-			if (request.getParameter("sort").equals("latestASC")) {
-				page.setSortType(request.getParameter("sort"));
-			}
-		}
-		request.setAttribute("recipe", mapper.selectRecipe(page));
 		
+		if (request.getParameter("sort") != null) {
+				page.setSortType(request.getParameter("sort"));
+		}
+		
+		String recipe = new Gson().toJson(mapper.selectRecipe(page));
+		String member = new Gson().toJson(mapper.selectMember());
+		List<String> list = new ArrayList<>();
+		list.add(recipe);
+		list.add(member);
 		PrintWriter out = response.getWriter();
-//		String data = new Gson().toJson(mapper.selectRecipe(page));
-		out.println(new Gson().toJson(mapper.selectRecipe(page)));
+		out.println(list);
 		out.close();
 		
 		PageResult pageResult = new PageResult(pageNo, mapper.selectRecipeCount());
