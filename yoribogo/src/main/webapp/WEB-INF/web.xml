@@ -10,6 +10,7 @@
   		<param-name>pages</param-name>
   		<param-value>
   			/recipe/updateform.do;
+  			/recipe/listajax.do;
   			/recipe/list.do;
   			/login/login.do;
   			/login/loginform.do;
