@@ -16,6 +16,7 @@
 		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
 		<typeAlias alias="ingredient" type="kr.co.yoribogo.repository.vo.IngredientVO" />
+		<typeAlias alias="block" type="kr.co.yoribogo.repository.vo.BlockVO" />
 	</typeAliases>
 	 
 	<environments default="development">
