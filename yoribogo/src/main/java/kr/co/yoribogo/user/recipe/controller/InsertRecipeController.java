@@ -47,8 +47,6 @@ public class InsertRecipeController extends HttpServlet{
 					"utf-8",
 					new FunnyFileRenamePolicy() //FileRenamePolicy를 상속
 		);
-		// 메인 사진
-		File f1 = mRequest.getFile("mainImg");
 		
 		// 레시피 등록
 		RecipeVO recipe = new RecipeVO();
@@ -62,17 +60,30 @@ public class InsertRecipeController extends HttpServlet{
 		recipe.setWeather(mRequest.getParameter("weather"));
 		recipe.setLevel(mRequest.getParameter("level"));
 		recipe.setTime(Integer.parseInt(mRequest.getParameter("time")));
+
+		File f1 = mRequest.getFile("mainImg");	// 메인 사진
 		recipe.setPhoto(f1.toString());
 		mapper.insertRecipe(recipe);
 		
-		if (f1 != null) {
-			// 파일 등록
-			FileVO fileVO = new FileVO();
-			fileVO.setRecipeNo(recipe.getNo());
-			fileVO.setBlockCon("메인");
-			fileVO.setBlockImg(f1.toString());
-			mapper.insertFile(fileVO);
+		
+		// 내용 등록..
+		Enumeration<String> fNames = mRequest.getFileNames();
+		while (fNames.hasMoreElements()) {
+			String fName = fNames.nextElement();
+			File f = mRequest.getFile(fName);
+			// 파일을 선택하지 않은 경우 null
+			if (f != null) {
+				// 파일 등록
+				FileVO fileVO = new FileVO();
+				fileVO.setRecipeNo(recipe.getNo());
+				fileVO.setBlockCon(mRequest.getParameter("con-txt1"));
+				fileVO.setBlockImg(f1.toString());
+				mapper.insertFile(fileVO);
+			}
 		}
+		
+		
+		
 		
 		
 		

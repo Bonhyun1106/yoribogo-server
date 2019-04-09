@@ -28,6 +28,10 @@
     <div id="all" class="all">
         <div id="insert">당신의 레시피를 소개해주세요</div>
         
+        <div id="rec-comm">
+            <div><input type="button" id="addBox" value="추가" /></div>
+            <div><input type="button" id="delBox" value="삭제" /></div>
+        </div>
         
         
 		<form method='POST' action="insertrecipe.do" enctype="multipart/form-data">
@@ -138,12 +142,18 @@
             <div class="groceryList" name="ingrdList">호밀빵 2장, 아보카도, 양상추, 토마토, 발사믹소스</div>
         </div>
 
-
         <div id="content-wrapper">
-            <div>레시피 내용을 입력하세요</div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div id="add">
+                <div class="content-grid">
+                    <div id="con-img1">
+                        <input type="file" name="contentImg1" id="contentImg1" placeholder="파일을 첨부하세요" />
+                        <img name="con-img1">
+                    </div>
+                    <div id="con-txt1">
+                        <textarea name="con-txt1" placeholder="내용을 입력하세요"></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="refer-wrapper">
@@ -178,6 +188,7 @@
 
 
 <script>
+	// 이미지 선택시 미리보기 
 	$("#mainImg").change(function() {
 		 if (this.files && this.files[0]) {
 			  var reader = new FileReader();
@@ -188,8 +199,44 @@
 		      reader.readAsDataURL(this.files[0]);
 		}	
 	});
+	
+	
+    var cnt = 1;
+    $("#addBox").click(function (){
+        cnt++;
+        $("#add").append(
+            '<div class="content-grid">'
+            +   '<div id="con-img${cnt}">'
+            +      '<input type="file" name="contentImg${cnt}" id="contentImg${cnt}" placeholder="파일을 첨부하세요" />'
+            +       '<img name="con-img${cnt}">'
+            +   '</div>'
+            +   '<div id="con-txt${cnt}">'
+            +       '<textarea name="con-txt${cnt}" placeholder="내용을 입력하세요"></textarea>'
+            +   '</div>'
+            +'</div>'
+        );
+    });
 
+    $("#delBox").click(function () {
+        if ($("div.content-grid").length == 1) {
+            alert("내용을 입력해 주세요!");
+            return false;
+        }
+        $("div.content-grid:last-child").remove();
+    });
+    
+    
+    $("#contentImg1").change(function() {
+		 if (this.files && this.files[0]) {
+			  var reader = new FileReader();
 
+			  reader.onload = function(e) {
+			         $("img[name='con-img1']").attr('src', e.target.result);
+			  }
+		      reader.readAsDataURL(this.files[0]);
+		}
+	});
+    
 </script>
 </body>
 

@@ -146,16 +146,67 @@ input[type="text"], select{
     padding: 20px;
 }
 
-/* 레시피 작성 */
-#content-wrapper{
-    display : grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    height: 700px;
-    background: white;
-    border : .5px solid lightgrey;
+
+/* ======================== 내용  ========================== */
+
+/* 내용 추가/삭제 버튼 */
+#rec-comm{
+    position : fixed;
+    right: 0; top : 150px;
+    width: 60px; height: 60px;
+    background: tomato;
+    border-radius: 10px;
+}
+#rec-comm > div{
+    margin : 0 auto;
+}
+#rec-comm > div > input {
+    background: none;
+    color : white;
+    font-weight: bold;
 }
 
-/* 참고하기 */
+/* 레시피 작성 */
+#content-wrapper{
+    height: auto;
+    background: white;
+    border : .5px solid black;
+}
+#add {
+    margin: 10px 10px;
+    /* background: skyblue; */
+    box-sizing: border-box;
+}
+.content-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 900px;
+    height: 300px;
+    /* background: tomato; */
+    grid-gap: 3px;
+    margin : 0 auto;
+}
+.content-grid > div > img {
+    width : 295px;
+    height : 250px;
+}
+.content-grid > div > textarea {
+    background: white;
+    margin : 10px;
+    border : .5px solid grey;
+    resize : none;
+    font-size: 15px;
+    width : 580px;
+    height: 270px;
+}
+
+
+
+
+
+
+
+/* ======================== 참고  ========================== */
 #refer-wrapper{
     display : grid;
     grid-template-columns: 2fr 4fr .5fr;
