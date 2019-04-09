@@ -15,6 +15,7 @@
 		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
 		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
 		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
+		<typeAlias alias="ingredient" type="kr.co.yoribogo.repository.vo.IngredientVO" />
 	</typeAliases>
 	 
 	<environments default="development">
