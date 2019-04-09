@@ -20,6 +20,45 @@
 		  from tb_member
 		 where mem_id = #{memId}
 		   and CryptString.decrypt(mem_password,'key') = #{memPassword}
+	 
 	 </select>
+	 
+	 	<resultMap id="recipeMap" type="recipe">
+		<result column="recipe_no" property="no" />
+		<result column="mem_no"	 property="memNo" />
+		<result column="recipe_title" property="title" />
+		<result column="recipe_summary" property="summary" />
+		<result column="recipe_view_cnt" property="viewCnt" />
+		<result column="recipe_like_cnt" property="likeCnt" />
+		<result column="recipe_reg_date" property="regDate" />
+		<result column="recipe_country" property="country" />
+		<result column="recipe_type" property="type" />
+		<result column="recipe_kcal" property="kcal" />
+		<result column="recipe_time" property="time" />
+		<result column="recipe_level" property="level" />
+		<result column="recipe_weather" property="weather" />
+		<result column="mem_id" property="memId" />
+	</resultMap>
+	 
+	 
+	 <select id="selectRecipeByUser" parameterType="int" resultMap="recipeMap">
+		select recipe_no,
+               m.mem_id,
+			   recipe_title,
+			   recipe_summary,
+			   recipe_view_cnt,
+			   recipe_like_cnt,
+			   recipe_reg_date,
+			   (select category_name from tb_category where category_no = recipe_country) as recipe_country,
+			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
+			   recipe_kcal,
+			   recipe_time,
+			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
+			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather
+    	  from tb_recipe
+    	 inner join tb_member m
+    	    on tb_recipe.mem_no = m.mem_no
+		 where m.mem_no = #{memNo}
+	</select>
 	
 </mapper>

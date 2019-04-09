@@ -1,6 +1,7 @@
 package kr.co.yoribogo.user.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.LoginMapper;
 import kr.co.yoribogo.repository.vo.MemberVO;
+import kr.co.yoribogo.repository.vo.RecipeVO;
 
 @WebServlet("/login/login.do")
 public class LoginController extends HttpServlet {
@@ -35,7 +37,6 @@ public class LoginController extends HttpServlet {
 		// DB에서 해당 정보를 가져온다
 		
 		MemberVO user = mapper.selectLogin(member);
-		
 		// 로그인 실패 : 사용자 입력이 정확하지 않은 경우
 		if(user == null) {
 			// 다시 로그인 하도록 로그인폼으로 보낸다
@@ -44,15 +45,17 @@ public class LoginController extends HttpServlet {
 			return;
 		}
 		System.out.println("LoginCotroller : login Success.");
-		
+		List<RecipeVO> userRecipeList = mapper.selectRecipeByUser(user.getMemNo());
+		System.out.println("작성한 레시피 개수 : " + userRecipeList.size());
 		// 로그인 성공시 : 세션에 사용자 정보를 등록시킨다!!!!
 		HttpSession session = request.getSession();
 		// DB에서 가져온 정보를 session 공유영역에 올린다.
 		// 즉, 공유영역에 이름객체가 등록된 경우, 로그인한 상태임을 알 수 있다.
 		session.setAttribute("user", user);
+		session.setAttribute("userRecipe", userRecipeList);
 		
 		// 로그인 성공시 메인페이지로 이동(url변경)
-		response.sendRedirect(request.getContextPath() + "/main/main.jsp");
+		response.sendRedirect(request.getContextPath() + "/mypage/mypage.jsp");
 	
 	}
 	

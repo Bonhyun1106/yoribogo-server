@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/signup/signupform.do")
 public class SignupFormController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		request.getRequestDispatcher("signup.jsp").forward(request,response);
+		request.getRequestDispatcher("signupform.jsp").forward(request,response);
+		
 	}
 }
