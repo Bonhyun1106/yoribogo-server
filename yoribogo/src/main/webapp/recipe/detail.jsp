@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="top-right">
-                <img src="images/img3.jpg" name="recMainImg"/>
+                <img src="${recipe.photo}" name="recMainImg"/>
             </div>
         </div>
 
@@ -91,10 +91,12 @@
         </div>
 
         <div id="content-wrapper">
-            <div name="content1">내용입력</div>
-            <div></div>
-            <div></div>
-            <div></div>
+        	<c:forEach var="img" items="${image}">
+	            <c:if test="${image.blockNo[1] != image.blockNo}">
+		            <div>${image.blockImg}</div>
+		            <div>${image.blockCon}</div>
+	            </c:if>
+        	</c:forEach>
         </div>
 
         <div id="line"></div>

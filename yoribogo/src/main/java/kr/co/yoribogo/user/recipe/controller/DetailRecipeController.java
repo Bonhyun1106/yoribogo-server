@@ -1,6 +1,9 @@
 package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +23,21 @@ public class DetailRecipeController extends HttpServlet {
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-		int no = 2; // 가데이터. request.getParameter("no");
-		
-		
+		int no = 30; // 가데이터. request.getParameter("no");
 		
 		// 게시글 정보
 		request.setAttribute("recipe", mapper.selectDetailRecipe(no));
+		// 게시글 이미지
+//		PrintWriter out = response.getWriter();
+//		InputStream in = request.getInputStream();
+//		Scanner sc = new Scanner(in);
+//		while (sc.hasNextLine()) {
+//			String line = sc.nextLine();
+//			out.print(line);
+//		}
+//		out.close();
+		
+		request.setAttribute("image", mapper.selectImageBlock(no));
 		// 재료 정보
 		request.setAttribute("ingredient", mapper.selectIngredient(no));
 		System.out.println("ingredient="+mapper.selectIngredient(no));
