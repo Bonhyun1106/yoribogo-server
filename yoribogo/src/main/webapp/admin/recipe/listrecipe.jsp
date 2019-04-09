@@ -53,67 +53,41 @@
         <div id="contentWrapper">
             <div class="content2">
                 <div class="no">글 번호</div> 
-                  <div class="bottom_1">
-                   <c:forEach var="list" items="${list}"> 
-                        <div>${list.no}</div> 
-                    </c:forEach>
+                  <div class="bottom_1"> 
+                        <div>${list.no}</div>
                   </div>
             </div>
             <div class="content2">
                  <div class="title">제목</div>
                    <div class="bottom_2"> 
-                     <div>만들기 완전 쉬운 떡볶이 냠냠</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-                     <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div> <div>만들기 완전 쉬운 떡볶이</div>
-
+                     <div>만들기 완전 쉬운 떡볶이 냠냠</div> 
                     </div>
             </div>
 
             <div class="content2">
                   <div class="top">작성일</div>
                     <div class="bottom"> 
-                      <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>
-                      <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>
-                      <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>
-                      <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>
-                      <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>  <div>2019/03/23</div>
                       <div>2019/03/23</div>  
                     </div>
             </div>
             <div class="content2">
                 <div class="top">조회수</div>
                   <div class="bottom"> 
-                      <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>
-                      <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>
-                      <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>
-                      <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>  <div>2300</div>
+                      <div>2300</div> 
                   </div>
             </div>
 
             <div class="content2">
               <div class="top">작성자</div>
                 <div class="bottom">
-                    <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div>
-                    <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div>
-                    <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> <div>지수지수</div>
-                    <div>지수지수</div> <div>지수지수</div> <div>지수지수</div> 
+                    <div>지수지수</div> 
               </div>
             </div>
             <div class="content2">
               <div class="top">글 삭제</div>
                 <div class="bottom">
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>
-                  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>  <div><button class="btn"> 삭제 </button></div>      
-              </div> 
+                  <div><button class="btn"> 삭제 </button></div> 
+               </div> 
             </div>
         </div>
     </div>

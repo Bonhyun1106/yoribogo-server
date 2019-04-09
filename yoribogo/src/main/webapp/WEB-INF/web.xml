@@ -16,7 +16,8 @@
   			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
   			/admin/notice/write.do;
-  			/admin/recipe/listrecipe.do
+  			/admin/notice/bannerform.do;
+  			/admin/insertbanner.do;
   		</param-value>
   	</init-param>
   </filter>

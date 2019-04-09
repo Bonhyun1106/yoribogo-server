@@ -96,7 +96,7 @@
                     <div>
                       <div>
                         <input id="saveForm" name="saveForm" type="submit" value="등록하기">
-                        <!-- <input id="saveForm" name="saveForm" type="submit" value="취소하기"> -->
+                        <input id="saveForm" name="saveForm" type="submit" value="취소하기">
                       </div>
                     </div>
            </form>

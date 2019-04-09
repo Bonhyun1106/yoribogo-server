@@ -34,5 +34,6 @@
 		<mapper resource="config/mapper/signup.xml"/>
 		<mapper resource="config/mapper/recipe.xml"/>
 		<mapper resource="config/mapper/recipe2.xml"/>
+		<mapper resource="config/mapper/admin.xml"/>
 	</mappers>
 </configuration>
