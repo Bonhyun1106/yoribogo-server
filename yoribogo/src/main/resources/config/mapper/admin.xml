@@ -52,47 +52,21 @@
 	</resultMap>
 	
 	
-	<!-- 1. 회원현황 -->
-	
-	
-	<!-- 회원 검색 -->
-	<!--	<select id="selectBoard" resultMap="boardMap">
-		select mem_no, mem_id, mem_join_date, mem_report_count, 
-		  from tb_member;
-		 order by no desc
-	</select>
-	-->
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 2. 게시글 관리  
-	
-		<select id="selectListReview" parameterType="review" resultMap="reviewMap">
-		      select a.board_no,
-		            b.name, 
-		            a.title,
-		            (select name from tb_category where code_no = review_category_no) as review_category_no,
-		            a.write_date,
-		            a.view_cnt,
-		            a.like_cnt
-		        from tb_review a
-		       inner join tb_member b
-		          on a.member_no = b.member_no
-		       order by board_no desc
-		       
-		   </select>
-	
-	-->
+	<!-- ========================= 1. 회원현황 ============================= -->
+		
+	<!-- 회원 검색 -->	
+	 select mem_no, mem_id, mem_join_date, mem_report_count
+       from tb_member
+	  where mem_no = #{no}	
+	  
+	<!-- 경고상태 회원관리 -->
+
+		
+	<!-- ========================== 2. 게시글 관리 =========================== -->
+			
 	 <!--게시글 관리 -->
-	
-   
 	<select id="selectListRecipe" parameterType="page" resultMap="recipeMap">
-		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt,  m.mem_id
+		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, m.mem_id
            from tb_recipe r
            inner join tb_member m 
              on r.mem_no = m.mem_no
@@ -106,7 +80,6 @@
 	</select>
 	
 	
-	 
 	<!-- 공지사항 등록-->
 	<insert id="insertNotice" parameterType="notice">
 		insert into tb_admin_notice (
@@ -128,27 +101,3 @@
 	
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
