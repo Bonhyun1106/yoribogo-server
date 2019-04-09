@@ -1,7 +1,7 @@
 package kr.co.yoribogo.repository.vo;
 
 public class FileVO {
-	private int blockNo;		// 이미지번호?
+	private int blockNo;		// 이미지 pk
 	private int recipeNo;		// 레시피 번호
 	private String blockCon;	// 요리설명
 	private String blockImg;	// 이미지링크

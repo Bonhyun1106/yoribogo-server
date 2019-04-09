@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +18,9 @@
 
 <body>
 <script>
-// ë¡œë”© ì‹œ DBì—ì„œ ë„˜ì–´ì˜¨ ê°’ê³¼ optionì˜ ë²¨ë¥˜ê°’ì´ ê°™ì„ ê²½ìš° selected = true ìƒíƒœë¡œ ë³€ê²½.. 
-	// ${recipe.country} == $("input[name='country']")
-
-	/* $(window).load(function () {
+// ·Îµù ½Ã DB¿¡¼­ ³Ñ¾î¿Â °ª°ú optionÀÇ º§·ù°ªÀÌ °°À» °æ¿ì selected = true »óÅÂ·Î º¯°æ.. 
+	/*
+	$(window).load(function () {
  		let ele = ["select[name='country']", "select[name='type']", 
  					"select[name='weather']", "name='select[level']"];
 		let param = ['${recipe.country}', '${recipe.type}','${recipe.weather}','${recipe.level}'];
@@ -37,22 +35,18 @@
 			};
 		}
 	}); */
-	$(document).ready(function(){
-	
-	    $("select[name='type'] option[value=`${recipe.type}`]").attr("selected", true);
-	});
 </script>
 
 
     <span id="menubar">
         <a id="logo" href="main.html"><img src="images/logo-horizontal-300px.png" /></a>
-        <a id="loginButton" href="login.html">ë¡œê·¸ì¸í•´ì£¼ì„¸ìš”<i class="fas fa-user-circle fa-2x"></i></a>
+        <a id="loginButton" href="login.html">·Î±×ÀÎÇØÁÖ¼¼¿ä<i class="fas fa-user-circle fa-2x"></i></a>
     </span>
     <span id="up"><a href="#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
     <div style="height: 70px;"></div>
 
     <div id="all" class="all">
-        <div id="insert">ë‹¹ì‹ ì˜ ë ˆì‹œí”¼ë¥¼ ì†Œê°œí•´ì£¼ì„¸ìš”</div>
+        <div id="insert">´ç½ÅÀÇ ·¹½ÃÇÇ¸¦ ¼Ò°³ÇØÁÖ¼¼¿ä</div>
         
         
         
@@ -70,51 +64,51 @@
                 </div>
             </div>
             <div class="top-right">
-                <input type="file" name="mainImg" id="mainImg" placeholder="íŒŒì¼ì„ ì²¨ë¶€í•˜ì„¸ìš”" />
+                <input type="file" name="mainImg" id="mainImg" placeholder="ÆÄÀÏÀ» Ã·ºÎÇÏ¼¼¿ä" />
                 <div id="main_img"></div>
             </div>
         </div>
 
-        <div id="line">ìš”ë¦¬ì— ëŒ€í•´ ì•Œë ¤ì£¼ì„¸ìš”</div>
+        <div id="line">¿ä¸®¿¡ ´ëÇØ ¾Ë·ÁÁÖ¼¼¿ä</div>
 
         <div id="ingrd-wrapper">
             <div class="cookinfo">
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ì–‘ì‹</div>
+                    <div class="ingrd-title">¾ç½Ä</div>
                     <div>
-                        <select name="country">
-                            <option value="">ì„ íƒí•˜ì„¸ìš”</option>
-                            <option value="4908" <c:if test="${recipe.country == 4908}">selected</c:if> >í•œì‹</option>
-                            <option value="4909" <c:if test="${recipe.country == 4909}">selected</c:if> >ì–‘ì‹</option>
-                            <option value="4910" <c:if test="${recipe.country == 4910}">selected</c:if> >ì¤‘ì‹</option>
-                            <option value="4911" <c:if test="${recipe.country == 4911}">selected</c:if> >ì¼ì‹</option>
-                            <option value="4912" <c:if test="${recipe.country == 4912}">selected</c:if> >ë™ë‚¨ì•„ì‹œì•„</option>
-                            <option value="4913" <c:if test="${recipe.country == 4913}">selected</c:if> >ê¸°íƒ€ì•„ì‹œì•„</option>
-                            <option value="4914" <c:if test="${recipe.country == 4914}">selected</c:if> >ê¸°íƒ€</option>
+                        <select name="country" id="country">
+                            <option value="">¼±ÅÃÇÏ¼¼¿ä</option>
+                            <option value="4908" <c:if test="${recipe.country == 4908}">selected</c:if> >ÇÑ½Ä</option>
+                            <option value="4909" <c:if test="${recipe.country == 4909}">selected</c:if> >¾ç½Ä</option>
+                            <option value="4910" <c:if test="${recipe.country == 4910}">selected</c:if> >Áß½Ä</option>
+                            <option value="4911" <c:if test="${recipe.country == 4911}">selected</c:if> >ÀÏ½Ä</option>
+                            <option value="4912" <c:if test="${recipe.country == 4912}">selected</c:if> >µ¿³²¾Æ½Ã¾Æ</option>
+                            <option value="4913" <c:if test="${recipe.country == 4913}">selected</c:if> >±âÅ¸¾Æ½Ã¾Æ</option>
+                            <option value="4914" <c:if test="${recipe.country == 4914}">selected</c:if> >±âÅ¸</option>
                         </select>
                     </div>
                 </div>
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ì¢…ë¥˜</div>
+                    <div class="ingrd-title">Á¾·ù</div>
                     <div>
-                        <select name="type">
-                            <option value="">ì„ íƒí•˜ì„¸ìš”</option>
-                            <option value="4915">êµ­/íƒ•</option>
-                            <option value="4916">ì°Œê°œ</option>
-                            <option value="4917">ë°˜ì°¬</option>
-                            <option value="4918">ë©´</option>
-                            <option value="4919">ë§Œë‘</option>
-                            <option value="4920">ë°¥</option>
-                            <option value="4921">ìƒëŸ¬ë“œ</option>
-                            <option value="4922">ìŠ¤í”„</option>
-                            <option value="4923">ìŒë£Œ</option>
-                            <option value="4924">ë¹µ/ë””ì €íŠ¸</option>
-                            <option value="4925">ê¸°íƒ€</option>
+                        <select name="type" id="type">
+                            <option value="">¼±ÅÃÇÏ¼¼¿ä</option>
+                            <option value="4915">±¹/ÅÁ</option>
+                            <option value="4916">Âî°³</option>
+                            <option value="4917">¹ÝÂù</option>
+                            <option value="4918">¸é</option>
+                            <option value="4919">¸¸µÎ</option>
+                            <option value="4920">¹ä</option>
+                            <option value="4921">»ø·¯µå</option>
+                            <option value="4922">½ºÇÁ</option>
+                            <option value="4923">À½·á</option>
+                            <option value="4924">»§/µðÀúÆ®</option>
+                            <option value="4925">±âÅ¸</option>
                         </select>
                     </div>
                 </div>
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ì—´ëŸ‰(Kcal)</div>
+                    <div class="ingrd-title">¿­·®(Kcal)</div>
                     <div>
                         <input type="text" name="kcal" value="${recipe.kcal}" />
                     </div>
@@ -122,33 +116,33 @@
             </div>
             <div class="cookinfo">
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ë‚ ì”¨</div>
+                    <div class="ingrd-title">³¯¾¾</div>
                     <div>
                         <select name="weather">
-                            <option value="">ì„ íƒí•˜ì„¸ìš”</option>
-                            <option value="4941">ë§‘ìŒ</option>
-                            <option value="4942">ë¹„/íë¦¼</option>
-                            <option value="4943">ëˆˆ</option>
-                            <option value="4944">ë”ìš´ë‚ </option>
-                            <option value="4945">ì¶”ìš´ë‚ </option>
+                            <option value="">¼±ÅÃÇÏ¼¼¿ä</option>
+                            <option value="4941">¸¼À½</option>
+                            <option value="4942">ºñ/Èå¸²</option>
+                            <option value="4943">´«</option>
+                            <option value="4944">´õ¿î³¯</option>
+                            <option value="4945">Ãß¿î³¯</option>
                         </select>
                     </div>
                 </div>
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ë‚œì´ë„</div>
+                    <div class="ingrd-title">³­ÀÌµµ</div>
                     <div>
                         <select name="level">
-                            <option value="">ì„ íƒí•˜ì„¸ìš”</option>
-                            <option value="4936">ë§¤ìš°ì‰¬ì›€</option>
-                            <option value="4937">ì‰¬ì›€</option>
-                            <option value="4938">ë³´í†µ</option>
-                            <option value="4939">ì–´ë ¤ì›€</option>
-                            <option value="4940">ë§¤ìš°ì–´ë ¤ì›€</option>
+                            <option value="">¼±ÅÃÇÏ¼¼¿ä</option>
+                            <option value="4936">¸Å¿ì½¬¿ò</option>
+                            <option value="4937">½¬¿ò</option>
+                            <option value="4938">º¸Åë</option>
+                            <option value="4939">¾î·Á¿ò</option>
+                            <option value="4940">¸Å¿ì¾î·Á¿ò</option>
                         </select>
                     </div>
                 </div>
                 <div class="select-ingrds">
-                    <div class="ingrd-title">ì¡°ë¦¬ì‹œê°„(ë¶„)</div>
+                    <div class="ingrd-title">Á¶¸®½Ã°£(ºÐ)</div>
                     <div>
                         <input type="text" name="time" value="${recipe.time}"/>
                     </div>
@@ -159,8 +153,8 @@
 
         <div id="wrapper-grocery">
             <div class="grocery">
-                <div style="margin: 0 auto; line-height: 50px;">ìž¬ë£Œ</div>
-                <div><input type="text" name="ingredient" placeholder="ìž¬ë£Œë¥¼ ìž…ë ¥í•˜ì„¸ìš”" /></div>
+                <div style="margin: 0 auto; line-height: 50px;">Àç·á</div>
+                <div><input type="text" name="ingredient" placeholder="Àç·á¸¦ ÀÔ·ÂÇÏ¼¼¿ä" /></div>
                 <div><i class="fas fa-plus-square fa-2x"></i></div>
             </div>
             <div class="groceryList" name="ingrdList">
@@ -172,22 +166,22 @@
 
 
         <div id="content-wrapper">
-            <div>ë ˆì‹œí”¼ ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”</div>
+            <div>·¹½ÃÇÇ ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä</div>
             <div></div>
             <div></div>
             <div></div>
         </div>
 
         <div id="refer-wrapper">
-            <div style="margin : 0 auto;">ì°¸ê³ í•œ ë ˆì‹œí”¼ê°€ ìžˆë‚˜ìš”?</div>
+            <div style="margin : 0 auto;">Âü°íÇÑ ·¹½ÃÇÇ°¡ ÀÖ³ª¿ä?</div>
             <div>
-                <input id="search" type="text" placeholder="ë‹¤ë¥¸ ì‚¬ëžŒì˜ ë ˆì‹œí”¼ë¥¼ ê²€ìƒ‰í•´ ë³´ì„¸ìš”" />
+                <input id="search" type="text" placeholder="´Ù¸¥ »ç¶÷ÀÇ ·¹½ÃÇÇ¸¦ °Ë»öÇØ º¸¼¼¿ä" />
             </div>
             <div><i class="fas fa-search fa-2x"></i></div>
         </div>
 
         <div id="submit">
-            <button>ë“±ë¡í•˜ê¸°</button>
+            <button>µî·ÏÇÏ±â</button>
         </div>
         
 </form>
@@ -198,8 +192,8 @@
             <img src="images/logo-vertical-300px.png" style="width: 80px;" />
             <p>
                 YORIBOGO Receipes
-                <br>ê°œì¸ì •ë³´ê´€ë¦¬ì±…ìž„ìž: ê¹€ìš°ì¤‘
-                <br>ê³ ê°ì„¼í„°: 010-4955-6029(í‰ì¼:13:30 ~ 14:30 í† ìš”ì¼:12:00 ~ 12:01) FAX: 02-0000-0000 Email:xxxxx@yoribogo.com
+                <br>°³ÀÎÁ¤º¸°ü¸®Ã¥ÀÓÀÚ: ±è¿ìÁß
+                <br>°í°´¼¾ÅÍ: 010-4955-6029(ÆòÀÏ:13:30 ~ 14:30 Åä¿äÀÏ:12:00 ~ 12:01) FAX: 02-0000-0000 Email:xxxxx@yoribogo.com
                 <br>
                 <br>
                 copyright @ YORIBOGO Corp. All Right Reserved.
