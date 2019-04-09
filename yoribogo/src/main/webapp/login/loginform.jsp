@@ -33,7 +33,7 @@
                 <button type="submit" id="login-button">로그인</button>
             </form>
             
-            <form class="signupForm" action="../signup/signupform.jsp">
+            <form class="signupForm" action="../signup/signupform.do">
                 <a id="forget"  href="forgetform.jsp">비밀번호를 잊어버리셨나요?</a>
                 <h5>아직 회원이 아니신가요?</h5>
                     <button type="submit" id="signup-button">회원가입</button>
