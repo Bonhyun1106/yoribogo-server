@@ -69,32 +69,35 @@
 	
 	
 	
-	<!-- 2. 게시글 관리 
+	<!-- 2. 게시글 관리  
 	
-	select recipe_no, recipe_title, recipe_reg_date, recipe_view_cnt, (select m.mem_id
-                                                                     from  tb_recipe r  
-                                                                     inner join tb_member m 
-                                                                     on r.MEM_NO = m.mem_no) as mem_id
-		  from (select rownum rnum, a.*
-		          from ( select *
-		                   from tb_recipe
-		                  order by recipe_no desc) a
-		       )   
-		  where rnum between 1 and 2;
-		  
+		<select id="selectListReview" parameterType="review" resultMap="reviewMap">
+		      select a.board_no,
+		            b.name, 
+		            a.title,
+		            (select name from tb_category where code_no = review_category_no) as review_category_no,
+		            a.write_date,
+		            a.view_cnt,
+		            a.like_cnt
+		        from tb_review a
+		       inner join tb_member b
+		          on a.member_no = b.member_no
+		       order by board_no desc
+		       
+		   </select>
 	
-	 게시글 관리
-	<select id="selectRecipe" parameterType="page" resultMap="recipeMap">
-		select  r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt,  (select m.mem_id
-		                                                                              from tb_recipe r
-		                                                                              inner join tb_member m 
-		                                                                              on r.mem_no = m.mem_no) as mem_id
-		  from (select rownum rnum, a.*
-		          from ( select *
-		                   from tb_recipe r, tb_member m where r.MEM_NO =  m.mem_no
-		                  order by recipe_no desc) a
-		       )   
-		 where rnum between #{begin} and #{end}
+	-->
+	 <!--게시글 관리 -->
+	
+   
+	<select id="selectListRecipe" parameterType="page" resultMap="recipeMap">
+		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, (select m.mem_id
+                                                                            from tb_member m , tb_recipe t
+                                                                      where t.MEM_NO = m.MEM_NO ) as mem_id
+           from tb_recipe r
+           inner join tb_member m 
+             on r.mem_no = m.mem_no
+             order by recipe_no desc
 	</select>
 	
 	
@@ -104,7 +107,6 @@
 	</select>
 	
 	
-	  -->
 	 
 	<!-- 공지사항 등록-->
 	<insert id="insertNotice" parameterType="notice">

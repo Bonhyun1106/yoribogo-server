@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -54,35 +55,46 @@
             <div class="content2">
                 <div class="no">글 번호</div> 
                   <div class="bottom_1"> 
+                  <c:forEach var="list" items="${recipe}">
                         <div>${list.no}</div>
+                  </c:forEach>
                   </div>
             </div>
             <div class="content2">
                  <div class="title">제목</div>
                    <div class="bottom_2"> 
-                     <div>만들기 완전 쉬운 떡볶이 냠냠</div> 
+                  <c:forEach var="list" items="${recipe}">
+                     <div>${list.title}</div> 
+                   </c:forEach>
                     </div>
             </div>
 
             <div class="content2">
                   <div class="top">작성일</div>
                     <div class="bottom"> 
-                      <div>2019/03/23</div>  
+                     <c:forEach var="list" items="${recipe}">
+                      <div>${list.regDate}</div>
+                      </c:forEach> 
                     </div>
             </div>
             <div class="content2">
                 <div class="top">조회수</div>
-                  <div class="bottom"> 
-                      <div>2300</div> 
+                  <div class="bottom">
+                   <c:forEach var="list" items="${recipe}">
+                      <div>${list.viewCnt}</div> 
+                    </c:forEach>
                   </div>
             </div>
 
             <div class="content2">
               <div class="top">작성자</div>
                 <div class="bottom">
-                    <div>지수지수</div> 
+                 <c:forEach var="list" items="${recipe}">
+                    <div>${list.memNo}</div> 
+                  </c:forEach>
               </div>
             </div>
+            
             <div class="content2">
               <div class="top">글 삭제</div>
                 <div class="bottom">

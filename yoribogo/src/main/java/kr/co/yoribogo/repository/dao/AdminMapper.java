@@ -17,5 +17,5 @@ public interface AdminMapper {
 	public void insertBanner(BannerVO banner);
 	
 	//3. 레시피 게시글 조회
-	public List<RecipeVO> selectRecipe(PageVO page);
+	public List<RecipeVO> selectListRecipe(PageVO page);
 }
