@@ -87,9 +87,21 @@
       color: white;
   }
   #profilePhoto:hover{
-      color: gainsboro;
-      background: white;
+  
+       animation: translateUp 1s linear;
   }
+  
+  @keyframes translateUp{ 
+     0%{
+          box-shadow : 1px 1px 0px  white;
+        }
+        50%{
+          box-shadow : 1px 1px 20px white; 
+        }
+        100%{
+          box-shadow : 1px 1px 0px white;
+        } 
+    }
   .container h5{
       margin-top: 30px;
   }
@@ -271,3 +283,7 @@
 	transition: .2s;
 }
 
+
+.file-upload{
+  display: none;
+}

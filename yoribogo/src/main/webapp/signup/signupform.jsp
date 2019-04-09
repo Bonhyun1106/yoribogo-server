@@ -20,9 +20,10 @@
             <div class="container">
                 <h1>Welcome</h1>
                 
-                <form class="form">
+                <form class="form" enctype="multipart/form-data">
                     <h5>프로필 사진</h5>
-                    <a id="profilePhoto" href="#" >+</a>
+                    <img id="profilePhoto" class = "upload-button" src="../images/profileDefault.png"/>
+                    <input type="file" class="file-upload">
 
                     <input type="text" placeholder="이메일" name="email"><span id="emailChecked"></span>
                                        
@@ -42,7 +43,7 @@
                         
                     </div>
                     </div>
-                    <a id="login-button" href="#">회원가입</a>
+                    <button id="login-button" href="#">회원가입</button>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
                 
                 <script>
@@ -51,7 +52,7 @@
        			let idFlag = false;
                 let passFlag = false;
        			let pass2Flag = false;
-       			
+       			let profilePic = "../images/profileDefault";
 
 				$("#idChecked").html("");	
        			$("#emailChecked").html("");		
@@ -63,11 +64,35 @@
        			let pass = " ";
        			
            		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-           		let idReg = /^[A-za-z0-9]{5,15}/g;
+           		let idReg = /^[A-za-z0-9]{5,10}/g;
+           		
+              	$(document).ready(function() {
+						var readURL = function(input) {
+							if (input.files && input.files[0]) {
+   							var reader = new FileReader();
+   							reader.onload = function (e) {
+       							$('#profilePhoto').attr('src', e.target.result);
+       							profilePic = e.target.result;
+   							}
+
+  							reader.readAsDataURL(input.files[0]);
+							}
+						}
+						$(".file-upload").on('change', function(){
+							readURL(this);
+						});
+
+						$(".upload-button").on('click', function() {
+							$(".file-upload").click();
+						});
+					});
            		
            		$("input[name='email']").on("keyup",function(){			
-           			
-	           		//console.log($("input[name='email']").val());
+           	        if($(this).val().length >= 30) {
+
+           	            $(this).val($(this).val().substring(0, 30));
+
+           	        }
            			$.ajax({
            				url :"checkemail.do",
            				data: "email=" + $("input[name='email']").val(),
@@ -97,7 +122,11 @@
            		
            		
            		$("input[name='id']").on("keyup",function(){			
-           			
+           			if($(this).val().length >= 10) {
+
+           	            $(this).val($(this).val().substring(0, 10));
+
+           	        }
            			$.ajax({
            				url : "checkid.do",
            				data: "id=" + $("input[name='id']").val(),
@@ -114,7 +143,7 @@
            					id = $("input[name='id']").val();
            					//console.log("finally id is " + id);
            					}else{
-           						$("#idChecked").html("아이디는 영문 대문자 또는 소문자 또는 숫자로 시작하며 길이는 5~15자여야합니다.");									
+           						$("#idChecked").html("아이디는 영문 대문자 또는 소문자 또는 숫자로 시작하며 길이는 5~10자여야합니다.");									
             					$("#idChecked").css({"color" : "red"});	
            							
            					}
@@ -128,6 +157,11 @@
            			if(this == ""){
            				return;            				
            			}
+           			if($(this).val().length >= 13) {
+
+           	            $(this).val($(this).val().substring(0, 13));
+
+           	        }
            			//console.log($("input[name='pass']").val().length);
            			if($("input[name='pass']").val().length < 8){
            						$("#passChecked").html("비밀번호는 8자 이상입니다.");									
@@ -148,6 +182,11 @@
            			if($("input[name='pass']").val().length == 0 || $("input[name='pass2']").val().length == 0){
            				return;            				
            			}
+           			if($(this).val().length >= 13) {
+
+           	            $(this).val($(this).val().substring(0, 13));
+
+           	        }
            			//console.log($("input[name='pass']").val());
            			if($("input[name='pass']").val() != $("input[name='pass2']").val()){
            						$("#pass2Checked").html("비밀번호를 확인해주세요.");									
@@ -170,29 +209,31 @@
                	        $('.wrapper').addClass('form-success');
 
 
-                   	 	console.log(email);
-
-                 		let atTmp = [];
-                  	    atTmp = email.split("@");
-                   	    let dotTmp = atTmp[1].split(".");
-                   	    
-                   	    address = atTmp[0];
-                   	    at = dotTmp[0];
-                   	    dot = dotTmp[1];
                    	  
                    	    
-                   	    
-           				if(idFlag && emailFlag && passFlag && pass2Flag){
-   	        			console.log("추출 결과 : "+address + at + dot);
+                   	    if(!idFlag || !emailFlag || !passFlag || !pass2Flag){
+                   	    	alert("입력 정보를 확인해주세요.");
+   							window.location.href = "signupform.jsp";
+                   	    }else{
+	                   	 	console.log(email);
+	
+	                 		let atTmp = [];
+	                  	    atTmp = email.split("@");
+	                   	    let dotTmp = atTmp[1].split(".");
+	                   	    
+	                   	    address = atTmp[0];
+	                   	    at = dotTmp[0];
+	                   	    dot = dotTmp[1];
+
+           					console.log("추출 결과 : "+address + at + dot);
    	        				alert("회원가입 중...");
            					$.ajax({
+           						type: "post",
        	    					url:"signupsuccess.do",
            						data: 
                						"id=" + id +
                						"&email=" + email +
-//                						"&emailaddress=" + address+
-//                						"&emailat=" + at+
-//                						"&emaildot=" + dot+
+               						"&profile" + profilePic + 
                						"&pass=" + pass2,
            						success:function(result){
            							alert(result);
