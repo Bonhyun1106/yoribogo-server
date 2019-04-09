@@ -22,8 +22,8 @@ public class UpdateRecipeFormController extends HttpServlet {
 		int no = 2; // request.getParameter();
 		request.setAttribute("recipe", mapper.updateRecipe(no));
 		request.setAttribute("ingredient", mapper.selectIngredient(no));
-		request.getRequestDispatcher("updateform.jsp").forward(request, response);
 		
+		request.getRequestDispatcher("updateform.jsp").forward(request, response);
 	}
 	
 }
