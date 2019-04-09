@@ -12,7 +12,7 @@
     <title>insert recipe</title>
     <script src="../js/jquery-3.3.1.js"></script>
     <script src="../js/insertrecipeform.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/insert.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/insertform.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css"
         integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 </head>

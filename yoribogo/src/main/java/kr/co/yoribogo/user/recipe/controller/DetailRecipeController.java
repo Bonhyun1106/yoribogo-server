@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
-import kr.co.yoribogo.repository.vo.RecipeVO;
 
 @WebServlet("/recipe/detail.do")
 public class DetailRecipeController extends HttpServlet {
@@ -21,9 +20,15 @@ public class DetailRecipeController extends HttpServlet {
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-//		no = request.getParameter("no");
-		request.setAttribute("recipe", mapper.selectDetailRecipe(2));
+		int no = 2; // 가데이터. request.getParameter("no");
+		
+		
+		
+		// 게시글 정보
+		request.setAttribute("recipe", mapper.selectDetailRecipe(no));
+		// 재료 정보
+		request.setAttribute("ingredient", mapper.selectIngredient(no));
+		System.out.println("ingredient="+mapper.selectIngredient(no));
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
-	
 	}
 }

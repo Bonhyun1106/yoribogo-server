@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +82,11 @@
             </div>
             <div>
                 <div class="ingrd-title">필요한 재료</div>
-                <div name="ingredient">호밀빵 2장, 아보카도, 양상추, 토마토, 발사믹소스</div>
+                <div name="ingredient">
+                	<c:forEach var="ingre" items="${ingredient}" >
+                		${ingre}
+                	</c:forEach>
+                </div>
             </div>
         </div>
 
@@ -147,7 +152,7 @@
 
         <!-- ========================= 참고 레시피 ============================ -->
         <div id="line"></div>
-        <h4>이런 레시피를 참고했어요!</h4>
+        <h4>이런 레시피는 어떠세요?</h4>
         <div id="referImg-wrpper">
             <div class="recipe">
                 <a href="#.">

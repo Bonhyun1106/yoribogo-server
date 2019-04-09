@@ -1,9 +1,23 @@
 package kr.co.yoribogo.repository.vo;
 
+import java.util.List;
+
 public class IngredientVO {
 	private int ingredientNo;
 	private int no;
 	private int categoryNo;
+	
+	
+	private List<String> categoryName;
+	public List<String> getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(List<String> categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	
+	
 	
 	public int getIngredientNo() {
 		return ingredientNo;
