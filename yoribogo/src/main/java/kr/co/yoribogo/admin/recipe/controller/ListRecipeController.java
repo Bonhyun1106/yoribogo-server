@@ -36,12 +36,14 @@ public class ListRecipeController extends HttpServlet {
 			page.setPageNo(pageNo);
 		} catch (Exception e) {}
 		
+		
 		// 게시물 목록 가져오기
-		request.setAttribute("list", mapper.selectRecipe(page));
+		request.setAttribute("recipe", mapper.selectListRecipe(page));
 //		request.setAttribute("pageResult", new PageResult(
 //				pageNo, mapper.selectBoardCount()
 //		));
-//			
+//		
+		
 		request.getRequestDispatcher("listrecipe.jsp")
 	       .forward(request, response);
 	}
