@@ -18,6 +18,7 @@
   			/signup/checkemail.do;
   			/signup/checkid.do;
   			/signup/signupform.do;
+  			/signup/signupsuccess.do;
   			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
   			/admin/notice/write.do;
