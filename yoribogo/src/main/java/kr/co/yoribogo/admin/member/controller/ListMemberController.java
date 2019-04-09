@@ -34,7 +34,7 @@ private AdminMapper mapper;
 		
 		
 		// 게시물 목록 가져오기
-		request.setAttribute("recipe", mapper.selectListRecipe(page));
+		request.setAttribute("member", mapper.selectListRecipe(page));
 //		request.setAttribute("pageResult", new PageResult(
 //				pageNo, mapper.selectBoardCount()
 //		));
@@ -42,7 +42,6 @@ private AdminMapper mapper;
 		
 		request.getRequestDispatcher("listmember.jsp")
 	       .forward(request, response);
-		
-		
+			
 	}	
 }

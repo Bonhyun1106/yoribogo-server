@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -47,40 +48,33 @@
   <!-- End Navigation -->
 
 
-   
-
     <!-- 가운데 내용 컬럼 -->
     <div id="content">
       <div id="contentWrapper">
         <div class="content2"><div class="top">no</div> <div class="buttom"> 
-          <p>001</p> <p>002</p> <p>003</p> <p></p> <p></p><p></p> 
-          <p></p> <p></p> <p></p> <p></p> <p></p><p></p>
-          <p></p> <p></p> <p></p> <p></p> <p></p><p></p>
-          <p></p> <p></p>    
+          <c:forEach var="member" items="${member}">
+          <p>${member.memNo}</p>
+          </c:forEach>
         </div></div>
         <div class="content2"><div class="top">아이디</div><div class="buttom"> 
-          <p>kwj1234</p><p>kwj1234</p> <p>kwj1234</p><p></p> <p></p><p></p> 
-          <p></p><p></p> <p></p><p></p> <p></p><p></p>
-          <p></p><p></p> <p></p><p></p><p></p><p></p>
-          <p></p><p></p>
+          <c:forEach var="member" items="${member}">
+          <p>${member.memId}</p>
+          </c:forEach>
         </div></div>
         <div class="content2"><div class="top">가입 날짜</div><div class="buttom"> 
-          <p>19.03.15</p><p>19.03.15</p> <p>19.03.15</p><p></p> <p></p><p></p>
-          <p></p><p></p> <p></p><p></p> <p></p><p></p>
-          <p></p><p></p> <p></p><p></p> <p></p><p></p>
-          <p></p><p></p> 
+          <c:forEach var="member" items="${member}">
+          <p>${member.memJoinDate}</p>
+          </c:forEach>
         </div></div>
         <div class="content2"><div class="top">신고 횟수</div><div class="buttom"> 
-          <p>2</p><p>2</p> <p>2</p><p></p> <p></p><p></p> <p></p><p></p> <p></p><p></p>
-          <p></p><p></p> <p></p><p></p> <p></p><p></p> <p></p><p></p> <p></p>
-          <p></p>
+          <c:forEach var="member" items="${member}">
+          <p>${member.memReportCount}</p>
+          </c:forEach>
         </div></div>
         <div class="content2"><div class="top">경고 상태</div><div class="buttom"> 
-          <p class="warning">위험</p><p class="warning">양호</p><p class="warning">양호</p><p class="warning"></p>
-          <p class="warning"></p><p class="warning"></p><p class="warning"></p><p class="warning"></p>
-          <p class="warning"></p><p class="warning"></p><p class="warning"></p><p class="warning"></p>
-          <p class="warning"></p><p class="warning"></p><p class="warning"></p><p class="warning"></p>
-          <p class="warning"></p><p class="warning"></p><p class="warning"></p><p class="warning"></p>
+          <c:forEach var="member" items="${member}">
+          <p>${member.memReportCount}</p>
+          </c:forEach>
         </div></div>        
         <!-- 글 검색-->
         

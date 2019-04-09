@@ -54,11 +54,12 @@
 	
 	<!-- ========================= 1. 회원현황 ============================= -->
 		
-	<!-- 회원 검색 -->	
+	<!-- 회원 검색 -->
+	<select id="selectListMember" parameterType="page" resultMap="memberMap">
 	 select mem_no, mem_id, mem_join_date, mem_report_count
        from tb_member
-	  where mem_no = #{no}	
-	  
+	 </select>
+	 
 	<!-- 경고상태 회원관리 -->
 
 		
