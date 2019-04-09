@@ -34,7 +34,6 @@ public class InsertRecipeController extends HttpServlet{
 		System.out.println("----------------- 서블릿 호출 -----------------");
 		request.setCharacterEncoding("utf-8");
 		
-		new WriteFileDirectory().makeThumbnail(request, "recipe", 600, 400);
 		// 파일 저장 디렉토리 생성
 		String uploadRoot = "C:/bit2019/yoribogo/yoribogo-server/yoribogo/upload";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
@@ -48,25 +47,31 @@ public class InsertRecipeController extends HttpServlet{
 					"utf-8",
 					new FunnyFileRenamePolicy() //FileRenamePolicy를 상속
 		);
-		// 레시피 등록
-				RecipeVO recipe = new RecipeVO();
-				recipe.setTitle(mRequest.getParameter("title"));
-				recipe.setSummary(mRequest.getParameter("summary"));
-				recipe.setKcal(Integer.parseInt(mRequest.getParameter("kcal")));
-				recipe.setCountry(mRequest.getParameter("country"));
-//					mapper.insertRecipe(recipe);
-		
 		// 메인 사진
 		File f1 = mRequest.getFile("mainImg");
+		
+		// 레시피 등록
+		RecipeVO recipe = new RecipeVO();
+		recipe.setNo(recipe.getNo());
+		recipe.setMemNo(1);	// 가데이터 1번 회원
+		recipe.setTitle(mRequest.getParameter("title"));
+		recipe.setSummary(mRequest.getParameter("summary"));
+		recipe.setCountry(mRequest.getParameter("country"));
+		recipe.setType(mRequest.getParameter("type"));
+		recipe.setKcal(Integer.parseInt(mRequest.getParameter("kcal")));
+		recipe.setWeather(mRequest.getParameter("weather"));
+		recipe.setLevel(mRequest.getParameter("level"));
+		recipe.setTime(Integer.parseInt(mRequest.getParameter("time")));
+		recipe.setPhoto(f1.toString());
+		mapper.insertRecipe(recipe);
+		
 		if (f1 != null) {
-			// 데이터베이스에 파일 정보 저장
+			// 파일 등록
 			FileVO fileVO = new FileVO();
 			fileVO.setRecipeNo(recipe.getNo());
 			fileVO.setBlockCon("메인");
-			fileVO.setBlockImg(path);
-			System.out.println(f1.toString());
-			//mapper.insertFile(fileVO);
-//			private String blockImg;	// 이미지링크
+			fileVO.setBlockImg(f1.toString());
+			mapper.insertFile(fileVO);
 		}
 		
 		

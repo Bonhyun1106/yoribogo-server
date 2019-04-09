@@ -16,6 +16,7 @@
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
 		<result column="recipe_weather" property="weather" />
+		<result column="recipe_photo" property="photo" />
 		<result column="mem_id" property="memId" />
 	</resultMap>
 	
@@ -86,7 +87,8 @@
 			recipe_kcal,
 			recipe_time,
 			recipe_level,
-			recipe_weather
+			recipe_weather,
+			recipe_photo
 		) values(
 			#{no},
 			#{memNo},
@@ -98,24 +100,24 @@
 			#{kcal},
 			#{time},
 			#{level},
-			#{weather}
+			#{weather},
+			#{photo}
 		)
 	</insert>
-	
 	
 	<!-- ======================================= 파 일  ======================================== -->
 	<resultMap id="fileMap" type="file">
 		<result column="rec_block_no" property="blockNo" />
-		<result column="recipe_no" property="no" />
-		<result column="rec_block_con" property="blockCon" />
-		<result column="rec_block_img" property="blockImg" />
+		<result column="recipe_no" property="recipeNo" />
+		<result column="rec_block_content" property="blockCon" />
+		<result column="rec_block_img_link" property="blockImg" />
 	</resultMap>
 	
 	<insert id="insertFile" parameterType="file">
 		insert into tb_recipe_block(
-			rec_block_no, recipe_no, rec_block_img
+			rec_block_no, recipe_no, rec_block_content, rec_block_img_link
 		) values(
-			s_rec_block_no.nextval, #{no}, #{blockImg}
+			s_rec_block_no.nextval, #{recipeNo}, #{blockCon}, #{blockImg}
 		)
 	</insert>
 	

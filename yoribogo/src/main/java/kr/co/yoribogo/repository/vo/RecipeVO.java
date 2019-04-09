@@ -9,7 +9,7 @@ public class RecipeVO {
 	private String summary;
 	private int viewCnt; // default 0
 	private int likeCnt; // default 0
-	private Date regDate;
+	private Date regDate;// sysdate
 	private String country;
 	private String type;
 	private int kcal;
