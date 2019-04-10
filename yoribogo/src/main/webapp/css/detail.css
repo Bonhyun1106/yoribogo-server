@@ -180,15 +180,38 @@ body{
   font-weight: bold;
 }
 
-
 /* 레시피 작성 */
-#content-wrapper {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  height: 700px;
-  /* max-height: auto; */
-  background: white;
-  border: 0.5px solid lightgrey;
+#content-wrapper{
+    height: auto;
+    background: white;
+    border : .5px solid black;
+}
+#add {
+    margin: 10px 10px;
+    /* background: skyblue; */
+    box-sizing: border-box;
+}
+.content-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 900px;
+    height: 300px;
+    grid-gap: 3px;
+    margin : 0 auto;
+}
+.content-grid > div > img {
+    width : 295px;
+    height : 250px;
+    border : 1px solid black;
+}
+.content-grid > div > textarea {
+    background: white;
+    margin : 10px;
+    border : .5px solid grey;
+    resize : none;
+    font-size: 15px;
+    width : 580px;
+    height: 270px;
 }
 
 

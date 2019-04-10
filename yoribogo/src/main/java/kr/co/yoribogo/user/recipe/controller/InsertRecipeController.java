@@ -31,18 +31,20 @@ public class InsertRecipeController extends HttpServlet{
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		System.out.println("----------------- 서블릿 호출 -----------------");
 		request.setCharacterEncoding("utf-8");
 		
+		String uploadPath = request.getServletContext().getRealPath("/images");
+		System.out.println("uploadPath : ");
+		System.out.println(uploadPath);
 		// 파일 저장 디렉토리 생성
-		String uploadRoot = "C:/bit2019/yoribogo/yoribogo-server/yoribogo/upload";
+		String uploadRoot = "/images";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String path = "/recipe" + sdf.format(new Date());
 		File file = new File(uploadRoot+path);
 		if(file.exists() == false) file.mkdirs();
 		MultipartRequest mRequest = new MultipartRequest(
 					request,
-					uploadRoot + path,///서버 컴퓨터에 저장할 경로
+					uploadPath + path,///서버 컴퓨터에 저장할 경로
 					1024*1024*100, // 100MB 허용
 					"utf-8",
 					new FunnyFileRenamePolicy() //FileRenamePolicy를 상속
@@ -77,7 +79,7 @@ public class InsertRecipeController extends HttpServlet{
 				FileVO fileVO = new FileVO();
 				fileVO.setRecipeNo(recipe.getNo());
 				fileVO.setBlockCon(mRequest.getParameter("con-txt1"));
-				fileVO.setBlockImg(f1.toString());
+				fileVO.setBlockImg(uploadRoot + path + "/" + f.getName());
 				mapper.insertFile(fileVO);
 			}
 		}

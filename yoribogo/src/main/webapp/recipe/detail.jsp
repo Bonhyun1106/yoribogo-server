@@ -16,7 +16,7 @@
 
 <body>
     <span id="menubar">
-        <a id="logo" href="main.html"><img src="images/logo-horizontal-300px.png" /></a>
+        <a id="logo" href="main.html"><img src="../images/logo-horizontal-300px.png" /></a>
         <a id="loginButton" href="login.html">로그인해주세요<i class="fas fa-user-circle fa-2x"></i></a>
     </span>
     <span id="up"><a href="#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
@@ -90,14 +90,23 @@
             </div>
         </div>
 
+        <!-- =========================== 내용 ============================ -->
         <div id="content-wrapper">
-        	<c:forEach var="img" items="${image}">
-	            <c:if test="${image.blockNo[1] != image.blockNo}">
-		            <div>${image.blockImg}</div>
-		            <div>${image.blockCon}</div>
-	            </c:if>
-        	</c:forEach>
+            <div id="add">
+	            <c:forEach var="image" items="${image}">
+	                <div class="content-grid">
+	                    <div id="con-img1">
+	                    	
+	                        <img name="con-img1" src="${pageContext.request.contextPath}${image.blockImg}">
+	                    </div>
+	                    <div id="con-txt1">
+	                        <textarea name="con-txt1">${image.blockCon}</textarea>
+	                    </div>
+	                </div>
+	            </c:forEach>
+            </div>
         </div>
+
 
         <div id="line"></div>
         <!-- ===========================댓글 등록 ============================ -->

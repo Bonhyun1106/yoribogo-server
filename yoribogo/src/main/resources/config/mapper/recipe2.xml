@@ -125,7 +125,7 @@
 	<select id="selectImageBlock" parameterType="int" resultMap="fileMap">
 		select *
 		  from tb_recipe_block
-		 where recipe_no = #{no}
+		 where recipe_no = #{recipeNo}
 	</select>
 	
 	
