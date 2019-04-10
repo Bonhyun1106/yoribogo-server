@@ -9,7 +9,7 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
-  			/search/detail.do;
+  			
   			/recipe/insertrecipe.do;
   			/recipe/updateform.do;
   			/recipe/listajax.do;
