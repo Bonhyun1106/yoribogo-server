@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -52,28 +54,33 @@
     <div id="content">
       <div id="contentWrapper">
         <div class="content2"><div class="top">no</div> <div class="buttom"> 
-          <c:forEach var="member" items="${member}">
-          <p>${member.memNo}</p>
+          <c:forEach var="list" items="${member}">
+          <p>${list.memNo}</p>
           </c:forEach>
         </div></div>
         <div class="content2"><div class="top">아이디</div><div class="buttom"> 
-          <c:forEach var="member" items="${member}">
-          <p>${member.memId}</p>
+          <c:forEach var="list" items="${member}">
+          <p>${list.memId}</p>
           </c:forEach>
         </div></div>
-        <div class="content2"><div class="top">가입 날짜</div><div class="buttom"> 
-          <c:forEach var="member" items="${member}">
-          <p>${member.memJoinDate}</p>
+        <div class="content2"><div class="top">가입 날짜</div><div class="buttom">
+          <c:forEach var="list" items="${member}">
+               <p> <fmt:formatDate value="${list.memJoinDate}" pattern="yy.MM.dd" /></p>
           </c:forEach>
         </div></div>
         <div class="content2"><div class="top">신고 횟수</div><div class="buttom"> 
-          <c:forEach var="member" items="${member}">
-          <p>${member.memReportCount}</p>
+          <c:forEach var="list" items="${member}">
+          <p>${list.memReportCount}</p>
           </c:forEach>
         </div></div>
         <div class="content2"><div class="top">경고 상태</div><div class="buttom"> 
-          <c:forEach var="member" items="${member}">
-          <p>${member.memReportCount}</p>
+          <c:forEach var="list" items="${member}">
+           <c:choose> 
+            <c:when test="${list.memReportCount<10}"><p>양호</p></c:when>
+            <c:when test="${list.memReportCount<20}"><p>경고</p></c:when>
+            <c:when test="${list.memReportCount<30}"><p>위험</p></c:when>
+            <c:when test="${list.memReportCount>31}"><p>정지</p></c:when>
+          </c:choose>
           </c:forEach>
         </div></div>        
         <!-- 글 검색-->
@@ -126,8 +133,6 @@
           copyright @ YORIBOGO Corp. All Right Reserved.
         </p>
   </div>  
-  </footer>
-  
-  
+  </footer> 
 </body>
 </html>
