@@ -11,6 +11,7 @@
   		<param-value>
   			/search/detail.do;
   			/recipe/insertrecipe.do;
+  			/recipe/detail.do;
   			/recipe/updateform.do;
   			/recipe/listajax.do;
   			/recipe/list.do;
