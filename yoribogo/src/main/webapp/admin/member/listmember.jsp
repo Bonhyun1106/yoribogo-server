@@ -100,15 +100,15 @@
 	<c:if test="${pageResult.count != 0}">
    	 <div class="before"> 
     	<c:if test="${pageResult.prev eq true}"> 
-    	 <a href="${param.link}?pageNo=${pageResult.beginPage - 1}"> 이전 </a> 
+    	 <a href="${param.link}?pageNo=${pageResult.begin - 1}"> 이전 </a> 
      	</c:if>
     </div>
-   		<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
+   		<c:forEach var="i" begin="${pageResult.begin}" end="${pageResult.end}">
            <div> <a href="${param.link}?pageNo=${i}">[${i}]</a> </div>
     	</c:forEach>
         <div class="after"> 
               <c:if test="${pageResult.next eq true}"> 
-              <a href="${param.link}?pageNo1=${pageResult.endPage + 1}"> 다음 </a> 
+              <a href="${param.link}?pageNo=${pageResult.end + 1}"> 다음 </a> 
               </c:if>
         </div>
 	</c:if>

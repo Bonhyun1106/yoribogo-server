@@ -90,22 +90,25 @@
               </div>
             </div>
        </div>
+       
+       
        <div id="page">
-          <div class="before"> <a href="#"> 이전 </a> </div>
-          <div> <a href="#"> 1 </a> </div>
-          <div> <a href="#"> 2 </a> </div>
-          <div> <a href="#"> 3 </a> </div>
-          <div> <a href="#"> 4 </a> </div>
-          <div> <a href="#"> 5 </a></div>
-          <div> <a href="#"> 6 </a> </div>
-          <div> <a href="#"> 7 </a> </div>
-          <div> <a href="#"> 8 </a></div>
-          <div> <a href="#"> 9 </a> </div>
-          <div> <a href="#"> 10 </a> </div> 
-          <div class="after"> <a href="#"> 다음 </a> </div>
-        </div> 
-     </div>
-    </div> 
+	<c:if test="${pageResult.count != 0}">
+   	 <div class="before"> 
+    	<c:if test="${pageResult.prev eq true}"> 
+    	 <a href="${param.link}?pageNo=${pageResult.begin - 1}"> 이전 </a> 
+     	</c:if>
+    </div>
+   		<c:forEach var="i" begin="${pageResult.begin}" end="${pageResult.end}">
+           <div> <a href="${param.link}?pageNo=${i}">[${i}]</a> </div>
+    	</c:forEach>
+        <div class="after"> 
+              <c:if test="${pageResult.next eq true}"> 
+              <a href="${param.link}?pageNo=${pageResult.end + 1}"> 다음 </a> 
+              </c:if>
+        </div>
+	</c:if>
+</div> 
 
      <!-- 하단  로고 -->
      <div id="footeradmin"> 

@@ -39,9 +39,9 @@ public class ListRecipeController extends HttpServlet {
 		
 		// 게시물 목록 가져오기
 		request.setAttribute("recipe", mapper.selectListRecipe(page));
-//		request.setAttribute("pageResult", new PageResult(
-//				pageNo, mapper.selectBoardCount()
-//		));
+		request.setAttribute("pageResult", new PageResult(
+				pageNo, mapper.selectRecipeCount()
+		));
 //		
 		
 		request.getRequestDispatcher("listrecipe.jsp")

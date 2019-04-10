@@ -37,7 +37,7 @@
 	</resultMap>
 	
 	
-	<resultMap id="memberMap" type="member">
+	 <resultMap id="memberMap" type="member">
 		<result column="mem_no" property="memNo" />
 		<result column="mem_id"	property="memId" />
 		<result column="mem_password" property="memPassword" />
@@ -49,7 +49,7 @@
 		<result column="mem_profile" property="memProfile" />
 		<result column="mem_report_count" property="memReportCount" />
 		<result column="mem_is_out" property="memIsOut" />
-	</resultMap>
+	</resultMap> 
 	
 	
 	<resultMap id="commentMap" type="comment">
@@ -73,7 +73,7 @@
              from ( select *
                      from tb_member
                      order by mem_no desc) a)   
-    where rnum between #{beginPage} and #{endPage};
+    where rnum between #{begin} and #{end}
 	 </select>
 	 
 	<!-- 1-2. 경고상태 회원관리 -->
@@ -86,9 +86,14 @@
     <select id="selectMemberCount" resultType="int">
 		select count(*)
 		  from tb_member
-	 </select>		
-				
-		
+	 </select>
+	 
+	 
+	  <select id="selectReportMemberCount" resultType="int">
+		select count(*)
+		  from tb_member
+	 </select>	
+						
 	<!-- ========================== 2. 게시글 관리 =========================== -->
 			
 			

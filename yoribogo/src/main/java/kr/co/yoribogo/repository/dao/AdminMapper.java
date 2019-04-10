@@ -32,7 +32,8 @@ public interface AdminMapper {
 	//3. 레시피 게시글 조회
 	public List<RecipeVO> selectListRecipe(PageVO page);
 	
-	
+	//3-1. 페이징
+	public int selectRecipeCount();
 	
 	// ===================2. 게시글 관리 ==============================
 	//1. 댓글 관리
