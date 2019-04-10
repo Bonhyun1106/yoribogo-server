@@ -62,36 +62,41 @@ public class InsertRecipeController extends HttpServlet{
 		recipe.setWeather(mRequest.getParameter("weather"));
 		recipe.setLevel(mRequest.getParameter("level"));
 		recipe.setTime(Integer.parseInt(mRequest.getParameter("time")));
-
-		File f1 = mRequest.getFile("mainImg");	// 메인 사진
-		recipe.setPhoto(f1.toString());
-		mapper.insertRecipe(recipe);
-		
+//		File f1 = mRequest.getFile("mainImg");	// 메인 사진
+//		recipe.setPhoto(f1.toString());
+//		mapper.insertRecipe(recipe);
 		
 		// 내용 등록..
+		int fileCnt = 1;
 		Enumeration<String> fNames = mRequest.getFileNames();
 		while (fNames.hasMoreElements()) {
+			System.out.println("hasMore Elements : " + fileCnt);
+
 			String fName = fNames.nextElement();
 			File f = mRequest.getFile(fName);
 			// 파일을 선택하지 않은 경우 null
 			if (f != null) {
+				// 첫번째 파일은 recipe photo에 저장.
+				if(fileCnt == 1) {
+					System.out.println("첫번째 파일..."+fileCnt);
+					recipe.setPhoto(uploadRoot + path + "/" + f.getName());
+					mapper.insertRecipe(recipe);
+					fileCnt++;
+					continue;
+				}
 				// 파일 등록
 				FileVO fileVO = new FileVO();
 				fileVO.setRecipeNo(recipe.getNo());
 				fileVO.setBlockCon(mRequest.getParameter("con-txt1"));
 				fileVO.setBlockImg(uploadRoot + path + "/" + f.getName());
 				mapper.insertFile(fileVO);
+				fileCnt++;
 			}
 		}
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
+		response.sendRedirect("list.do");
 	}
 }

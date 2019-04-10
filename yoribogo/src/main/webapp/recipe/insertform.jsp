@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div id="line">요리에 대해 알려주세요</div>
+        <div id="line">${user.memId}님! 요리에 대해 알려주세요</div>
 
         <div id="ingrd-wrapper">
             <div class="cookinfo">
