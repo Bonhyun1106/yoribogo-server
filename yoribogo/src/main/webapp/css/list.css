@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+
 body {
 	background: gainsboro;
 }
@@ -23,7 +25,8 @@ a {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Muli', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
+	
 }
 
 #up {
