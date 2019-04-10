@@ -37,5 +37,6 @@
 		<mapper resource="config/mapper/recipe.xml"/>
 		<mapper resource="config/mapper/recipe2.xml"/>
 		<mapper resource="config/mapper/admin.xml"/>
+		<mapper resource="config/mapper/member.xml"/>
 	</mappers>
 </configuration>
