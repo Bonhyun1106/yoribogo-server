@@ -79,10 +79,25 @@
 	<!-- 1-2. 경고상태 회원관리 -->
 	<select id="selectListReportMember" parameterType="page" resultMap="memberMap">
 	 select mem_no, mem_id, mem_is_out, mem_report_count
-       from tb_member
+	  from (select rownum rnum, a.* 
+             from ( select *
+                     from tb_member
+                     order by mem_no desc) a)   
+      where rnum between #{begin} and #{end} 
+ 
 	 </select>
 
-
+    <!-- 1-3. 아이디 검색 -->
+      <select id="selectListId" parameterType="page" resultMap="memberMap">
+    select mem_id
+	  from (select rownum rnum, a.* 
+             from ( select *
+                     from tb_member
+                     order by mem_no desc) a)   
+      where rnum between #{begin} and #{end}
+     </select>
+     
+    
     <select id="selectMemberCount" resultType="int">
 		select count(*)
 		  from tb_member

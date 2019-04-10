@@ -21,6 +21,9 @@ public interface AdminMapper {
 	
 	//1-1. 페이징
 	public int selectMemberCount();
+	
+	//1-2. 회원 검색
+	public List<MemberVO> selectListId(PageVO page);
 
 	// ===================2. 게시글 관리 =============================
 	//1. 공지사항 작성

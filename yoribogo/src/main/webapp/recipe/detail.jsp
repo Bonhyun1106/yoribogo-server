@@ -34,7 +34,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="images/img2.jpg" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${recipe.photo}" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -42,10 +42,9 @@
                 </div>
             </div>
             <div class="top-right">
-                <img src="${recipe.photo}" name="recMainImg"/>
+                <img src="${pageContext.request.contextPath}${recipe.photo}">
             </div>
         </div>
-
         <div id="likebar">
             <button>
                 <i class="fas fa-heart fa-2x"></i>
@@ -99,7 +98,7 @@
 	                        <img name="con-img1" src="${pageContext.request.contextPath}${image.blockImg}">
 	                    </div>
 	                    <div id="con-txt1">
-	                        <textarea name="con-txt1">${image.blockCon}</textarea>
+	                        <h3 name="con-txt1">${image.blockCon}</h3>
 	                    </div>
 	                </div>
 	            </c:forEach>
@@ -112,7 +111,7 @@
         <div id="inputComm-wrapper">
             <div class="inputId">
                 <div><img src="images/img2.jpg" name="idImg"/></div>
-                <div name="id">Bonhyun</div>
+                <div name="id">${user.memId}님</div>
             </div>
             <div class="inputbox">
                 <textarea placeholder="응원의 댓글을 달아보세요"></textarea>
@@ -127,21 +126,23 @@
         <!-- ===========================하단======================== -->
         <div id="commemt-wrapper">
             <div>
+            <c:forEach var="comment" items="${commentList}">
                 <div class="comment">
                     <div class="commid">
-                        <div><img src="images/img1.jpg" name="commImg1"/></div>
-                        <div name="commId1">bonhyun</div>
+                        <div><img src="${pageContext.request.contextPath}${comment.profile}" name="commImg1"/></div>
+                        <div name="commId1">${comment.memId}</div>
                     </div>
-                    <div>맛있네요</div>
+                    <div>${comment.commentContent}</div>
                     <div class="likecnt">
                         <div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>
-                        <div class="yes">3</div>
+                        <div class="yes">${comment.commentLikeCnt}</div>
                     </div>
                     <div class="likecnt">
                         <div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>
-                        <div class="no">0</div>
+                        <div class="no">${comment.commentReportCount}</div>
                     </div>
                 </div>
+            </c:forEach>
             </div>
         </div>
 

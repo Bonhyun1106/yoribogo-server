@@ -98,6 +98,7 @@
 			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
 			   recipe_kcal,
 			   recipe_time,
+			   recipe_photo,
 			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
 			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather
     	  from tb_recipe
@@ -143,6 +144,36 @@
 		 where recipe_no = #{no}
 	</select>
 	
+	
+	<!-- ================================== 댓 글 ======================================== -->
+	<resultMap id="commentMap" type="comment">
+		<result column="comment_no" property="commentNo" />
+		<result column="recipe_no" property="no" />
+		<result column="mem_no" property="memNo" />
+		<result column="comment_like_cnt" property="commentLikeCnt" />
+		<result column="comment_reg_date" property="commentRegDate" />
+		<result column="comment_content" property="commentContent" />
+		<result column="comment_report_count" property="commentReportCount" />
+		<result column="mem_id" property="memId" />
+		<result column="recipe_title" property="title" />
+		<result column="mem_profile" property="profile" />
+	</resultMap>
+	
+	<!-- 댓글 조회. 파라미터 : 글번호 -->
+	<select id="selectComment" parameterType="int" resultMap="commentMap">
+		 select comment_no, 
+		        comment_like_cnt, 
+		        comment_reg_date,
+		        comment_content, 
+		        comment_report_count,
+		        m.mem_id as "mem_id",
+		        m.mem_profile as "mem_profile"
+		   from tb_comment c
+		  inner join tb_member m
+		     on c.mem_no = m.mem_no
+		  where recipe_no = #{no}
+		  order by comment_like_cnt desc
+	</select>
 	
 </mapper>
 
