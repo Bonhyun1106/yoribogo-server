@@ -44,7 +44,7 @@
                     </div>
                     </div>
                     <button id="login-button">회원가입</button>
-                    <a id="back" href="../login/loginform.jsp" >이전</a>
+                    <a id="back" href="/yoribogo/login/loginform.do" >이전</a>
                 </form>
                 <script>
             	

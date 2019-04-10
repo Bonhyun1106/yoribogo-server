@@ -27,8 +27,8 @@ public class UpdateMemberController extends HttpServlet{
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(MemberMapper.class);
 	}
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
 		response.setContentType("text/html; charset=utf-8");
+		System.out.println("updateform으로부터 값을 받아왔는지?");
 
 		String uploadPath = request.getServletContext().getRealPath("/images");
 		System.out.println("uploadPath : ");
@@ -52,12 +52,22 @@ public class UpdateMemberController extends HttpServlet{
 	
 		
 		System.out.println("파일 업로드 성공함");
+		MemberVO memTmp = mapper.selectBySessionId(Integer.parseInt(mRequest.getParameter("memNo")));
+		
+		String sessionId = memTmp.getMemId();
+		String sessionEmail = mRequest.getParameter("email");
+		System.out.println("session id : "+sessionId);
+		System.out.println("session email : " + sessionEmail);
 		
 		MemberVO member = new MemberVO(); 
-		member.setMemId(mRequest.getParameter("id"));
+		member.setMemId(sessionId);
 		member.setMemPassword(mRequest.getParameter("pass"));
-		member.setMemEmail(mRequest.getParameter("email"));
 		File f = mRequest.getFile("profile");
+		if(sessionEmail == null) {
+			member.setMemEmail(memTmp.getMemEmail());			
+		}else {
+			member.setMemEmail(sessionEmail);			
+		}
 		
 		if(f != null) {
 			String systemName = mRequest.getFilesystemName("profile");
@@ -67,15 +77,15 @@ public class UpdateMemberController extends HttpServlet{
 			.toFile(new File(f.getParent(),"thumb_"+systemName));
 			member.setMemProfile(uploadRoot+path+"/thumb_"+systemName);
 			System.out.println("input profile : " + member.getMemProfile());
+		}else {
+			member.setMemProfile(memTmp.getMemProfile());			
 		}
 
 		System.out.println("input id : " + member.getMemId() + 
 				"| input pass : " + member.getMemPassword()	+
-				"| input email : " + member.getMemEmail()
+				"| input email : " + member.getMemEmail() + 
+				"| input profile : " + member.getMemProfile()
 				);
-		if(f == null) {
-			member.setMemProfile(uploadRoot+"/profile/default/profileDefault");
-		}
 		
 		mapper.updateMember(member);
 		PrintWriter out = response.getWriter();

@@ -4,7 +4,17 @@
 	
 <!-- 이 xml을 사용할 클래스 경로를 준다. 패키지명과 함께..   -->
 <mapper namespace="kr.co.yoribogo.repository.dao.MemberMapper">
-
+	<resultMap id="MemberMap" type="member">
+		<result column="mem_no" property="memNo" />
+		<result column="mem_id" property="memId" />
+		<result column="mem_password" property="memPassword" />
+		<result column="mem_favor1" property="memFavor1" />
+		<result column="mem_favor2" property="memFavor2" />
+		<result column="mem_favor3" property="memFavor3" />
+		<result column="mem_profile" property="memProfile" />
+		<result column="mem_report_count" property="memReportCount" />
+		<result column="mem_join_date" property="memJoinDate" />
+	</resultMap>
 	 <update id="selectLogin" parameterType="member">
 		update tb_member
 		   set mem_password = CryptString.encrypt(#{memPassword},'key'),
@@ -12,5 +22,10 @@
 		   	   mem_email = #{memEmail}
 		where mem_id = #{memId}
 	 </update>
+	 <select id="selectBySessionId" parameterType="int" resultMap="MemberMap">
+		 select *
+		   from tb_member
+		   where mem_no = #{memNo}
+	 </select>
 	 
 </mapper>

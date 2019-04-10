@@ -371,3 +371,21 @@ body{
 .file-upload{
   display: none;
 }
+#back{
+    width: 250px;
+    height: 48px;
+    line-height: 49px;
+    display: inline-block;
+    margin-bottom: 10px;
+    border : 1px solid aliceblue;
+    background: white;
+    font-weight: thin;
+    color: #53e3a6;
+    margin-left: 15px;
+    border-radius: 4px;
+
+
+}
+#back:hover{
+    background: ghostwhite;
+}

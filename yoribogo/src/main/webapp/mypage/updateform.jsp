@@ -45,7 +45,7 @@
                     <input type="file" class="file-upload" name="profile">
                         <p>${user.memId}</p>
                         <input type="text" placeholder="이메일" name="email"><span id="emailChecked"></span>
-                        
+                        <input type="hidden" value="${user.memNo}" name="memNo">
                         <input type="password" placeholder="새 비밀번호" name="pass"><span id="passChecked"></span>
                    		<input type="password" placeholder="새 비밀번호 확인" name="pass2"><span id="pass2Checked"></span>
                         
@@ -63,9 +63,10 @@
 
                     
             
-                        <a href="mypage.html" id="login-button">회원정보수정</a>
+                        <button id="login-button">회원정보수정</button>
+                    	<a id="back" href="/yoribogo/mypage/mypage.do" >마이페이지로</a>
                         <a href="deleteUserInfo.html" id="delete-button">회원탈퇴를 원하시나요?</a>
-
+	
                        
                     </form>
                     <script>
@@ -111,14 +112,14 @@
 
                	        }
                			$.ajax({
-               				url :"",
+               				url : "/yoribogo/signup/checkemail.do",
                				data: "email=" + $("input[name='email']").val(),
                				success : function(result){
     	           			  // 정규식 변수 regExp
-    	           			 	//console.log("result: " + result);
+    	           			 	console.log("result: " + result);
                			  	  if($("input[name='email']").val() == ""){
-               						$("#emailChecked").html("이메일을 입력해주세요.");	
-               						$("#emailChecked").css({"color" : "red"});	
+               						$("#emailChecked").html("미입력시 변경되지 않습니다.");	
+               						$("#emailChecked").css({"color" : "springgreen"});	
                			  		  
                			  	  }else if ($("input[name='email']").val().match(regExp) != null && result == 0) {
                						$("#emailChecked").html("사용가능한 이메일입니다.");	
@@ -187,25 +188,36 @@
                			});
                		function success(){
 	            	    
-                	    if(!emailFlag || !passFlag || !pass2Flag){
+                	    if(!passFlag || !pass2Flag){
                        	    	
                   	    	alert("입력 정보를 확인해주세요.");
     						window.location.href = "updateform.do";
                   	    }else{
                        	 	console.log(email);
-
+							
                    	     	let form = $('.form')[0];
                           	let formData = new FormData(form);
-                          	formData.append("email", email);
+							
+                          	let atTmp = [];
+                          	let dotTmp = "";
+                          	let address = "";
+                          	let at = "";
+                          	let dot = "";
+                          	if(!emailFlag){
+                          		email = null;
+                          	}else{
+                          		atTmp = [];
+                        	    atTmp = email.split("@");
+                         	    dotTmp = atTmp[1].split(".");
+                         	    
+                         	    address = atTmp[0];
+                         	    at = dotTmp[0];
+                         	    dot = dotTmp[1];
+                          	}
+                          	formData.append("email", email);                      		
     						
                           	
-                          	let atTmp = [];
-                    	    atTmp = email.split("@");
-                     	    let dotTmp = atTmp[1].split(".");
-                     	    
-                     	    address = atTmp[0];
-                     	    at = dotTmp[0];
-                     	    dot = dotTmp[1];
+                          	
 
           					console.log("추출 결과 : "+address + at + dot);
            					alert("회원 정보 수정 중...");
