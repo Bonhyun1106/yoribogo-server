@@ -36,7 +36,7 @@ public class SignupController extends HttpServlet{
 		response.setContentType("text/html; charset=utf-8");
 		
 		
-		String uploadRoot = "c:/bit2019/upload";
+		String uploadRoot = "/images";
 		//1. 모듈 별 디렉토리 생성
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String path = "/profile" + sdf.format(new Date());
@@ -56,12 +56,12 @@ public class SignupController extends HttpServlet{
 		// <input type="file" name="attach1">
 		
 		MemberVO member = new MemberVO(); 
-		member.setMemId(request.getParameter("id"));
-		member.setMemPassword(request.getParameter("pass"));
+		member.setMemId(mRequest.getParameter("id"));
+		member.setMemPassword(mRequest.getParameter("pass"));
 
 		File f = mRequest.getFile("profile");
 		if(f != null) {
-			String systemName = mRequest.getFilesystemName(f.toString());
+			String systemName = mRequest.getFilesystemName("profile");
 			Thumbnails.of(new File(f.getParent(),systemName))
 			.size(600,400)
 			.outputFormat("png")
@@ -69,7 +69,7 @@ public class SignupController extends HttpServlet{
 			member.setMemProfile(uploadRoot+path+"/thumb_"+systemName);
 		}
 
-		member.setMemEmail(request.getParameter("email"));
+		member.setMemEmail(mRequest.getParameter("email"));
 		System.out.println("input id : " + member.getMemId() + 
 				"| input pass : " + member.getMemPassword()	+
 				"| input email : " + member.getMemEmail() + 

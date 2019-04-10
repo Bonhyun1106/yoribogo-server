@@ -23,7 +23,7 @@
                 <form class="form" method="post" enctype="multipart/form-data" action="javascript:success();">
                     <h5>프로필 사진</h5>
                     <img id="profilePhoto" class = "upload-button" src="../images/profileDefault.png"/>
-                    <input type="file" class="file-upload">
+                    <input type="file" class="file-upload" name="profile">
 
                     <input type="text" placeholder="이메일" name="email"><span id="emailChecked"></span>
                                        
@@ -213,8 +213,9 @@
 
                	     	let form = $('.form')[0];
                       	let formData = new FormData(form);
-                      	formData.append("fileObj", $(".file-upload")[0].files[0]);
-               		
+                      	formData.append("email", email);
+						
+                      	
                       	let atTmp = [];
                 	    atTmp = email.split("@");
                  	    let dotTmp = atTmp[1].split(".");
@@ -226,16 +227,14 @@
       					console.log("추출 결과 : "+address + at + dot);
        					alert("회원가입 중...");
       					$.ajax({
+      						
       						type: "post",
   	    					url:"signupsuccess.do",
-      						data: 
-          						"id=" + id +
-          						"&email=" + email +
-          						"&profile" + formData + 
-          						"&pass=" + pass2,
+  	    					 processData: false,
+  	                       contentType: false,
+      						data: formData,
       						success:function(result){
-      							alert(result);
-      							window.location.href = "../login/loginform.jsp";	
+      							alert(result);	
       						}
       					});
         					

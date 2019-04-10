@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
 			System.out.println("LoginCotroller : login fail.");
 			response.sendRedirect("loginform.do");
 			return;
-		}
+		} 
 		System.out.println("LoginCotroller : login Success.");
 		List<RecipeVO> userRecipeList = mapper.selectRecipeByUser(user.getMemNo());
 
