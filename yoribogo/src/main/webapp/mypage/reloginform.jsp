@@ -23,9 +23,8 @@
   <span id = "up"><a href= "#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
   
   <span id="header">
-      <div>
-          <div id="settingProfile" style="cursor: pointer;" onclick="location.href='setUserInfo.html';"><i class="fas fa-cog fa-3x"></i></div>
-          <img id="profile" src="${user.memProfile}"></img>
+          <div>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		

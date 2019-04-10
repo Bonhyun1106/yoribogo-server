@@ -29,7 +29,7 @@
           	
       	  	<button><div id="settingProfile" style="cursor: pointer;"><i class="fas fa-cog fa-3x"></i></div></button>
       	  </form>
-          <img id="profile" src="${user.memProfile}"></img>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		
@@ -54,7 +54,7 @@
             	<c:forEach var="recipe" items="${userRecipe}" begin="0" end="2">
                 	<div class="profileBlock_body_inner" style="background-image: url(@!@backimage); background-size: cover;">
                   		<div  class="innerWrapper">  
-                  		<img id = "profileBlock_body_inner_profile" src="${user.memProfile}"/>  
+                  		<img id = "profileBlock_body_inner_profile" src="${pageContext.request.contextPath}${user.memProfile}.png"/>  
 		                   <div class="innerWrapper_inner">
         		             <div><fmt:formatDate value="${recipe.regDate}" pattern="MM.dd hh:mm" /></div>
                  		     <div>${user.memId}</div>
@@ -125,11 +125,5 @@
     </div>  
 </footer>
 
-<script>
-	$().on("emptyCheck",profile){
-		if(profile)
-		<i class="fas fa-user-circle fa-5x"></i>
-	});
-</script>
 </body>
 </html>

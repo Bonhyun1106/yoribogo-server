@@ -17,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.SignupMapper;
+import kr.co.yoribogo.repository.vo.FileVO;
 import kr.co.yoribogo.repository.vo.MemberVO;
 import kr.co.yoribogo.utility.FunnyFileRenamePolicy;
 import net.coobird.thumbnailator.Thumbnails;
@@ -35,48 +36,57 @@ public class SignupController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 		
-		
+
+		String uploadPath = request.getServletContext().getRealPath("/images");
+		System.out.println("uploadPath : ");
+		System.out.println(uploadPath);
 		String uploadRoot = "/images";
-		//1. 모듈 별 디렉토리 생성
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String path = "/profile" + sdf.format(new Date());
-		File file = new File(uploadRoot+path);
-		if(file.exists() == false) file.mkdirs();
-		MultipartRequest mRequest = new MultipartRequest(
-					request,
-					uploadRoot + path,///서버 컴퓨터에 저장할 경로
-					1024*1024*100, // 100MB 허용
-					"utf-8",
-					new FunnyFileRenamePolicy() //FileRenamePolicy를 상속
-				); //파일 처리를 대신함
-
 		
+		File file = new File(uploadPath+path);
+		if(file.exists() == false) {
+			System.out.println("경로를 생성합니다");
+			file.mkdirs();
+		}
+		MultipartRequest mRequest = new MultipartRequest(
+				request,
+				uploadPath + path,
+				1024*1024*100, 
+				"utf-8",
+				new FunnyFileRenamePolicy()
+	);
+	
 		
 		System.out.println("파일 업로드 성공함");
-		// <input type="file" name="attach1">
 		
 		MemberVO member = new MemberVO(); 
 		member.setMemId(mRequest.getParameter("id"));
 		member.setMemPassword(mRequest.getParameter("pass"));
-
+		member.setMemEmail(mRequest.getParameter("email"));
 		File f = mRequest.getFile("profile");
+		
 		if(f != null) {
 			String systemName = mRequest.getFilesystemName("profile");
 			Thumbnails.of(new File(f.getParent(),systemName))
 			.size(600,400)
 			.outputFormat("png")
-			.toFile(new File(f.getParent(),"thumb_"+systemName));
-			member.setMemProfile(uploadRoot+path+"/thumb_"+systemName);
+			.toFile(new File(f.getParent(),member.getMemId()+"_thumb_"+systemName));
+			member.setMemProfile(uploadRoot+path+"/"+member.getMemId()+"_thumb_"+systemName);
+			System.out.println("input profile : " + member.getMemProfile());
 		}
 
-		member.setMemEmail(mRequest.getParameter("email"));
 		System.out.println("input id : " + member.getMemId() + 
 				"| input pass : " + member.getMemPassword()	+
-				"| input email : " + member.getMemEmail() + 
-				"| input profile : " + member.getMemProfile()
+				"| input email : " + member.getMemEmail()
 				);
+		if(f == null) {
+			member.setMemProfile(uploadRoot+"/profile/default/profileDefault");
+		}
 		
 		mapper.insertMember(member);
-		response.sendRedirect("/login/loginform.do");
+		PrintWriter out = response.getWriter();
+		out.println("회원가입을 완료하였습니다.");
+		out.close();
 	}
 }

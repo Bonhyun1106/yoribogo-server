@@ -20,7 +20,7 @@
             <div class="container">
                 <h1>Welcome</h1>
                 
-                <form class="form" method="post" enctype="multipart/form-data" action="javascript:success();">
+                <form class="form" method="post" action="javascript:success();">
                     <h5>프로필 사진</h5>
                     <img id="profilePhoto" class = "upload-button" src="../images/profileDefault.png"/>
                     <input type="file" class="file-upload" name="profile">
@@ -52,15 +52,15 @@
        			let idFlag = false;
                 let passFlag = false;
        			let pass2Flag = false;
-       			let profilePic = "../images/profileDefault";
+       			let profilePic = "";
 
 				$("#idChecked").html("");	
        			$("#emailChecked").html("");		
 				$("#passChecked").html("");	
        			$("#pass2Checked").html("");		
 				 	
-       			let email = " ";
        			let id = " ";
+       			let email = " ";
        			let pass = " ";
        			
            		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -230,11 +230,12 @@
       						
       						type: "post",
   	    					url:"signupsuccess.do",
-  	    					 processData: false,
-  	                       contentType: false,
+  	    					processData: false,
+  	                       	contentType: false,
       						data: formData,
       						success:function(result){
       							alert(result);	
+      							window.location.href="loginform.do";
       						}
       					});
         					

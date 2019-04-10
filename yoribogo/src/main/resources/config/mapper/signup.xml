@@ -20,11 +20,12 @@
 	<insert id="insertMember" parameterType="member">
 		insert into tb_member (
 			mem_no,mem_id,mem_password,
-			mem_email) values (
+			mem_email, mem_profile) values (
 			s_mem_no.nextval,
 			#{memId},
 			CryptString.encrypt(#{memPassword},'key'),
-			#{memEmail}
+			#{memEmail},
+			#{memProfile}
 			)
 	</insert>
 	

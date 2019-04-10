@@ -23,9 +23,8 @@
   <span id = "up"><a href= "#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
   
   <span id="header">
-         <div>
-          <div id="settingProfile" style="cursor: pointer;" onclick="location.href='setUserInfo.html';"><i class="fas fa-cog fa-3x"></i></div>
-          <img id="profile" src="${user.memProfile}"></img>
+           <div>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		
@@ -41,11 +40,12 @@
                     <h4>회원 정보 수정</h4>
                     <br>
                     <h5>프로필 사진</h5>
-                    <a id="profilePhoto" href="#" >+</a>
-                    
-                    <form class="form" action="">
+                    <form class="form" method="post" action="javascript:success();">
+                     <img id="profilePhoto" class = "upload-button" src="../images/profileDefault.png"/>
+                    <input type="file" class="file-upload" name="profile">
                         <p>${user.memId}</p>
-                        <p>${user.memEmail}</p>
+                        <input type="text" placeholder="이메일" name="email"><span id="emailChecked"></span>
+                        
                         <input type="password" placeholder="새 비밀번호" name="pass"><span id="passChecked"></span>
                    		<input type="password" placeholder="새 비밀번호 확인" name="pass2"><span id="pass2Checked"></span>
                         
@@ -69,7 +69,75 @@
                        
                     </form>
                     <script>
-                    $("input[name='pass']").on("keyup",function(){			
+                    let emailFlag = false;
+           			let idFlag = false;
+                    let passFlag = false;
+           			let pass2Flag = false;
+           			$("#emailChecked").html("");		
+    				$("#passChecked").html("");	
+           			$("#pass2Checked").html("");		
+           			
+           			let email = " ";
+           			let pass = " ";
+           			
+               		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+               		let idReg = /^[A-za-z0-9]{5,10}/g;
+               		
+                  	$(document).ready(function() {
+    						var readURL = function(input) {
+    							if (input.files && input.files[0]) {
+       							var reader = new FileReader();
+       							reader.onload = function (e) {
+           							$('#profilePhoto').attr('src', e.target.result);
+           							profilePic = e.target.result;
+       							}
+
+      							reader.readAsDataURL(input.files[0]);
+    							}
+    						}
+    						$(".file-upload").on('change', function(){
+    							readURL(this);
+    						});
+
+    						$(".upload-button").on('click', function() {
+    							$(".file-upload").click();
+    						});
+    					});
+               		
+               		$("input[name='email']").on("keyup",function(){			
+               	        if($(this).val().length >= 30) {
+
+               	            $(this).val($(this).val().substring(0, 30));
+
+               	        }
+               			$.ajax({
+               				url :"",
+               				data: "email=" + $("input[name='email']").val(),
+               				success : function(result){
+    	           			  // 정규식 변수 regExp
+    	           			 	//console.log("result: " + result);
+               			  	  if($("input[name='email']").val() == ""){
+               						$("#emailChecked").html("이메일을 입력해주세요.");	
+               						$("#emailChecked").css({"color" : "red"});	
+               			  		  
+               			  	  }else if ($("input[name='email']").val().match(regExp) != null && result == 0) {
+               						$("#emailChecked").html("사용가능한 이메일입니다.");	
+               						$("#emailChecked").css({"color" : "springgreen"});	
+               						emailFlag = true;
+               						email = $("input[name='email']").val();
+                   					console.log("finally email is " + email);
+               			  		}
+               			  		else {
+               						$("#emailChecked").html("사용할 수 없는 이메일입니다.");									
+               						$("#emailChecked").css({"color" : "red"});	
+               			  		}
+               				}
+               			});	
+               			}            		
+               		);
+               		
+               		
+               		$("input[name='pass']").on("keyup",function(){			
                			if(this == ""){
                				return;            				
                			}
@@ -78,6 +146,7 @@
                	            $(this).val($(this).val().substring(0, 13));
 
                	        }
+               			//console.log($("input[name='pass']").val().length);
                			if($("input[name='pass']").val().length < 8){
                						$("#passChecked").html("비밀번호는 8자 이상입니다.");									
                 					$("#passChecked").css({"color" : "red"});	
@@ -88,6 +157,7 @@
                			}else{
                						$("#passChecked").html("사용가능한 비밀번호입니다.");									            				
                 					$("#passChecked").css({"color" : "springgreen"});	
+                					passFlag = true;
                			}
                			
                			});
@@ -101,17 +171,60 @@
                	            $(this).val($(this).val().substring(0, 13));
 
                	        }
+               			//console.log($("input[name='pass']").val());
                			if($("input[name='pass']").val() != $("input[name='pass2']").val()){
                						$("#pass2Checked").html("비밀번호를 확인해주세요.");									
                 					$("#pass2Checked").css({"color" : "red"});	
                			}else{
                						$("#pass2Checked").html("확인했습니다.");									            				
                 					$("#pass2Checked").css({"color" : "springgreen"});	
+                					pass2Flag = true;
                 					pass2 = $("input[name='pass2']").val();
 
+                   					//console.log("finally password is " + pass);
                			}
                			
-               			}         
+               			});
+               		function success(){
+	            	    
+                	    if(!emailFlag || !passFlag || !pass2Flag){
+                       	    	
+                  	    	alert("입력 정보를 확인해주세요.");
+    						window.location.href = "updateform.do";
+                  	    }else{
+                       	 	console.log(email);
+
+                   	     	let form = $('.form')[0];
+                          	let formData = new FormData(form);
+                          	formData.append("email", email);
+    						
+                          	
+                          	let atTmp = [];
+                    	    atTmp = email.split("@");
+                     	    let dotTmp = atTmp[1].split(".");
+                     	    
+                     	    address = atTmp[0];
+                     	    at = dotTmp[0];
+                     	    dot = dotTmp[1];
+
+          					console.log("추출 결과 : "+address + at + dot);
+           					alert("회원 정보 수정 중...");
+          					$.ajax({
+          						
+          						type: "post",
+      	    					url:"update.do",
+      	    					processData: false,
+      	                       	contentType: false,
+          						data: formData,
+          						success:function(result){
+          							alert(result);	
+          							window.location.href="mypage.do";
+          						}
+          					});
+            					
+           				}
+               		}
+               		
                     </script>
                     </div>
                 </div>                  
