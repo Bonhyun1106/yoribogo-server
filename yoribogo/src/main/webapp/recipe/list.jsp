@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
-<%
-	int i = 6;
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,37 +40,37 @@
 						<th>
 							<div class="inputSort">
 				                <label>평점순</label>
-				                <input id="sort_gradeDESC" value="gradeDESC" type="radio" name="sort" />
-				                <label class="sort_desc" for="sort_gradeDESC"></label>
 				                <input id="sort_gradeASC" value="gradeASC" type="radio" name="sort" />
 				                <label class="sort_asc" for="sort_gradeASC"></label>
+				                <input id="sort_gradeDESC" value="gradeDESC" type="radio" name="sort" />
+				                <label class="sort_desc" for="sort_gradeDESC"></label>
 			                </div>
 						</th>
 						<th>
 							<div class="inputSort">
-								<label>좋아요순</label> <input id="sort_likeDESC" value="likeDESC"
-									type="radio" name="sort" /> <label class="sort_desc"
-									for="sort_likeDESC"></label> <input id="sort_likeASC"
-									value="likeASC" type="radio" name="sort" /> <label
-									class="sort_asc" for="sort_likeASC"></label>
+								<label>좋아요순</label> 
+								<input id="sort_likeASC" value="likeASC" type="radio" name="sort" /> 
+								<label class="sort_asc" for="sort_likeASC"></label>
+								<input id="sort_likeDESC" value="likeDESC" type="radio" name="sort" /> 
+								<label class="sort_desc" for="sort_likeDESC"></label> 
 							</div>
 						</th>
 						<th>
 							<div class="inputSort">
-								<label>난이도순</label> <input id="sort_levelDESC" value="levelDESC"
-									type="radio" name="sort" /> <label class="sort_desc"
-									for="sort_levelDESC"></label> <input id="sort_levelASC"
-									value="levelASC" type="radio" name="sort" /> <label
-									class="sort_asc" for="sort_levelASC"></label>
+								<label>난이도순</label> 
+								<input id="sort_levelASC" value="levelASC" type="radio" name="sort" /> 
+								<label class="sort_asc" for="sort_levelASC"></label>
+								<input id="sort_levelDESC" value="levelDESC" type="radio" name="sort" /> 
+								<label class="sort_desc" for="sort_levelDESC"></label> 
 							</div>
 						</th>
 						<th>
 							<div class="inputSort">
-								<label>최신순</label> <input id="sort_latestDESC"
-									value="latestDESC" type="radio" name="sort" checked="checked" />
-								<label class="sort_desc" for="sort_latestDESC"></label> <input
-									id="sort_latestASC" value="latestASC" type="radio" name="sort" />
+								<label>최신순</label> 
+								<input id="sort_latestASC" value="latestASC" type="radio" name="sort" />
 								<label class="sort_asc" for="sort_latestASC"></label>
+								<input id="sort_latestDESC" value="latestDESC" type="radio" name="sort" checked="checked" />
+								<label class="sort_desc" for="sort_latestDESC"></label> 
 							</div>
 						</th>
 					</tr>
@@ -92,10 +90,7 @@
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} <i
 									class="fas fa-heart fa-2x"></i>${list.likeCnt} <i
 									class="fas fa-level-up-alt fa-2x"></i>${list.level}단계</div>
-							<img src="../images/f<%=i%>.jpg" />
-							<%
-								i--;
-							%>
+							<img src="../images/${list.photo}.jpg" />
 						</div>
 
 						<div class="body">

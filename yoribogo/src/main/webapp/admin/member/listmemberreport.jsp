@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>[admin] 회원현황-회원검색</title>
+
+<title> [admin] 회원현황-경고상태 회원관리</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member/memberlist.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member/memberreportlist.css"/>
 </head>
 <body>
 <!-- 전체 내용 wrapper -->
@@ -23,8 +24,8 @@
   <div id="navigation">  
   <div class="admin">
       <ul>
-          <li><a href="../1_admin-Member/membersearch.html" id="member">회원현황</a> 
-           <ul>
+   		   <li><a href="../1_admin-Member/membersearch.html" id="member">회원현황</a> 
+        <ul>
               <li><a href="/yoribogo/admin/member/listmember.do">회원검색</a></li>
               <li><a href="/yoribogo/admin/member/listmemberreport.do">경고상태 회원관리</a></li>
           </ul>
@@ -49,80 +50,72 @@
   <!-- End Navigation -->
 
 
+
     <!-- 가운데 내용 컬럼 -->
     <div id="content">
       <div id="contentWrapper">
-        <div class="content2"><div class="top">no</div> <div class="buttom"> 
-          <c:forEach var="list" items="${member}">
-          <p>${list.memNo}</p>
+        <div class="content2"><div class="top">no</div> <div class="bottom">
+      	 <c:forEach var="list" items="${member}">
+           <p>${list.memNo}</p>
+          </c:forEach>
+         </div></div>
+        <div class="content2"><div class="top">아이디</div><div class="bottom"> 
+         <c:forEach var="list" items="${member}">
+           <p>${list.memId}</p>
           </c:forEach>
         </div></div>
-        <div class="content2"><div class="top">아이디</div><div class="buttom"> 
+        <div class="content2"><div class="top">정지 날짜</div><div class="bottom"> 
           <c:forEach var="list" items="${member}">
-          <p>${list.memId}</p>
+            <c:choose>
+             <c:when test="${list.memReportCount>31}"><p>${list.memIsOut}</p></c:when>
+            </c:choose>
           </c:forEach>
         </div></div>
-        <div class="content2"><div class="top">가입 날짜</div><div class="buttom">
-          <c:forEach var="list" items="${member}">
-               <p> <fmt:formatDate value="${list.memJoinDate}" pattern="yy.MM.dd" /></p>
-          </c:forEach>
-        </div></div>
-        <div class="content2"><div class="top">신고 횟수</div><div class="buttom"> 
-          <c:forEach var="list" items="${member}">
-          <p>${list.memReportCount}</p>
-          </c:forEach>
-        </div></div>
-        <div class="content2"><div class="top">경고 상태</div><div class="buttom"> 
-          <c:forEach var="list" items="${member}">
+        <div class="content2"><div class="top">정지 사유</div><div class="bottom">
+         <c:forEach var="list" items="${member}">
            <c:choose> 
-            <c:when test="${list.memReportCount<10}"><p>양호</p></c:when>
-            <c:when test="${list.memReportCount<20}"><p>경고</p></c:when>
-            <c:when test="${list.memReportCount<30}"><p>위험</p></c:when>
-            <c:when test="${list.memReportCount>31}"><p>정지</p></c:when>
+            <c:when test="${list.memReportCount<10}"><p class=stopUsing> 1 </p></c:when>
+            <c:when test="${list.memReportCount<20}"><p class=stopUsing> 2 </p></c:when>
+            <c:when test="${list.memReportCount<30}"><p class=stopUsing> 3 </p></c:when>
+            <c:when test="${list.memReportCount>31}"><p class=stopUsing> 4 </p></c:when>
           </c:choose>
-          </c:forEach>
-        </div></div>        
-        <!-- 글 검색-->
-        
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-      </div>  
-   </div>
+          </c:forEach> 
+          </div></div>
+        <div class="content2"><div class="top">경고 상태</div>
+            <div class="bottom">
+              <div class="highlight">
+               <c:forEach var="list" items="${member}">
+                  <div><a class="button" href="#" onclick="remove();">강퇴</a></div> 
+               </c:forEach>
+              </div>
+            </div>
+       </div>
+       <div id="page">
+          <div class="before"> <a href="#"> 이전 </a> </div>
+          <div> <a href="#"> 1 </a> </div>
+          <div> <a href="#"> 2 </a> </div>
+          <div> <a href="#"> 3 </a> </div>
+          <div> <a href="#"> 4 </a> </div>
+          <div> <a href="#"> 5 </a></div>
+          <div> <a href="#"> 6 </a> </div>
+          <div> <a href="#"> 7 </a> </div>
+          <div> <a href="#"> 8 </a></div>
+          <div> <a href="#"> 9 </a> </div>
+          <div> <a href="#"> 10 </a> </div> 
+          <div class="after"> <a href="#"> 다음 </a> </div>
+        </div> 
+     </div>
+    </div> 
 
-
-   <div class="search_input">
-      <div class="container-4">
-        <input type="search" id="search" placeholder="제목으로 검색!" />
-        <button class="icon"><i class="fa fa-search"></i></button>
+     <!-- 하단  로고 -->
+     <div id="footeradmin"> 
+       <img id="bt_logo" src="../images/logo-vertical-1000px.png"> 
       </div>
-</div>
 
-<div id="page">
-	<c:if test="${pageResult.count != 0}">
-   	 <div class="before"> 
-    	<c:if test="${pageResult.prev eq true}"> 
-    	 <a href="${param.link}?pageNo=${pageResult.beginPage - 1}"> 이전 </a> 
-     	</c:if>
-    </div>
-   		<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
-           <div> <a href="${param.link}?pageNo=${i}">[${i}]</a> </div>
-    	</c:forEach>
-        <div class="after"> 
-              <c:if test="${pageResult.next eq true}"> 
-              <a href="${param.link}?pageNo1=${pageResult.endPage + 1}"> 다음 </a> 
-              </c:if>
-        </div>
-	</c:if>
-</div> 
-
-    <!-- 하단  로고 -->
-    <div id="footeradmin"> 
-      <img id="bt_logo" src="../images/logo-vertical-1000px.png"> 
-    </div>
-    
-    <!-- End Wrapper div -->
+  <!-- End Wrapper div -->
  </div>
 
-
+ 
  <footer style="position: relative; width: 100%; background: gray; height: 300px; color:white;">
   <div id="footer">
       <img src = "../images/logo-vertical-300px.png" style="width: 80px;"/>
@@ -135,6 +128,16 @@
           copyright @ YORIBOGO Corp. All Right Reserved.
         </p>
   </div>  
-  </footer> 
+     
+  </footer>  
+
+
+  <script>
+  
+    $("button").click(function() {
+    	 alert("강퇴하시겠습니까?");
+    })
+    
+  </script>
 </body>
 </html>

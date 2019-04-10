@@ -63,4 +63,10 @@
 		 where m.mem_no = #{memNo}
 	</select>
 	
+	<select id="checkPassword" parameterType="string" resultType="string">
+		select CryptString.decrypt(mem_password,'key')
+		  from tb_member
+		  where mem_id = #{memId}
+	</select>
+	
 </mapper>
