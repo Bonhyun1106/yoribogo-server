@@ -11,7 +11,7 @@ public class CommentVO {
 	private int commentReportCount;
 	private String memId;
 	private String title;
-	
+	private String profile;
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -67,6 +67,10 @@ public class CommentVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 }
