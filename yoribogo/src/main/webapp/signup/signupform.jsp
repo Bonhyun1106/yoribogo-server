@@ -20,7 +20,7 @@
             <div class="container">
                 <h1>Welcome</h1>
                 
-                <form class="form" enctype="multipart/form-data">
+                <form class="form" method="post" enctype="multipart/form-data" action="javascript:success();">
                     <h5>프로필 사진</h5>
                     <img id="profilePhoto" class = "upload-button" src="../images/profileDefault.png"/>
                     <input type="file" class="file-upload">
@@ -43,9 +43,9 @@
                         
                     </div>
                     </div>
-                    <button id="login-button" href="#">회원가입</button>
+                    <button id="login-button">회원가입</button>
                     <a id="back" href="../login/loginform.jsp" >이전</a>
-                
+                </form>
                 <script>
             	
       			let emailFlag = false;
@@ -202,54 +202,52 @@
            			
            			}            		
            		);
+				function success(){
+	            	    
+            	    if(!idFlag || !emailFlag || !passFlag || !pass2Flag){
+                   	    	
+              	    	alert("입력 정보를 확인해주세요.");
+						window.location.href = "signupform.do";
+              	    }else{
+                   	 	console.log(email);
 
-           		$("#login-button").click(
-           			function(){
-              	        $('form').fadeOut(500);
-               	        $('.wrapper').addClass('form-success');
+               	     	let form = $('.form')[0];
+                      	let formData = new FormData(form);
+                      	formData.append("fileObj", $(".file-upload")[0].files[0]);
+               		
+                      	let atTmp = [];
+                	    atTmp = email.split("@");
+                 	    let dotTmp = atTmp[1].split(".");
+                 	    
+                 	    address = atTmp[0];
+                 	    at = dotTmp[0];
+                 	    dot = dotTmp[1];
 
-
-                   	  
-                   	    
-                   	    if(!idFlag || !emailFlag || !passFlag || !pass2Flag){
-                   	    	alert("입력 정보를 확인해주세요.");
-   							window.location.href = "signupform.jsp";
-                   	    }else{
-	                   	 	console.log(email);
-	
-	                 		let atTmp = [];
-	                  	    atTmp = email.split("@");
-	                   	    let dotTmp = atTmp[1].split(".");
-	                   	    
-	                   	    address = atTmp[0];
-	                   	    at = dotTmp[0];
-	                   	    dot = dotTmp[1];
-
-           					console.log("추출 결과 : "+address + at + dot);
-   	        				alert("회원가입 중...");
-           					$.ajax({
-           						type: "post",
-       	    					url:"signupsuccess.do",
-           						data: 
-               						"id=" + id +
-               						"&email=" + email +
-               						"&profile" + profilePic + 
-               						"&pass=" + pass2,
-           						success:function(result){
-           							alert(result);
-           							window.location.href = "../login/loginform.jsp";	
-           						}
-           					});
-           					
-          					}
-           			}
-           		);
+      					console.log("추출 결과 : "+address + at + dot);
+       					alert("회원가입 중...");
+      					$.ajax({
+      						type: "post",
+  	    					url:"signupsuccess.do",
+      						data: 
+          						"id=" + id +
+          						"&email=" + email +
+          						"&profile" + formData + 
+          						"&pass=" + pass2,
+      						success:function(result){
+      							alert(result);
+      							window.location.href = "../login/loginform.jsp";	
+      						}
+      					});
+        					
+       				}
+           		}
            		
-                    </script>
+           		
+               </script>
                     
                 
                 
-                </form>
+                
                 
                 
                

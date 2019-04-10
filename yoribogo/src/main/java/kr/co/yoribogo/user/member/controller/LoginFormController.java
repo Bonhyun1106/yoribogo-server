@@ -15,7 +15,5 @@ public class LoginFormController extends HttpServlet {
 		//  loginform.jsp를 호출하는 클래스
 		request.getRequestDispatcher("loginform.jsp").forward(request, response);
 		
-		
-	
 	}
 }

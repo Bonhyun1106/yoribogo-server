@@ -25,7 +25,10 @@
   
   <span id="header">
       <div>
-          <div id="settingProfile" style="cursor: pointer;" onclick="location.href='setUserInfo.html';"><i class="fas fa-cog fa-3x"></i></div>
+      	  <form action="<c:url value="/mypage/reloginform.do"/>">
+          	
+      	  	<button><div id="settingProfile" style="cursor: pointer;"><i class="fas fa-cog fa-3x"></i></div></button>
+      	  </form>
           <img id="profile" src="${user.memProfile}"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
