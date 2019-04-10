@@ -235,7 +235,7 @@
       						data: formData,
       						success:function(result){
       							alert(result);	
-      							window.location.href="loginform.do";
+      							window.location.href="/yoribogo/login/loginform.do";
       						}
       					});
         					
