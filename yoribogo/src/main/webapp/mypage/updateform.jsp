@@ -46,6 +46,7 @@
                         <p>${user.memId}</p>
                         <input type="text" placeholder="이메일" name="email"><span id="emailChecked"></span>
                         <input type="hidden" value="${user.memNo}" name="memNo">
+                        <input type="hidden" value="${user.memEmail}" name="sessionEmail">
                         <input type="password" placeholder="새 비밀번호" name="pass"><span id="passChecked"></span>
                    		<input type="password" placeholder="새 비밀번호 확인" name="pass2"><span id="pass2Checked"></span>
                         

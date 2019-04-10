@@ -15,7 +15,7 @@
 		<result column="mem_report_count" property="memReportCount" />
 		<result column="mem_join_date" property="memJoinDate" />
 	</resultMap>
-	 <update id="selectLogin" parameterType="member">
+	 <update id="updateMember" parameterType="member">
 		update tb_member
 		   set mem_password = CryptString.encrypt(#{memPassword},'key'),
 		   	   mem_profile = #{memProfile},

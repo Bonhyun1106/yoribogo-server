@@ -55,18 +55,21 @@ public class UpdateMemberController extends HttpServlet{
 		MemberVO memTmp = mapper.selectBySessionId(Integer.parseInt(mRequest.getParameter("memNo")));
 		
 		String sessionId = memTmp.getMemId();
-		String sessionEmail = mRequest.getParameter("email");
+		String inputEmail = mRequest.getParameter("email");
+		String sessionEmail = mRequest.getParameter("sessionEmail");
+		
 		System.out.println("session id : "+sessionId);
+		System.out.println("input email : " + inputEmail);
 		System.out.println("session email : " + sessionEmail);
 		
 		MemberVO member = new MemberVO(); 
 		member.setMemId(sessionId);
 		member.setMemPassword(mRequest.getParameter("pass"));
 		File f = mRequest.getFile("profile");
-		if(sessionEmail == null) {
-			member.setMemEmail(memTmp.getMemEmail());			
-		}else {
+		if(inputEmail == null) {
 			member.setMemEmail(sessionEmail);			
+		}else {
+			member.setMemEmail(inputEmail);			
 		}
 		
 		if(f != null) {
@@ -74,8 +77,8 @@ public class UpdateMemberController extends HttpServlet{
 			Thumbnails.of(new File(f.getParent(),systemName))
 			.size(600,400)
 			.outputFormat("png")
-			.toFile(new File(f.getParent(),"thumb_"+systemName));
-			member.setMemProfile(uploadRoot+path+"/thumb_"+systemName);
+			.toFile(new File(f.getParent(),memTmp.getMemId() + "_thumb_"+systemName));
+			member.setMemProfile(uploadRoot+path+"/"+memTmp.getMemId()+"_thumb_"+systemName);
 			System.out.println("input profile : " + member.getMemProfile());
 		}else {
 			member.setMemProfile(memTmp.getMemProfile());			
