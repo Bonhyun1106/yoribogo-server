@@ -12,7 +12,7 @@ import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.PageVO;
 
-@WebServlet("/admin/recipe/listmember.do")
+@WebServlet("/admin/member/listmember.do")
 public class ListMemberController extends HttpServlet  {
 
 private AdminMapper mapper;
@@ -34,14 +34,13 @@ private AdminMapper mapper;
 		
 		
 		// 게시물 목록 가져오기
-		request.setAttribute("member", mapper.selectListRecipe(page));
+		request.setAttribute("member", mapper.selectListMember(page));
 //		request.setAttribute("pageResult", new PageResult(
 //				pageNo, mapper.selectBoardCount()
 //		));
 //		
 		
-		request.getRequestDispatcher("listmember.jsp")
-	       .forward(request, response);
+		request.getRequestDispatcher("listmember.jsp").forward(request, response);
 			
 	}	
 }

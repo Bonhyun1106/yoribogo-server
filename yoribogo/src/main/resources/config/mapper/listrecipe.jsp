@@ -73,7 +73,9 @@
                   <div class="top">작성일</div>
                     <div class="bottom"> 
                   <c:forEach var="list" items="${recipe}">
-                      <div>${list.regDate}</div>
+                  <time>
+				     <div><fmt:formatDate value="${list.regDate}" pattern="yy.MM.dd" /></div>
+				  </time>
                   </c:forEach>
                     </div>
             </div>

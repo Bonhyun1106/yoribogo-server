@@ -52,20 +52,38 @@
 	</resultMap>
 	
 	
+	<resultMap id="commentMap" type="comment">
+		<result column="comment_no" property="commentNo" />
+		<result column="recipe_no" property="no" />
+		<result column="mem_no" property="memNo" />
+		<result column="comment_like_cnt" property="commentLikeCnt" />
+		<result column="comment_reg_date" property="commentRegDate" />	
+		<result column="comment_content" property="commentContent" />	
+		<result column="comment_report_count" property="commentReportCount" />	
+		<result column="mem_id" property="memId" />	
+		<result column="recipe_title" property="title" />	
+	</resultMap>
+	
 	<!-- ========================= 1. 회원현황 ============================= -->
 		
-	<!-- 회원 검색 -->
+	<!-- 1-1. 회원 검색 -->
 	<select id="selectListMember" parameterType="page" resultMap="memberMap">
 	 select mem_no, mem_id, mem_join_date, mem_report_count
        from tb_member
 	 </select>
 	 
-	<!-- 경고상태 회원관리 -->
-
+	<!-- 1-2. 경고상태 회원관리 -->
+	<select id="selectListReportMember" parameterType="page" resultMap="memberMap">
+	 select mem_no, mem_id, mem_is_out, mem_report_count
+       from tb_member
+	 </select>
+		
+				
 		
 	<!-- ========================== 2. 게시글 관리 =========================== -->
 			
-	 <!--게시글 관리 -->
+			
+	 <!-- 2-1.  게시글 관리 -->
 	<select id="selectListRecipe" parameterType="page" resultMap="recipeMap">
 		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, m.mem_id
            from tb_recipe r
@@ -81,7 +99,7 @@
 	</select>
 	
 	
-	<!-- 공지사항 등록-->
+	<!-- 2-2. 공지사항 등록-->
 	<insert id="insertNotice" parameterType="notice">
 		insert into tb_admin_notice (
 			ad_notice_no, ad_notice_title, ad_notice_content, ad_notice_reg_date, ad_notice_writer
@@ -89,9 +107,9 @@
 			s_ad_notice_no.nextval,  #{title}, #{content}, sysdate, #{writer}
 		)
 	</insert>
+
 	
-	
-	<!-- 배너 등록 -->
+	<!-- 2-3. 배너 등록 -->
 	<insert id="insertBanner" parameterType="banner">
 		insert into tb_admin_banner(
 			ad_banner_no, ad_banner_title,ad_banner_content,ad_banner_img_link
@@ -99,6 +117,17 @@
 			s_ad_banner_no.nextval, #{title},#{content},#{link}
 		)
 	</insert>
+	
+	
+	<!-- ========================== 3. 댓글 관리 =========================== -->
+	
+	<!-- 3-1. 댓글 관리 -->
+	<select id="selectListComment" parameterType="page" resultMap="commentMap">
+	select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_report_count
+       from tb_comment c inner join tb_recipe r on c.MEM_NO = r.MEM_NO
+                         inner join tb_member m on m.mem_no = c.mem_no 
+    </select>
+	
 	
 	
 </mapper>
