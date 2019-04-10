@@ -68,8 +68,12 @@
 		
 	<!-- 1-1. 회원 검색 -->
 	<select id="selectListMember" parameterType="page" resultMap="memberMap">
-	 select mem_no, mem_id, mem_join_date, mem_report_count
-       from tb_member
+    select mem_no, mem_id, mem_join_date, mem_report_count
+      from (select rownum rnum, a.* 
+             from ( select *
+                     from tb_member
+                     order by mem_no desc) a)   
+    where rnum between #{beginPage} and #{endPage};
 	 </select>
 	 
 	<!-- 1-2. 경고상태 회원관리 -->
@@ -77,7 +81,12 @@
 	 select mem_no, mem_id, mem_is_out, mem_report_count
        from tb_member
 	 </select>
-		
+
+
+    <select id="selectMemberCount" resultType="int">
+		select count(*)
+		  from tb_member
+	 </select>		
 				
 		
 	<!-- ========================== 2. 게시글 관리 =========================== -->
@@ -128,6 +137,12 @@
                          inner join tb_member m on m.mem_no = c.mem_no 
     </select>
 	
-	
+	<!-- 3-2. 베스트 댓글 관리 -->
+	<select id="selectListBestComment" parameterType="page" resultMap="commentMap">
+	select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_like_cnt
+       from tb_comment c inner join tb_recipe r on c.MEM_NO = r.MEM_NO
+                         inner join tb_member m on m.mem_no = c.mem_no
+        order by comment_like_cnt desc
+    </select>
 	
 </mapper>

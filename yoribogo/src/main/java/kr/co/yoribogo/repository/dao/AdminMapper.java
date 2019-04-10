@@ -19,7 +19,8 @@ public interface AdminMapper {
 	//2. 경고 회원 조회
 	public List<MemberVO> selectListReportMember(PageVO page);
 	
-	
+	//1-1. 페이징
+	public int selectMemberCount();
 
 	// ===================2. 게시글 관리 =============================
 	//1. 공지사항 작성
@@ -35,6 +36,8 @@ public interface AdminMapper {
 	
 	// ===================2. 게시글 관리 ==============================
 	//1. 댓글 관리
-	
 	public List<CommentVO> selectListComment(PageVO page);
+	
+	//2. 베스트 댓글 조회
+	public List<CommentVO> selectListBestComment(PageVO page);
 }

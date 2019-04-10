@@ -35,7 +35,7 @@ private AdminMapper mapper;
 		
 		
 		// 게시물 목록 가져오기
-		request.setAttribute("clist", mapper.selectListComment(page));
+		request.setAttribute("comment", mapper.selectListComment(page));
 		
 //		request.setAttribute("pageResult", new PageResult(
 //				pageNo, mapper.selectBoardCount()

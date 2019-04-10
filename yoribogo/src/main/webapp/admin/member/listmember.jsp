@@ -24,26 +24,25 @@
   <div class="admin">
       <ul>
           <li><a href="../1_admin-Member/membersearch.html" id="member">회원현황</a> 
-            <ul>
-                <li><a href="../1_admin-Member/membersearch.html">회원검색</a></li>
-                <li><a href="../1_admin-Member/memberwarn.html">경고상태 회원관리</a></li>
-            </ul>
-          </li>
-  
-           <li><a href="../2_admin-Board/boardlist.html" id="board">게시글관리</a>
-              <ul>
-              <li><a href="../2_admin-Board/boardlist.html">게시글 관리</a></li>
-              <li><a href="../2_admin-Board/boardinsert.html">공지사항 작성</a></li>
-              <li><a href="../2_admin-Board/banner.html">배너 업로드</a></li>
-              </ul>
-           </li>
-
-           <li><a href="../3_admin-Comment/comment.html" id="comment">댓글관리</a>
-               <ul>
-            <li><a href="../3_admin-Comment/comment.html">댓글 관리</a></li>
-            <li><a href="../3_admin-Comment/bestcomment.html">베스트 댓글 관리</a></li>
+           <ul>
+              <li><a href="/yoribogo/admin/member/listmember.do">회원검색</a></li>
+              <li><a href="/yoribogo/admin/member/listmemberreport.do">경고상태 회원관리</a></li>
           </ul>
         </li>
+
+         <li><a href="../2_admin-Board/boardlist.html" id="board">게시글관리</a>
+            <ul>
+            <li><a href="/yoribogo/admin/recipe/listrecipe.do">게시글 관리</a></li>
+            <li><a href="/yoribogo/admin/notice/noticeform.do">공지사항 작성</a></li>
+            <li><a href="/yoribogo/admin/notice/bannerform.do">배너 업로드</a></li>
+            </ul>
+         </li>
+
+         <li><a href="../3_admin-Comment/comment.html" id="comment">댓글관리</a>
+             <ul>
+          <li><a href="/yoribogo/admin/recipe/listcomment.do">댓글 관리</a></li>
+          <li><a href="/yoribogo/admin/recipe/listbestcomment.do">베스트 댓글 관리</a></li>
+        </ul>
       </ul>
    </div>
   </div>
@@ -98,19 +97,22 @@
 </div>
 
 <div id="page">
-    <div class="before"> <a href="#"> 이전 </a> </div>
-            <div> <a href="#"> 1 </a> </div>
-            <div> <a href="#"> 2 </a> </div>
-            <div> <a href="#"> 3 </a> </div>
-            <div> <a href="#"> 4 </a> </div>
-            <div> <a href="#"> 5 </a></div>
-            <div> <a href="#"> 6 </a> </div>
-            <div> <a href="#"> 7 </a> </div>
-            <div> <a href="#"> 8 </a></div>
-            <div> <a href="#"> 9 </a> </div>
-            <div> <a href="#"> 10 </a> </div>
-            <div class="after"> <a href="#"> 다음 </a> </div>
-          </div> 
+	<c:if test="${pageResult.count != 0}">
+   	 <div class="before"> 
+    	<c:if test="${pageResult.prev eq true}"> 
+    	 <a href="${param.link}?pageNo=${pageResult.beginPage - 1}"> 이전 </a> 
+     	</c:if>
+    </div>
+   		<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
+           <div> <a href="${param.link}?pageNo=${i}">[${i}]</a> </div>
+    	</c:forEach>
+        <div class="after"> 
+              <c:if test="${pageResult.next eq true}"> 
+              <a href="${param.link}?pageNo1=${pageResult.endPage + 1}"> 다음 </a> 
+              </c:if>
+        </div>
+	</c:if>
+</div> 
 
     <!-- 하단  로고 -->
     <div id="footeradmin"> 

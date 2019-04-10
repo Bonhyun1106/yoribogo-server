@@ -21,26 +21,25 @@
   <div class="admin">
         <ul>
                 <li><a href="../1_admin-Member/membersearch.html" id="member">회원현황</a> 
-                  <ul>
-                      <li><a href="../1_admin-Member/membersearch.html">회원검색</a></li>
-                      <li><a href="../1_admin-Member/memberwarn.html">경고상태 회원관리</a></li>
-                  </ul>
-                </li>
-        
-                 <li><a href="../2_admin-Board/boardlist.html" id="board">게시글관리</a>
-                    <ul>
-                    <li><a href="../2_admin-Board/boardlist.html">게시글 관리</a></li>
-                    <li><a href="../2_admin-Board/boardinsert.html">공지사항 작성</a></li>
-                    <li><a href="../2_admin-Board/banner.html">배너 업로드</a></li>
-                    </ul>
-                 </li>
-      
-                 <li><a href="../3_admin-Comment/comment.html" id="comment">댓글관리</a>
-                     <ul>
-                  <li><a href="../3_admin-Comment/comment.html">댓글 관리</a></li>
-                  <li><a href="../3_admin-Comment/bestcomment.html">베스트 댓글 관리</a></li>
-                </ul>
-              </li>
+               <ul>
+              <li><a href="/yoribogo/admin/member/listmember.do">회원검색</a></li>
+              <li><a href="/yoribogo/admin/member/listmemberreport.do">경고상태 회원관리</a></li>
+          </ul>
+        </li>
+
+         <li><a href="../2_admin-Board/boardlist.html" id="board">게시글관리</a>
+            <ul>
+            <li><a href="/yoribogo/admin/recipe/listrecipe.do">게시글 관리</a></li>
+            <li><a href="/yoribogo/admin/notice/noticeform.do">공지사항 작성</a></li>
+            <li><a href="/yoribogo/admin/notice/bannerform.do">배너 업로드</a></li>
+            </ul>
+         </li>
+
+         <li><a href="../3_admin-Comment/comment.html" id="comment">댓글관리</a>
+             <ul>
+          <li><a href="/yoribogo/admin/recipe/listcomment.do">댓글 관리</a></li>
+          <li><a href="/yoribogo/admin/recipe/listbestcomment.do">베스트 댓글 관리</a></li>
+        </ul>
         </ul>
    </div>
   </div>

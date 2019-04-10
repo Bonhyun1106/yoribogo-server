@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
+import kr.co.yoribogo.common.page.AdminPageResult;
 import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.PageVO;
 
@@ -35,10 +36,10 @@ private AdminMapper mapper;
 		
 		// 게시물 목록 가져오기
 		request.setAttribute("member", mapper.selectListMember(page));
-//		request.setAttribute("pageResult", new PageResult(
-//				pageNo, mapper.selectBoardCount()
-//		));
-//		
+		request.setAttribute("pageResult", new AdminPageResult(
+				pageNo, mapper.selectMemberCount()
+	));
+	
 		
 		request.getRequestDispatcher("listmember.jsp").forward(request, response);
 			
