@@ -96,7 +96,6 @@
 	            <c:forEach var="image" items="${image}">
 	                <div class="content-grid">
 	                    <div id="con-img1">
-	                    	
 	                        <img name="con-img1" src="${pageContext.request.contextPath}${image.blockImg}">
 	                    </div>
 	                    <div id="con-txt1">
