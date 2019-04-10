@@ -35,10 +35,13 @@ public interface AdminMapper {
 	//3-1. 페이징
 	public int selectRecipeCount();
 	
-	// ===================2. 게시글 관리 ==============================
+	// ===================3. 댓글 관리 ==============================
 	//1. 댓글 관리
 	public List<CommentVO> selectListComment(PageVO page);
 	
 	//2. 베스트 댓글 조회
 	public List<CommentVO> selectListBestComment(PageVO page);
+	
+	//1-1. 페이징
+	public int selectCommentCount();
 }

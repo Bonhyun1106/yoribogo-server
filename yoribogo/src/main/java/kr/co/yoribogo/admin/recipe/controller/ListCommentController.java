@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
+import kr.co.yoribogo.common.page.AdminPageResult;
 import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.PageVO;
 
@@ -20,8 +21,7 @@ private AdminMapper mapper;
 	public ListCommentController() {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(AdminMapper.class);
 	}
-	
-	
+		
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
 		
@@ -37,9 +37,9 @@ private AdminMapper mapper;
 		// 게시물 목록 가져오기
 		request.setAttribute("comment", mapper.selectListComment(page));
 		
-//		request.setAttribute("pageResult", new PageResult(
-//				pageNo, mapper.selectBoardCount()
-//		));
+		request.setAttribute("pageResult", new AdminPageResult(
+				pageNo, mapper.selectCommentCount()
+		));
 //		
 		
 		request.getRequestDispatcher("listcomment.jsp")

@@ -108,8 +108,8 @@
 	
 	
 	<select id="selectRecipeCount" resultType="int">
-		select count(*)
-		  from tb_recipe
+        select count(*)
+          from tb_recipe
 	</select>
 	
 	
@@ -149,5 +149,11 @@
                          inner join tb_member m on m.mem_no = c.mem_no
         order by comment_like_cnt desc
     </select>
+	
+	 <select id="selectCommentCount" resultType="int">
+		select count(*)
+		  from tb_member
+	 </select>
+	
 	
 </mapper>
