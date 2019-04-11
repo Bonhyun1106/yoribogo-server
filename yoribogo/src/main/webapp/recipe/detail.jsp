@@ -295,7 +295,7 @@
 			})
 		});
 		
-		
+		/* ¡¡æ∆ø‰ */
 		$("#like").click(function (){
 			memNo = ${user.memNo}
 			recipeNo = ${recipe.no}
