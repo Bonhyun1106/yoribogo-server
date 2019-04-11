@@ -41,5 +41,6 @@
 		<mapper resource="config/mapper/recipe2.xml"/>
 		<mapper resource="config/mapper/admin.xml"/>
 		<mapper resource="config/mapper/member.xml"/>
+		<mapper resource="config/mapper/search.xml"/>
 	</mappers>
 </configuration>

@@ -65,10 +65,10 @@
 	              <li rel="kby_vtab7">주의사항</li>
 	            </ul>
 	          </div>
-	
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	          <div class="kby_v-tab_container">
 	            <h2></h2>
-	            <a href="#" id="confirm">선택완료</a>
+	            <div id="confirm"><a href="#">선택완료</a></div>
 
 	            <div id="kby_vtab0" class="kby_v-tab_content">
 	
@@ -221,7 +221,8 @@
 	    </div>
 	      
 	    <div>
-	      <a id="loginButton" href="mypage.html"><span>kwj1234</span><img id="loginSuccess" src="../images/짱구.jpg" /></a>
+	      <a id="loginButton" href="mypage.html"><span>${sessionScope.user.memId}</span>
+	      <img id="loginSuccess" src="${pageContext.request.contextPath}${sessionScope.user.memProfile}" /></a>
 	    </div>
 	</span>
 
@@ -280,14 +281,37 @@
 		
 		
 			<c:forEach var='list' items='${recipe}'>
-		
+				
 				<div class="recipe">
 					<a href="detail.do?no=${list.no}">
 						<div class="image">
 							<div class="quality">
-								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} <i
-									class="fas fa-heart fa-2x"></i>${list.likeCnt} <i
-									class="fas fa-level-up-alt fa-2x"></i>${list.level}단계</div>
+								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} 
+								<i class="fas fa-heart fa-2x"></i>${list.likeCnt} 
+								<i class="fas fa-level-up-alt fa-2x"></i>
+								<c:choose>
+							        <c:when test = "${list.level eq 4936}">
+							            매우 쉬움
+							        </c:when>
+							        
+							        <c:when test = "${list.level eq 4937}">
+							            쉬움
+							        </c:when>
+							        
+							        <c:when test = "${list.level eq 4938}">
+							            보통
+							        </c:when>
+							        
+							        <c:when test = "${list.level eq 4939}">
+							            어려움
+							        </c:when>
+							        
+							        <c:when test = "${list.level eq 4940}">
+							            매우 어려움
+							        </c:when>
+							        
+					            </c:choose>
+	           				</div>
 							<img src="${pageContext.request.contextPath}${list.photo}" />
 						</div>
 
@@ -326,7 +350,7 @@
 		</div>
 
 		<div class="btn">
-			<form action="insert.html">
+			<form action="insertrecipeform.do">
 				<br> <br>
 				<button>등록</button>
 			</form>
@@ -371,6 +395,9 @@
 		let kcal1 = 0;
 		let kcal2 = 1000;
 		let path = "${pageContext.request.contextPath}";
+		let level;
+		let userName = "${sessionScope.user.memId}";
+		let userProfile = "${pageContext.request.contextPath}${sessionScope.user.memProfile}";
 		
 		console.log(time1);
 		$("#confirm").click(function () {
@@ -481,7 +508,24 @@
 							html +=	'<i class="fas fa-heart fa-2x"></i>';
 							html +=	list.likeCnt;
 							html +=	'<i class="fas fa-level-up-alt fa-2x"></i>';
-							html +=	list.level + '단계';
+							switch (list.level) {
+							case "4936":
+								level = "매우 쉬움";
+								break;
+							case "4937":
+								level = "쉬움";
+								break;
+							case "4938":
+								level = "보통";
+								break;
+							case "4939":
+								level = "어려움";
+								break;
+							case "4940":
+								level = "매우 어려움";
+								break;
+							}
+							html +=	level;
 							html +=	'</div>';
 							
 							html +=	'<img src="' + path + list.photo + '"/>';

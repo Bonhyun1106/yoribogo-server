@@ -518,13 +518,13 @@ body {
 
 #confirm {
 	height: 20px;
-    color: grey;
+    color: black;
     padding-top: 50%;
     padding-left: 10px;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-#confirm:hover {
+#confirm > a:hover {
     color:tomato; 
 }
 
