@@ -251,12 +251,14 @@
 	let ingredientArr = [];
     $(document).ready(function() {
 		$("input[name='ingredient']").on("keyup",function() {
+                  $(".tr_ingredient").hide();
+                  
                   var k = $(this).val();
                   console.log("입력 : "+ k);
                   if(k==""){
                   	return;
                   }
-			var temp = $(".td_ingredient_name:contains('" + k + "')");
+                  var temp = $(".td_ingredient_name:contains('" + k + "')");
                   $(temp).parent().show();
               });
 				
