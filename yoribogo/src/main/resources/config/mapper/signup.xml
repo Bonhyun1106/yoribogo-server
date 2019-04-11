@@ -16,6 +16,19 @@
 		  from tb_member
 		 where mem_email =#{email}
 	</select>
+	<resultMap id="categoryMap" type="category">
+		<result column="c.category_no" property="categoryNo" />
+		<result column="c.category_name" property="categoryName" />
+		<result column="c.category_dist_no" property="categoryDistNo" />
+		<result column="m.category_dist_name" property="categoryDistName" />
+	</resultMap>
+	<select id="getCategoryList" resultMap="categoryMap">
+		select c.category_no, c.category_name, c.category_dist_no, m.category_dist_name
+ 		from tb_category c, tb_category_map m
+ 		where c.category_dist_no = m.category_dist_no and
+       		c.category_dist_no &lt;&gt; 4 and
+       		c.category_dist_no &lt;&gt; 5
+	</select>
 	
 	<insert id="insertMember" parameterType="member">
 		insert into tb_member (

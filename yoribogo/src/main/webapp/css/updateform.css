@@ -255,15 +255,14 @@ body{
   }
   #login-button{
     text-decoration: none;
-    font-size: 18px;
-    display: block;
+    font-size: 16px;
+    display: inline-block;
     width: 250px;
     height: 50px;
     border-radius: 4px;
     margin: 0 auto;
     background: white;
     border :1px solid gainsboro;
-    line-height: 50px;
     color: #53e3a6;
     transition: .3s;
   }
@@ -372,20 +371,20 @@ body{
   display: none;
 }
 #back{
+	text-decoration: none;
     width: 250px;
     height: 48px;
     line-height: 49px;
     display: inline-block;
-    margin-bottom: 10px;
-    border : 1px solid aliceblue;
+    border : 1px solid gainsboro;
     background: white;
     font-weight: thin;
     color: #53e3a6;
-    margin-left: 15px;
     border-radius: 4px;
+    transition: .2s;
 
 
 }
 #back:hover{
-    background: ghostwhite;
+    background: #cdcee0;
 }
