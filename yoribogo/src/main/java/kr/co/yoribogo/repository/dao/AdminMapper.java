@@ -21,10 +21,8 @@ public interface AdminMapper {
 	public List<MemberVO> selectListReportMember(PageVO2 page);
 	
 	//1-1. 페이징
-	public int selectMemberCount();
+	public int selectMemberCount(PageVO2 page);
 	
-	//1-2. 회원 검색
-	public List<MemberVO> selectListId(PageVO2 page);
 
 	// ===================2. 게시글 관리 =============================
 	//1. 공지사항 작성
