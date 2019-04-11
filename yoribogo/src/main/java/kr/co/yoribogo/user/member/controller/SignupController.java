@@ -66,6 +66,32 @@ public class SignupController extends HttpServlet{
 		member.setMemEmail(mRequest.getParameter("email"));
 		File f = mRequest.getFile("profile");
 		
+		String[] tmp = mRequest.getParameterValues("favor");
+		String [] move = tmp[0].replaceAll(","," ").split("#");
+		String [] favArr = new String[3];
+		for(int i = 0; i < move.length;i++) {
+			if(i == 0) {
+				continue;
+			}
+			favArr[i-1] = move[i]; 
+		}
+		
+		System.out.println("favArr length : " + favArr.length);
+		if(favArr!=null) {
+			for(int i = 0 ; i < favArr.length; i++) {
+				if(favArr[i] == null) {
+					favArr[i] = " ";
+				}
+			}
+			member.setMemFavor1(favArr[0]);
+			member.setMemFavor2(favArr[1]);
+			member.setMemFavor3(favArr[2]);				
+			System.out.println("favor1 : " + member.getMemFavor1());
+			System.out.println("favor2 : " + member.getMemFavor2());
+			System.out.println("favor3 : " + member.getMemFavor3());
+			
+		}
+		
 		if(f != null) {
 			String systemName = mRequest.getFilesystemName("profile");
 			Thumbnails.of(new File(f.getParent(),systemName))

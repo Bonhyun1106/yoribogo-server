@@ -113,7 +113,7 @@
               		  if(favor.length == 3){
 	              		  favor.splice(0,1);
               		  }
-              		  favor.push($(this).text().trim());
+              		  favor.push("#"+$(this).text().trim());
 	              	  selectList.innerHTML ="<div class='catEle'>"+favor+"</div>";
               	  }else{
               		  
