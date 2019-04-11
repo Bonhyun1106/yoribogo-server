@@ -25,7 +25,9 @@ private AdminMapper mapper;
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 	 
+		
 		PageVO2 page = new PageVO2();
+		
 		int pageNo = 1;
 		try {
 			pageNo = Integer.parseInt(
@@ -35,12 +37,13 @@ private AdminMapper mapper;
 		
 		
 		// 게시물 목록 가져오기
-		request.setAttribute("member", mapper.selectListMember(page));
-		request.setAttribute("pageResult", new AdminPageResult(
-				pageNo, mapper.selectMemberCount()
-	));
-	
 		
+		page.setMemId(request.getParameter("search"));
+
+		request.setAttribute("member", mapper.selectListMember(page));
+		request.setAttribute("pageResult", new AdminPageResult(pageNo, 
+				mapper.selectMemberCount(page)));
+			
 		request.getRequestDispatcher("listmember.jsp").forward(request, response);
 			
 	}	

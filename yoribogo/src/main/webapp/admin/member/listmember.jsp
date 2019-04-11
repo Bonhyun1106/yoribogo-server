@@ -89,7 +89,6 @@
       </div>  
    </div>
 
-
    <div class="search_input">
       <div class="container-4">
         <input type="search" id="search" placeholder="제목으로 검색!" />
@@ -138,15 +137,13 @@
   </div>  
   </footer> 
   
+ 
+  <script> 
+  $("button").on("click", function() {
+  	var param = $("#search").val()
+  	location.href='/yoribogo/admin/member/listmember.do?search='+ param
+  });
   
-  
-  <script>
-  	$("#search").on("keyup", function() {
-  		 var k = $(this).val();
-  		 $(".buttom").hide();
-  		 var temp = $(".buttom > p:contains('" + k + "')");
-  		$(temp).show();
-  	});
   	 	
   </script>
   

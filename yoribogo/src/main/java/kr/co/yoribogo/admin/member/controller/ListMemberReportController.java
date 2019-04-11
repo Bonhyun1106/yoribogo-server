@@ -36,7 +36,7 @@ private AdminMapper mapper;
 		// 게시물 목록 가져오기
 		request.setAttribute("member", mapper.selectListReportMember(page));
 		request.setAttribute("pageResult", new AdminPageResult(
-				pageNo, mapper.selectMemberCount()
+				pageNo, mapper.selectMemberCount(page)
 		));
 //		
 		

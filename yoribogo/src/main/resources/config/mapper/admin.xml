@@ -73,6 +73,9 @@
       from (select rownum rnum, a.* 
              from ( select *
                      from tb_member
+                     <if test="memId != null">
+                     where mem_id like '%' || #{memId} || '%'             
+                 	  </if>
                      order by mem_no desc) a)   
     where rnum between #{begin} and #{end}
 	 </select>
@@ -93,6 +96,9 @@
 	  from (select rownum rnum, a.* 
              from ( select *
                      from tb_member
+                      <if test="memId != null">
+                     where mem_id like '%' || #{memId} || '%'             
+                 	  </if>
                      order by mem_no desc) a)   
       where rnum between #{begin} and #{end}
      </select>
