@@ -6,6 +6,7 @@ import kr.co.yoribogo.repository.vo.BannerVO;
 import kr.co.yoribogo.repository.vo.CommentVO;
 import kr.co.yoribogo.repository.vo.MemberVO;
 import kr.co.yoribogo.repository.vo.NoticeVO;
+import kr.co.yoribogo.repository.vo.PageVO;
 import kr.co.yoribogo.repository.vo.PageVO2;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
@@ -46,8 +47,6 @@ public interface AdminMapper {
 	public List<CommentVO> selectListBestComment(PageVO2 page);
 	
 	//1-1. 페이징
-	public int selectCommentCount();
+	public int selectCommentCount(PageVO2 page);
 	
-	//댓글 아이디 검색
-	public List<CommentVO> selectCommentById(String id);
 }
