@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.common.page.AdminPageResult;
 import kr.co.yoribogo.repository.dao.AdminMapper;
-import kr.co.yoribogo.repository.vo.PageVO;
+import kr.co.yoribogo.repository.vo.PageVO2;
 
 
 @WebServlet("/admin/recipe/listrecipe.do")
@@ -28,7 +28,7 @@ public class ListRecipeController extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
 		
-		PageVO page = new PageVO();
+		PageVO2 page = new PageVO2();
 		int pageNo = 1;
 		try {
 			pageNo = Integer.parseInt(
