@@ -203,6 +203,15 @@
 		  from tb_comment
 		 where comment_no = #{commentNo}
 	</delete>
+	
+	
+	<!-- ================================== 게시글 좋아요 ======================================== -->
+	<resultMap type="like" id="likeMap">
+		<result column="like_no" property="likeNo" />
+		<result column="mem_no" property="memNo" />
+		<result column="recipe_no" property="recipeNo" />
+	</resultMap>
+	
 </mapper>
 
 

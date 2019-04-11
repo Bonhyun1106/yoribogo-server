@@ -47,7 +47,7 @@
             </div>
         </div>
         <div id="likebar">
-            <button>
+            <button id="like">
                 <i class="fas fa-heart fa-2x"></i>
             </button>
         </div>
@@ -292,6 +292,24 @@
 					
 				}
 			})
+		});
+		
+		
+		$("#like").click(function (){
+			memNo = ${user.memNo}
+			recipeNo = ${recipe.no}
+			$.ajax({
+				url : "like.do",
+				data: {
+					memNo : memNo,
+					recipeNo : recipeNo
+				},
+				success: function(){
+					alert("¡¡æ∆ø‰!");
+				}
+				
+			})
+			
 		});
 		
 		

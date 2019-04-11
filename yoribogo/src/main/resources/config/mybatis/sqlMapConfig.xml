@@ -18,6 +18,7 @@
 		<typeAlias alias="ingredient" type="kr.co.yoribogo.repository.vo.IngredientVO" />
 		<typeAlias alias="block" type="kr.co.yoribogo.repository.vo.BlockVO" />
 		<typeAlias alias="category" type="kr.co.yoribogo.repository.vo.CategoryVO" />
+		<typeAlias alias="like" type="kr.co.yoribogo.repository.vo.LikeVO" />
 	</typeAliases>
 	 
 	<environments default="development">
