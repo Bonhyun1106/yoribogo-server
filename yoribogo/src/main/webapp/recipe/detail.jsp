@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>detail</title>
+    <script src="<c:url value="/script/jquery-3.3.1.min.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="../css/detail.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -34,7 +35,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="${pageContext.request.contextPath}${recipe.photo}" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${user.profile}" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -110,40 +111,26 @@
         <!-- ===========================댓글 등록 ============================ -->
         <div id="inputComm-wrapper">
             <div class="inputId">
-                <div><img src="images/img2.jpg" name="idImg"/></div>
+                <div><img src="${user.profile}" name="idImg"/></div>
                 <div name="id">${user.memId}님</div>
             </div>
-            <div class="inputbox">
-                <textarea placeholder="응원의 댓글을 달아보세요"></textarea>
-                <!-- <div class="font">0/3000</div> -->
-            </div>
-            <div class="inputButton">
-                <button>등록</button>
-            </div>
+	        <form name="commentForm" id="commentForm" method="post">
+	            <div class="inputbox">
+		        	<input type="hidden" id="recNo" name="recNo" value="${recipe.no}">
+		        	<input type="hidden" id="commId" name="commId" value="${user.memId}">
+	                <textarea rows="5" cols="100" placeholder="응원의 댓글을 달아보세요" name="commContent" id="commContent"></textarea>
+	                <!-- <div class="font">0/3000</div> -->
+	            </div>
+	            <div class="inputButton">
+	                <button id="inputButton">등록</button>
+	            </div>
+    	    </form>
         </div>
 
 
         <!-- ===========================하단======================== -->
         <div id="commemt-wrapper">
-            <div>
-            <c:forEach var="comment" items="${commentList}">
-                <div class="comment">
-                    <div class="commid">
-                        <div><img src="${pageContext.request.contextPath}${comment.profile}" name="commImg1"/></div>
-                        <div name="commId1">${comment.memId}</div>
-                    </div>
-                    <div>${comment.commentContent}</div>
-                    <div class="likecnt">
-                        <div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>
-                        <div class="yes">${comment.commentLikeCnt}</div>
-                    </div>
-                    <div class="likecnt">
-                        <div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>
-                        <div class="no">${comment.commentReportCount}</div>
-                    </div>
-                </div>
-            </c:forEach>
-            </div>
+            <div id="addComm"></div>
         </div>
 
         <div id="pageNo">
@@ -221,6 +208,66 @@
     </footer>
     
 <script>
+	$(function() {
+		function getCommentList(){
+			var no = ${recipe.no};
+			$.ajax({
+				url:"list-comment.do",
+				/* type: "post", */
+				data:"no="+ no,
+				dataType:"json",
+				success: function(list){
+					console.log("list", list);
+					console.dir(list);
+					let html = "";
+					for(let i=0 ; i < list.length; i++){
+ 						html += '<div class="comment">'
+		                     + 		'<div class="commid">'
+		                     +      	"<div><img src='" 
+		                     + 				list[i].profile 
+		                     + 			"'></div>"
+		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
+		                     +		'</div>'
+		                     + 		'<div>' + list[i].commentContent + '</div>'
+		                     + 		'<div class="likecnt">'
+		                     +     		'<div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>'
+		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
+		                     + 		'</div>'
+		                     + 		'<div class="likecnt">'
+		                     +     		'<div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
+		                     +     		'<div class="no">'+ list[i].commentReportCount + '</div>'
+		                     + 		'</div>'
+		                	 + '</div>';
+					}
+					$("#addComm").html(html);
+				}
+			});
+		};
+		// 호출
+		getCommentList();
+		
+		// 댓글 등록
+		$("form").submit(function () {
+			/* let no = 42;	//${recipe.no}
+			let memNo = 1; //${user.memNo}
+			let commentContent = $("#commContent").innerText; */
+			$.ajax({
+				url: "insertcomment.do",
+				type : "post",
+				data : $(this).serialize(),
+				success: function(no){
+					getCommentList();
+					alert("등록되었습니다.");
+				}
+			})
+		});
+		
+		
+	});
+	
+	
+	
+	
 	
 </script>
     

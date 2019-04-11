@@ -1,7 +1,6 @@
 package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
-import kr.co.yoribogo.repository.vo.CommentVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
 @WebServlet("/recipe/detail.do")
@@ -34,13 +32,6 @@ public class DetailRecipeController extends HttpServlet {
 		// 재료 정보
 		request.setAttribute("ingredient", mapper.selectIngredient(no));
 		
-		/* ================ 댓 글 ================== */
-		List<CommentVO> commentList =  mapper.selectComment(no);
-		for(CommentVO cv : commentList) {
-			System.out.println("댓글 확인 : " +cv.getCommentContent());
-		}
-		
-		request.setAttribute("commentList",commentList);
 		
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}

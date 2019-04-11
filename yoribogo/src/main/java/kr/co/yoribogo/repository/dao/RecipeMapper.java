@@ -33,6 +33,9 @@ public interface RecipeMapper {
 	
 	/** ================================ 댓 글  ============================================ */
 	List<CommentVO> selectComment(int no);
+	
+	// 댓글 등록
+	int insertComment(CommentVO comment);
 
 
 }
