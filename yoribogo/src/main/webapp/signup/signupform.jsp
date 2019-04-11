@@ -36,13 +36,13 @@
                     <div id="selectedFavorite"></div>
                     <input id="favoriteSearch" type="text" placeholder="검색">
                     <table>    
-                        <tobdy>
+                        <tbody>
                         <c:forEach var="cat" items="${categoryList}">
                         	<tr class="favorites">
                         		<td class="categoryName">${cat.categoryName}</td>
                         	</tr>
                         </c:forEach>
-                        </tobdy>
+                        </tbody>
                     </table>
                     </div>
                     <button id="login-button">회원가입</button>

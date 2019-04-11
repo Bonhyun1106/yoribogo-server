@@ -50,16 +50,19 @@
                         <input type="password" placeholder="새 비밀번호" name="pass"><span id="passChecked"></span>
                    		<input type="password" placeholder="새 비밀번호 확인" name="pass2"><span id="pass2Checked"></span>
                         
-                        <div id = "favorite">
-                            <div>키워드</div>
-                            <input id="favoriteSearch" type="text" placeholder="검색">
-                            <div>    
-                                <button id="favoriteThing">
-                                <i class="fas fa-plus-square fa-2x"></i>
-                                <span>채식주의</span>
-                            </button>
-                              
-                        </div>
+                      	<div id = "favorite">
+                    	<div>세개의 선호 키워드를 선택해주세요.</div>
+	                    <div id="selectedFavorite"></div>
+                    	<input id="favoriteSearch" type="text" placeholder="검색">
+                    	<table>    
+                        	<tbody>
+                        	<c:forEach var="cat" items="${categoryList}">
+                        		<tr class="favorites">
+                        			<td class="categoryName">${cat.categoryName}</td>
+                        		</tr>
+                        	</c:forEach>
+                        	</tbody>
+                    </table>
                     </div>
 
                     
@@ -82,11 +85,14 @@
            			let email = " ";
            			let pass = " ";
            			
+           			let favor = [];
+           			
                		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
                		let idReg = /^[A-za-z0-9]{5,10}/g;
                		
                   	$(document).ready(function() {
-    						var readURL = function(input) {
+                  		$(".favorites").hide();	
+                  		var readURL = function(input) {
     							if (input.files && input.files[0]) {
        							var reader = new FileReader();
        							reader.onload = function (e) {
@@ -104,6 +110,28 @@
     						$(".upload-button").on('click', function() {
     							$(".file-upload").click();
     						});
+    						
+    						let onoff = false;
+    		              	$(".favorites").click(function(){	              	
+    		              	   var index = $(".favorites").index(this);
+    		              	   if(!onoff){
+    		              	   		onoff = true;
+    		              	   }else{              		   
+    		              	   		onoff = false;
+    		              	   }
+    		              	  
+    		              	  var selectList = document.querySelector("#selectedFavorite");
+    			              $(".favorites:eq(" + index + ")").attr("check",onoff);
+    		              	  if($(this).attr("check")){
+    		              		  if(favor.length == 3){
+    			              		  favor.splice(0,1);
+    		              		  }
+    		              		  favor.push("#"+$(this).text().trim());
+    			              	  selectList.innerHTML ="<div class='catEle'>"+favor+"</div>";
+    		              	  }else{
+    		              		  
+    		              	  }
+    			              console.log(favor);
     					});
                		
                		$("input[name='email']").on("keyup",function(){			
