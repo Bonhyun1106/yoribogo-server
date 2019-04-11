@@ -127,7 +127,8 @@
     
     <script>
     $("button").on("click", function() {
-    	location.href='/yoribogo/admin/recipe/listcommentsearch.do' 
+    	var param = $("#search").val()
+    	location.href='/yoribogo/admin/recipe/listcomment.do?search='+ param
     });
     </script>
 </body>

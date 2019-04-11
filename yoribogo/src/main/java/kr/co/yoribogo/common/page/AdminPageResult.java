@@ -56,10 +56,10 @@ public class AdminPageResult {
 	
 	private void setPageInfo() {
 		int lastPage;
-		if ((count % 2) == 0) {
-			lastPage = count / 2;
+		if ((count % 20) == 0) {
+			lastPage = count / 20;
 		} else {
-			lastPage = count / 2 + 1;
+			lastPage = count / 20 + 1;
 		}
 		
 		// 요청한 페이지 번호에 해당하는 페이지 블럭 구하기

@@ -139,18 +139,20 @@
                 <div><input type="text" name="ingredient" placeholder="재료를 입력하세요" /></div>
                 <div><i class="fas fa-plus-square fa-2x"></i></div>
             </div>
+			<div id="ingredientContainer">		
 					<table>
 						<tbody>
-							<tr>
 								<c:forEach var="ingredient" items="${ingredientList}">
-									<td>${ingredient.categoryName}</td>
-								</c:forEach>            
+							<tr class="tr_ingredient">
+									<td class="td_ingredient_no">${ingredient.categoryNo}</td>
+									<td class="td_ingredient_name">${ingredient.categoryName}</td>
 							</tr>
+								</c:forEach>            
 						</tbody>						
 					</table>
-
+			</div>
         </div>
-
+		<div id="selectedIngredient"></div>
         <div id="content-wrapper">
             <div id="add">
                 <div class="content-grid">
@@ -245,6 +247,40 @@
 		      reader.readAsDataURL(this.files[0]);
 		}
 	});
+    
+	let ingredientArr = [];
+    $(document).ready(function() {
+		$("input[name='ingredient']").on("keyup",function() {
+                  var k = $(this).val();
+                  console.log("입력 : "+ k);
+                  if(k==""){
+                  	return;
+                  }
+			var temp = $(".td_ingredient_name:contains('" + k + "')");
+                  $(temp).parent().show();
+              });
+				
+		});
+         let onoff = false;
+      	$(".tr_ingredient").click(function(){	              	
+      	   var index = $(".tr_ingredient").index(this);
+      	   if(!onoff){
+      	   		onoff = true;
+      	   }else{              		   
+      	   		onoff = false;
+      	   }
+      	  
+      	  var selectList = document.querySelector("#selectedIngredient");
+          $(".favorites:eq(" + index + ")").attr("check",onoff);
+      	  if($(this).attr("check")){
+      		  
+      		ingredientArr.push("#"+$(this).text().trim());
+          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>";
+      	  }else{
+      		  
+      	  }
+          console.log(ingredientArr);
+      	});
     
 </script>
 </body>
