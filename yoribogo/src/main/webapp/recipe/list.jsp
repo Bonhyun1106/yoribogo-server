@@ -288,7 +288,7 @@
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} <i
 									class="fas fa-heart fa-2x"></i>${list.likeCnt} <i
 									class="fas fa-level-up-alt fa-2x"></i>${list.level}단계</div>
-							<img src="../images/${list.photo}.jpg" />
+							<img src="${pageContext.request.contextPath}${recipe.photo}" />
 						</div>
 
 						<div class="body">
