@@ -108,12 +108,7 @@
 	</select>
 	
 	<!-- 재료 조회  -->
-	<resultMap id="ingredientMap" type="ingredient" >
-		<result column="ingredient_no" property="ingredientNo"/>
-		<result column="recipe_no" property="no"/>
-		<result column="category_no" property="categoryNo"/>
-	</resultMap>
-	
+
 	<select id="selectIngredient" parameterType="int" resultType="String">
 		select category_name as categoryName
 		  from tb_category c
@@ -121,6 +116,16 @@
 		    on c.category_no = i.category_no
 		 where i.recipe_no = #{no}
 	</select>
+	
+	<resultMap id="ingredientMap" type="category" >
+		<result column="category_name" property="categoryName"/>
+		<result column="category_no" property="categoryNo"/>
+	</resultMap>
+	
+	<select id="getIngredientMap" resultType="ingredientMap">
+		select category_no, category_name from tb_category 
+		 where category_dist_no = 1
+	</select>	
 	
 	<!-- 이미지 파일 가져오기 -->
 	<select id="selectImageBlock" parameterType="int" resultMap="fileMap">

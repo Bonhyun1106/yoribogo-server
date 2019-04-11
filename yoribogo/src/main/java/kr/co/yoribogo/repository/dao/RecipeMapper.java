@@ -2,6 +2,7 @@ package kr.co.yoribogo.repository.dao;
 
 import java.util.List;
 
+import kr.co.yoribogo.repository.vo.CategoryVO;
 import kr.co.yoribogo.repository.vo.CommentVO;
 import kr.co.yoribogo.repository.vo.FileVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
@@ -41,5 +42,5 @@ public interface RecipeMapper {
 	// 댓글 삭제
 	void deleteComment(int commNo);
 
-
+	List<CategoryVO> getIngredientMap();
 }
