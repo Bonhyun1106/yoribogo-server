@@ -21,7 +21,8 @@ public class DetailRecipeController extends HttpServlet {
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-//		int no = 42; // 가데이터. 
+		
+		// 글번호
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		// 게시글 정보

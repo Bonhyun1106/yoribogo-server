@@ -230,10 +230,11 @@
 		) values(s_like_no.nextval, #{memNo}, #{recipeNo})
 	</insert>
 	
-	<select id="checkLikeCnt" parameterType="int" resultType="int">
+	<select id="checkLikeCnt" parameterType="like" resultType="int">
 		select count(*)
 		  from tb_like
 		 where mem_no = #{memNo}
+		   and recipe_no = #{recipeNo}
 	</select>
 </mapper>
 

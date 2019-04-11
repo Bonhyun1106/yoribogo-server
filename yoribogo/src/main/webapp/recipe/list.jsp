@@ -284,7 +284,7 @@
 			<c:forEach var='list' items='${recipe}'>
 				
 				<div class="recipe">
-					<a href="detail.do?no=${list.no}">
+					<a href="detail.do?no=${list.no}" >
 						<div class="image">
 							<div class="quality">
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} 

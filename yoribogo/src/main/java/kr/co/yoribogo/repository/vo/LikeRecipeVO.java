@@ -1,7 +1,5 @@
 package kr.co.yoribogo.repository.vo;
 
-import java.util.Date;
-
 public class LikeRecipeVO {
 	 private String recipeNo;
      private String memId;
@@ -12,6 +10,7 @@ public class LikeRecipeVO {
 	 private String recipeLikeCnt;
 	 private String recipeRegDate;
 	 private String recipeGrade;
+	 
 	public String getRecipeNo() {
 		return recipeNo;
 	}

@@ -16,10 +16,7 @@
 </head>
 
 <body>
-    <span id="menubar">
-        <a id="logo" href="main.html"><img src="../images/logo-horizontal-300px.png" /></a>
-        <a id="loginButton" href="login.html">로그인해주세요<i class="fas fa-user-circle fa-2x"></i></a>
-    </span>
+    <jsp:include page="../include/menu.jsp"/>
     
     <span id="up"><a href="#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
 
@@ -49,7 +46,7 @@
         </div>
         <div id="likebar">
             <button id="like">
-                <i class="fas fa-heart fa-2x"></i>
+                <i class="fas fa-heart fa-2x" id="likeIcon"></i>
             </button>
         </div>
 
@@ -298,20 +295,35 @@
 		
 		/* 좋아요 */
 		$("#like").click(function (){
-			memNo = ${user.memNo}
-			recipeNo = ${recipe.no}
-			$.ajax({
-				url : "like.do",
-				data: {
-					memNo : memNo,
-					recipeNo : recipeNo
-				},
-				success: function(){
-					alert("좋아요!");
-				}
-				
-			})
+			let memNo = ${user.memNo};
+			console.log("멤버 번호: ",memNo);
+			let recipeNo = ${recipe.no};
 			
+			if(memNo != null){
+				console.log("ajax 호출")
+				$.ajax({
+					url : "like.do",
+					data: {
+						memNo : memNo,
+						recipeNo : recipeNo
+					},
+					success: function(check){
+						if(check == 1){
+							alert("이미 이 레시피를 좋아요 하셨네요!");
+							return;
+						} else{
+							alert("좋아요!");
+							$("#like").css('background','white');
+							$("#like").css('border', '1px solid #ed1c24');
+							$("#likeIcon").css('color', "red");
+							$("#likeIcon").css('animation',"transform .2s linear");
+							return;
+						}
+					}
+				});
+			} else{
+				alert("로그인 해주세요");
+			}
 		});
 		
 		
