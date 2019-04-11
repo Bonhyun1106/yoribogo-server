@@ -57,6 +57,8 @@
   			/admin/notice/bannerform.do;
   			/admin/recipe/listcomment.do;
 			/admin/recipe/listbestcomment.do;
+  			/login/login.do;
+  			/login/loginform.do;
   		</param-value>
   	</init-param>
   </filter>

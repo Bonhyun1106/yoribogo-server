@@ -59,7 +59,7 @@ public class AuthFilter2 implements Filter {
                
             // 로그인 하지 않은 상태 -> 로그인 폼으로 이동
             if(user== null) {
-               response.sendRedirect(request.getContextPath()+"/main.do");
+               response.sendRedirect(request.getContextPath()+"/main/main.do");
                return;
             }
       }

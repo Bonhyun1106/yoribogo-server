@@ -15,7 +15,7 @@ import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.BannerVO;
 
 
-@WebServlet("/main.do")
+@WebServlet("/main/main.do")
 public class AdminMainformController extends HttpServlet  {
 	
 
@@ -48,7 +48,7 @@ public AdminMainformController() {
 		request.setAttribute("banner", banner);
 
 		
-		request.getRequestDispatcher("/main/main.jsp").forward(request, response);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
 		
 	}
 
