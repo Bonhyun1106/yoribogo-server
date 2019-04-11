@@ -591,3 +591,21 @@ body {
 	display: flex;
 	align-items: center;
   }
+  
+  #up {
+	position: fixed;
+	width: 50px;
+	height: 75px;
+	bottom: 4%;
+	right: 1%;
+	z-index: 1;
+}
+
+#up>a>i {
+	transition: .4s;
+	color: tomato;
+}
+
+#up>a>i:hover {
+	color: red;
+}
