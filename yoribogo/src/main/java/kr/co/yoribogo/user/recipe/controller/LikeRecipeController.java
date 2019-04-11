@@ -24,6 +24,7 @@ public class LikeRecipeController extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		System.out.println(" --- Like 서블릿 호출 --- ");
 		System.out.println("------------ memNo : "+request.getParameter("memNo"));
+		System.out.println("------------ recipeNo : "+request.getParameter("recipeNo"));
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
@@ -34,11 +35,14 @@ public class LikeRecipeController extends HttpServlet{
 				
 		// 중복체크 0이면 없는 것..
 		int likeCnt = mapper.checkLikeCnt(like);
+		System.out.println("likeCnt 결과!!!! " + likeCnt);
 		if(likeCnt == 0) {
+			System.out.println("0번. 중복없음.");
 			mapper.insertLikeCnt(like);
 			out.println(0);
 			return;
 		}
+		System.out.println("1번. 중복있음");
 		out.println(1);
 		out.close();
 		
