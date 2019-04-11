@@ -396,8 +396,8 @@
 		let kcal2 = 1000;
 		let path = "${pageContext.request.contextPath}";
 		let level;
-		let userName = "${sessionScope.user.memId}";
-		let userProfile = "${pageContext.request.contextPath}${sessionScope.user.memProfile}";
+// 		let userName = "${sessionScope.user.memId}";
+// 		let userProfile = "${pageContext.request.contextPath}${sessionScope.user.memProfile}";
 		
 		console.log(time1);
 		$("#confirm").click(function () {

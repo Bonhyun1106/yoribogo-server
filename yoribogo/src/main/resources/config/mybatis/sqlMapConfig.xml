@@ -20,6 +20,7 @@
 		<typeAlias alias="block" type="kr.co.yoribogo.repository.vo.BlockVO" />
 		<typeAlias alias="category" type="kr.co.yoribogo.repository.vo.CategoryVO" />
 		<typeAlias alias="like" type="kr.co.yoribogo.repository.vo.LikeVO" />
+		<typeAlias alias="caution" type="kr.co.yoribogo.repository.vo.CautionVO" />
 	</typeAliases>
 	 
 	<environments default="development">
