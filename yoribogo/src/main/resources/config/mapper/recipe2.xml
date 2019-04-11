@@ -225,6 +225,10 @@
 		<result column="recipe_no" property="recipeNo" />
 	</resultMap>
 
+	<insert id="updateLikeCnt" parameterType="int">
+		insert into tb_like(like_no, mem_no, recipe_no
+		) values(s_like_no.nextval, #{memNo}, #{recipeNo})
+	</insert>
 </mapper>
 
 
