@@ -17,6 +17,7 @@
   			/recipe/list.do;
   			/login/login.do;
   			/login/loginform.do;
+  			/main/main.do;
   			/signup/checkemail.do;
   			/signup/checkid.do;
   			/signup/signupform.do;
@@ -49,6 +50,7 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
+  			/main/main.do;
   			/admin/member/listmember.do;
   			/admin/member/listmemberreport.do;
   			/admin/recipe/listrecipe.do;
