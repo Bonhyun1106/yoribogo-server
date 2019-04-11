@@ -28,7 +28,7 @@
 	
 	    <div class="kby_wrapper">
 	
-	      <div class="kby_navbar">
+	      <div id="kby_left_navbar" class="kby_navbar">
 	        <span class="kby_open-slide">
 	          <a href="#" class="detailbutton">
 	            <div>상세검색</div>
@@ -181,18 +181,19 @@
 	      <div id="kby_search">
 	        <div class="kby_search">
 	          <form action="#" method="">
-	          	<div>
-	            	<input type="search" id="kby_searchbox" placeholder="오늘 뭐 먹지?">
+	            	<input type="search" id="kby_search_box" placeholder="오늘 뭐 먹지?">
 	           		<button><i class="fas fa-search fa-3x"></i></button>
-	            	
-	            </div>
+				<div id="kby_search_list">
+				
+				</div>
+				
 	          </form>
 	        </div>
 	      </div>
 	
-	      <div class="kby_navbar">
+	      <div id="kby_right_navbar" class="kby_navbar">
 	        <span class="kby_open-slide">
-	          <a href="#" onclick="openRightMenu()">
+	          <a href="#" class="ingredientbutton">
 	            <div>
 	              재료검색
 	            </div>
@@ -201,7 +202,6 @@
 	      </div>
 	      <form>
 	        <div id="kby_right-menu" class="kby_right-nav">
-	          <a href="#" class="kby_btn-close" onclick="closeRightMenu()">&times;</a>
 	
 	        </div>
 	      </form>
@@ -219,6 +219,7 @@
 	      </c:choose>
 	    </div>
 	</span>
+	
 
 	<span id="up"><a href="#"><i
 			class="fas fa-angle-double-up fa-4x"></i></a></span>
@@ -251,8 +252,13 @@
 		});
 
 	    $(document).ready(function () {
-	      $('.kby_navbar').click(function () {
+	      $('#kby_left_navbar').click(function () {
 	        $('.kby_side-nav').fadeToggle(600);
+	      })
+	    });
+	    $(document).ready(function () {
+	      $('#kby_right_navbar').click(function () {
+	        $('.kby_right-nav').fadeToggle(600);
 	      })
 	    });
 

@@ -50,15 +50,12 @@
 
 .kby_right-nav {
     height: 400px;
-    width: 0;
+    width: 50%;
     position: fixed;
     top: 70px;
     right: 0px;
-    background-color: white;
-    padding-top: 60px;
-    overflow-x: hidden;
-    z-index: 1;
-    transition: .5s;
+    background: white;
+    display: none;
 }
 
 .kby_right-nav a {
@@ -609,3 +606,12 @@ body {
 #up>a>i:hover {
 	color: red;
 }
+
+#kby_search_list {
+	position:absolute;
+	left: 50%;
+	color:red;
+}
+
+
+
