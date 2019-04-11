@@ -14,12 +14,13 @@ import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.MemberVO;
 import kr.co.yoribogo.repository.vo.PageVO;
 
-@WebServlet("/admin/recipe/listcomment.do")
-public class ListCommentController extends HttpServlet {
+@WebServlet("/admin/recipe/listcommentsearch.do")
+
+public class ListCommentSearchController extends HttpServlet {
 private AdminMapper mapper;
 	
 
-	public ListCommentController() {
+	public ListCommentSearchController() {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(AdminMapper.class);
 	}
 		
@@ -36,20 +37,20 @@ private AdminMapper mapper;
 		
 		
 		// 게시물 목록 가져오기
-		request.setAttribute("comment", mapper.selectListComment(page));
+//		request.setAttribute("comment", mapper.selectListComment(page));
 		
-		request.setAttribute("pageResult", new AdminPageResult(
-				pageNo, mapper.selectCommentCount()
-		));
-//		
-		
-		request.getRequestDispatcher("listcomment.jsp")
-	       .forward(request, response);
+//   	request.setAttribute("pageResult", new AdminPageResult(
+//				pageNo, mapper.selectCommentCount()
+//		));
+
 		
 		
 		//게시물에 해당되는 파라미터 
 		MemberVO member = new MemberVO();
 		request.setAttribute("comment", mapper.selectCommentById(member.getMemId()));
+		
+		request.getRequestDispatcher("listcomment.jsp")
+	       .forward(request, response);
 		
 	}
 	

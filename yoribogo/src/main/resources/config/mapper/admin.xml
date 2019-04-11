@@ -57,11 +57,12 @@
 		<result column="recipe_no" property="no" />
 		<result column="mem_no" property="memNo" />
 		<result column="comment_like_cnt" property="commentLikeCnt" />
-		<result column="comment_reg_date" property="commentRegDate" />	
-		<result column="comment_content" property="commentContent" />	
-		<result column="comment_report_count" property="commentReportCount" />	
-		<result column="mem_id" property="memId" />	
-		<result column="recipe_title" property="title" />	
+		<result column="comment_reg_date" property="commentRegDate" />
+		<result column="comment_content" property="commentContent" />
+		<result column="comment_report_count" property="commentReportCount" />
+		<result column="mem_id" property="memId" />
+		<result column="recipe_title" property="title" />
+		<result column="mem_profile" property="profile" />
 	</resultMap>
 	
 	<!-- ========================= 1. 회원현황 ============================= -->
@@ -83,9 +84,8 @@
              from ( select *
                      from tb_member
                      order by mem_no desc) a)   
-      where rnum between #{begin} and #{end} 
- 
-	 </select>
+      where rnum between #{begin} and #{end}
+      </select>
 
     <!-- 1-3. 아이디 검색 -->
       <select id="selectListId" parameterType="page" resultMap="memberMap">
@@ -182,6 +182,19 @@
 	 <select id="selectCommentCount" resultType="int">
 		select count(*)
 		  from tb_member
+	 </select>
+	 
+	  <!--댓글 검색 -->  
+	 <select id="selectCommentById" parameterType="string" resultMap="commentMap" >
+	 	select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_report_count
+         from tb_comment c, tb_member m, tb_recipe r
+            where c.mem_no = m.mem_no
+               and r.mem_no = m.mem_no
+               <where>
+                 <if test="mem_id!=null">
+                    m.mem_id like '%' || #{memId} || '%'             
+                 </if>
+               </where>
 	 </select>
 	
 	
