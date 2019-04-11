@@ -370,6 +370,7 @@
 		let time2 = 60;
 		let kcal1 = 0;
 		let kcal2 = 1000;
+		let path = ${pageContext.request.contextPath};
 		
 		console.log(time1);
 		$("#confirm").click(function () {
@@ -482,7 +483,8 @@
 							html +=	'<i class="fas fa-level-up-alt fa-2x"></i>';
 							html +=	list.level + '단계';
 							html +=	'</div>';
-							html +=	'<img src="../images/' + list.photo + '.jpg" />';
+							
+							html +=	'<img src="' + path + list.photo + '"/>';
 							console.log(list.photo);
 							html +=	'</div>';
 							html +=	'<div class="body">';
