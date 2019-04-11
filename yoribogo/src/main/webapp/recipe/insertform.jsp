@@ -139,16 +139,18 @@
                 <div><input type="text" name="ingredient" placeholder="재료를 입력하세요" /></div>
                 <div><i class="fas fa-plus-square fa-2x"></i></div>
             </div>
+			<div id="ingredientContainer">		
 					<table>
 						<tbody>
-							<tr>
 								<c:forEach var="ingredient" items="${ingredientList}">
-									<td>${ingredient.categoryName}</td>
-								</c:forEach>            
+							<tr class="tr_ingredient">
+									<td class="td_ingredient_no">${ingredient.categoryNo}</td>
+									<td class="td_ingredient_name">${ingredient.categoryName}</td>
 							</tr>
+								</c:forEach>            
 						</tbody>						
 					</table>
-
+			</div>
         </div>
 
         <div id="content-wrapper">

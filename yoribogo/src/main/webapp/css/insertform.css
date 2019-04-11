@@ -253,3 +253,34 @@ input[type="text"], select{
     padding : 0 auto;
     padding-top: 30px;
   }
+ #ingredientContainer {
+ 	border : 1px solid red;
+ 	height: 140px;
+ 	text-align : center;
+	overflow:scroll;
+	margin: 0 auto;
+	margin: 0 auto;
+ }
+table{
+	width: 100%;
+	margin: 0 auto;
+}
+#ingredientContainer > tbody{
+	box-sizing : border-box;
+	width: 100%;
+}
+
+.tr_ingredient{
+	width: 100%;
+	margin-bottom : 7px;
+	transition: .3s;
+}
+.tr_ingredient:hover{
+	background : tomato;
+	color : white;
+}
+
+.td_ingredient{
+	width: 100%;
+	border-bottom : 1px solid gainsboro;	
+}
