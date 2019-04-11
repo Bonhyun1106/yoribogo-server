@@ -83,7 +83,7 @@
             <div class="bottom">
               <div class="highlight"> 
                <c:forEach var="list" items="${member}">
-                  <div><a class="button" id="${list.memNo}" href="#" >강퇴</a></div> 
+                  <div><a class="button" id="${list.memNo}" href="#" >정지</a></div> 
                </c:forEach>
               </div>
             </div>

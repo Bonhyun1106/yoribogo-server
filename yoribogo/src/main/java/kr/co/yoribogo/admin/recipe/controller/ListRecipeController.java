@@ -36,11 +36,12 @@ public class ListRecipeController extends HttpServlet {
 			page.setPageNo(pageNo);
 		} catch (Exception e) {}
 		
+		page.setMemId(request.getParameter("search"));
 		
 		// 게시물 목록 가져오기
 		request.setAttribute("recipe", mapper.selectListRecipe(page));
 		request.setAttribute("pageResult", new AdminPageResult(
-				pageNo, mapper.selectRecipeCount()
+				pageNo, mapper.selectRecipeCount(page)
 		));
 //		
 		
