@@ -93,6 +93,9 @@
 						});
 		                $("#favoriteSearch").on("keyup",function() {
 		                    var k = $(this).val();
+		                    if(k==""){
+		                    	return;
+		                    }
 							$(".favorites").hide();
 							var temp = $(".categoryName:contains('" + k + "')");
 		                    $(temp).parent().show();
