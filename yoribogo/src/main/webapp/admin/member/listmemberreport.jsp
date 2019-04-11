@@ -65,9 +65,8 @@
         </div></div>
         <div class="content2"><div class="top">정지 날짜</div><div class="bottom"> 
           <c:forEach var="list" items="${member}">
-            <c:choose>
-             <c:when test="${list.memReportCount>31}"><p>${list.memIsOut}</p></c:when>
-            </c:choose>
+           <p id="${list.memNo}"> ${list.memIsOut} </p>
+   
           </c:forEach>
         </div></div>
         <div class="content2"><div class="top">정지 사유</div><div class="bottom">
@@ -158,9 +157,24 @@
 
 
   <script>	
-		$(".button").on("click", function () {
-			$("#" + $(this).attr("id")).text("정지");
-		});
+	 	$(".button").on("click", function () {
+			$("#" + $(this).attr("id")).text("정지"); 
+		  var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+
+			if(dd<10) {
+			    dd='0'+dd
+			} 
+			if(mm<10) {
+			    mm='0'+mm
+			} 
+			today = mm+'/'+dd+'/'+yyyy;
+			$("#" + $(this).attr("id")).text(today);
+		}); 
+		
+		
   </script>
   
 </body>

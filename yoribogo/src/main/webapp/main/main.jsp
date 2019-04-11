@@ -12,7 +12,7 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-   <link rel="stylesheet" href="../css/main.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
    <title>Document</title>
    
 </head>
@@ -98,12 +98,12 @@
         
         <div id = "main3_pic">
           <span class = "main3_pic">
-            <img src = "../images/food5.jpg"/>
+            <img src="${pageContext.request.contextPath}${banner.link}"/>
               <p>
-                  <a>Lorem ipsum dolor sit.</a>
+                  <a>${banner.title}</a>
                 <br>
                 <br>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus doloribus temporibus consectetur nemo voluptatum quam?
+              		${banner.content}
               </p>
           </span>
           <span class = "main3_pic">

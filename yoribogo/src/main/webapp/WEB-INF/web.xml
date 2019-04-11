@@ -21,23 +21,51 @@
   			/signup/checkid.do;
   			/signup/signupform.do;
   			/signup/signupsuccess.do;
+  			/admin/member/listmember.do;
+  			/admin/member/listmemberreport.do;
+  			/admin/recipe/listrecipe.do;
   			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
-  			/admin/notice/write.do;
   			/admin/notice/bannerform.do;
-  			/admin/notice/insertbanner.do;
-  			/admin/recipe/listrecipe.do;
+  			/admin/recipe/listcomment.do;
+			/admin/recipe/listbestcomment.do;
   		</param-value>
   	</init-param>
   </filter>
   
-  <!-- 모든 클래스에서 사용할 수 있도록 필터와 클래스 맵핑   -->
+   <!-- 모든 클래스에서 사용할 수 있도록 필터와 클래스 맵핑 -->
 
   <filter-mapping>
   	<filter-name>authFilter</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
 
+  
+  
+  <!-- 관리자 필터 등록 -->
+   <filter>
+  	<filter-name>authFilter2</filter-name>
+  	<filter-class>kr.co.yoribogo.filter.AuthFilter2</filter-class>
+  	<init-param>
+  		<param-name>pages</param-name>
+  		<param-value>
+  			/admin/member/listmember.do;
+  			/admin/member/listmemberreport.do;
+  			/admin/recipe/listrecipe.do;
+  			/admin/notice/insertbanner.do;
+  			/admin/notice/noticeform.do;
+  			/admin/notice/bannerform.do;
+  			/admin/recipe/listcomment.do;
+			/admin/recipe/listbestcomment.do;
+  		</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>authFilter2</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
   
   <filter>
   	<filter-name>encoding</filter-name>

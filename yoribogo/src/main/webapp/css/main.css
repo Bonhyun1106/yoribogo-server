@@ -356,3 +356,8 @@ display: inline-block;
 .fa-star{
  color : #f7943a;
 }
+
+#kby_search_list{
+	position:absolute;
+	margin:20px;
+}

@@ -293,13 +293,20 @@
 			})
 		});
 		
-		/* 좋아요 */
+		// null 값 처리
+		function nvl(str, defaultStr){
+	        if(typeof str == "undefined" || str == null || str == "") str = defaultStr;
+	        return str;
+	    };
+
+		/* ====== 좋아요 ====== */
 		$("#like").click(function (){
-			let memNo = ${user.memNo};
-			console.log("멤버 번호: ",memNo);
+			let memNo = nvl(("${user.memNo}"), 99999);	// 99999 : 비회원
 			let recipeNo = ${recipe.no};
 			
-			if(memNo != null){
+			console.log("멤버 번호(비회원 99999): ", memNo);
+			
+			if(memNo != 99999){
 				console.log("ajax 호출")
 				$.ajax({
 					url : "like.do",
@@ -325,8 +332,6 @@
 				alert("로그인 해주세요");
 			}
 		});
-		
-		
 	});
 	
 	
