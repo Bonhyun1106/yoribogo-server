@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.yoribogo.repository.vo.CategoryVO;
 import kr.co.yoribogo.repository.vo.CommentVO;
 import kr.co.yoribogo.repository.vo.FileVO;
+import kr.co.yoribogo.repository.vo.LikeVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
 public interface RecipeMapper {
@@ -23,6 +24,9 @@ public interface RecipeMapper {
 	
 	// 이미지 파일 조회
 	List<FileVO> selectImageBlock(int no);
+	
+	// 좋아요
+	void insertLikeCnt(LikeVO like);
 	
 	/** ===== 수 정 ===== */
 	RecipeVO updateRecipe(int no);
