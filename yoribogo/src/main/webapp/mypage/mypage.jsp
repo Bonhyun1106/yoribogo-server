@@ -80,13 +80,13 @@
           <div class="whetherRecommendation_body">
               <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(images/foodthumbnail16.jpg); background-size: cover;">
                   <div  class="innerWrapper">  
-                  <img id = "profileBlock_body_inner_profile" src="@!@list.profile"/>  
+                  <img id = "profileBlock_body_inner_profile" src="${PageContext.request.contextPath}${userLikeRecipe.memProfile}.png"/>  
                    <div class="innerWrapper_inner">
-                     <div>@!@list.regDate</div>
-                     <div>@!@list.id</div>
-                     <div><i class="fas fa-star"></i>@!@list.grade</div>
+                     <div>${userLikeRecipe.recipeRegDate}</div>
+                     <div>${userLikeRecipe.memId}</div>
+                     <div><i class="fas fa-star"></i>${userLikeRecipe.recipeGrade}</div>
                     </div>
-                    <div class="paragraph">@!@list.content</div>
+                    <div class="paragraph">${userLikeRecipe.recipeSummary}</div>
                   </div>
                 </div>
                 

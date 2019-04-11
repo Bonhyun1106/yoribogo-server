@@ -295,3 +295,51 @@ table{
 	border-radius : 3px;
 	padding: 5px;
 }
+#deleteList{
+	display : inline-block;
+	width : 70px;
+	border-radius : 30px;
+	height : 20px;
+	padding : 3px;
+	margin : 15px;
+	border : 3px solid tomato;
+	font-size : 12px;
+	transition : .2s;
+	cursor : pointer;
+	text-align : center;
+	font-weight: bolder;
+	color : gray;
+}
+#deleteListAll{
+	color : gray;
+	font-weight: bolder;
+	display : inline-block;
+	border-radius : 30px;
+	width : 70px;
+	height : 20px;
+	padding : 3px;
+	margin : 15px;
+	border : 3px solid tomato;
+	font-size : 12px;
+	transition : .2s;
+	cursor : pointer;
+	text-align : center;
+}
+#deleteList:hover{
+	display : inline-block;
+	color :White;
+	border : 3px solid tomato;
+	
+	background : tomato;
+}
+#deleteListAll:hover{
+	display : inline-block;
+
+	color :White;
+	border : 3px solid tomato;
+		
+	background : tomato;
+}
+
+
+

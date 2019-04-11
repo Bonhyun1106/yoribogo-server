@@ -149,11 +149,12 @@
 									<td class="td_ingredient_name">${ingredient.categoryName}</td>
 							</tr>
 								</c:forEach>            
-						</tbody>						
+						</tbody>
 					</table>
 			</div>
         </div>
 		<div id="selectedIngredient"></div>
+		<div id="deleteList">재료 꺼내기</div><div id="deleteListAll">전부 삭제</div>
         <div id="content-wrapper">
             <div id="add">
                 <div class="content-grid">
@@ -200,6 +201,9 @@
 
 
 <script>
+
+	
+
 	// 이미지 선택시 미리보기 
 	$("#mainImg").change(function() {
 		 if (this.files && this.files[0]) {
@@ -265,6 +269,7 @@
 				
 		});
          let onoff = false;
+      	  var selectList = document.querySelector("#selectedIngredient");
       	$(".tr_ingredient").click(function(){	              	
       	   var index = $(".tr_ingredient").index(this);
       	   if(!onoff){
@@ -273,17 +278,26 @@
       	   		onoff = false;
       	   }
       	  
-      	  var selectList = document.querySelector("#selectedIngredient");
-          $(".favorites:eq(" + index + ")").attr("check",onoff);
+          $(".tr_ingredient:eq(" + index + ")").attr("check",onoff);
       	  if($(this).attr("check")){
       		  
       		ingredientArr.push("#"+$(this).text().trim());
-          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>";
+          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>"
+          	+"<input type='hidden' name='ingredientList' value='"+ingredientArr+"'>";
       	  }else{
       		  
       	  }
           console.log(ingredientArr);
       	});
+      	
+      	$("#deleteList").click(function(){
+    		ingredientArr.pop();
+          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>";
+    	});
+    	$("#deleteListAll").click(function(){
+    		ingredientArr.splice(0,ingredientArr.length);
+          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>";
+    	});
     
 </script>
 </body>
