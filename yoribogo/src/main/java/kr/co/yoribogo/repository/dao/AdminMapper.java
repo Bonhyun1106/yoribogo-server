@@ -47,4 +47,7 @@ public interface AdminMapper {
 	
 	//1-1. 페이징
 	public int selectCommentCount();
+	
+	//댓글 아이디 검색
+	public List<CommentVO> selectCommentById(String id);
 }
