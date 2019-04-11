@@ -74,7 +74,11 @@ public class InsertRecipeController extends HttpServlet{
 
 			String fName = fNames.nextElement();
 			File f = mRequest.getFile(fName);
+			
 			// 파일을 선택하지 않은 경우 null
+			if(f == null) {
+				recipe.setPhoto(uploadRoot+"/profile/default/MainDefault");
+			}
 			if (f != null) {
 				// 첫번째 파일은 recipe photo에 저장.
 				if(fileCnt == 1) {
