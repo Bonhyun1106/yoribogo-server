@@ -51,6 +51,10 @@
 		   	   #{categoryNo} 
 		   </foreach>
 	</select>
+	
+	<select id="select">
+	
+	</select>
 </mapper>
 
 
