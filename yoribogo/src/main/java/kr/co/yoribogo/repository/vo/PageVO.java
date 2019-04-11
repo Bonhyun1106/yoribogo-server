@@ -17,9 +17,9 @@ public class PageVO {
 		this.pageNo = pageNo;
 	}
 	public int getBegin() {
-		return (this.pageNo - 1) * 2 + 1;
+		return (this.pageNo - 1) * 9 + 1;
 	}
 	public int getEnd() {
-		return this.pageNo * 2;
+		return this.pageNo * 9;
 	}
 }
