@@ -26,7 +26,7 @@
     <div style="height: 70px;"></div>
 
     <div id="all" class="all">
-        <div id="insert">당신의 레시피를 소개해주세요</div>
+        <div id="insert">${user.memId}님의 레시피를 소개해주세요</div>
         
         <div id="rec-comm">
             <div><input type="button" id="addBox" value="추가" /></div>
@@ -35,6 +35,7 @@
         
         
 		<form method='POST' action="insertrecipe.do" enctype="multipart/form-data">
+       	 <input type="hidden" name="memNo" value="${user.memNo}"/>
         <div id="top-wrapper">
             <div class="top-left">
 			
@@ -51,7 +52,7 @@
             </div>
         </div>
 
-        <div id="line">${user.memId}님! 요리에 대해 알려주세요</div>
+        <div id="line">요리에 대해 알려주세요</div>
 
         <div id="ingrd-wrapper">
             <div class="cookinfo">

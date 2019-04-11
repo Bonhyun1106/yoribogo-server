@@ -34,12 +34,16 @@ public class InsertRecipeController extends HttpServlet{
 		request.setCharacterEncoding("utf-8");
 		
 		String uploadPath = request.getServletContext().getRealPath("/images");
-		System.out.println("uploadPath : ");
-		System.out.println(uploadPath);
+		System.out.println("------ uploadPath : " + uploadPath);
 		// 파일 저장 디렉토리 생성
 		String uploadRoot = "/images";
+		System.out.println("------ Root : " + uploadRoot);
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String path = "/recipe" + sdf.format(new Date());
+		System.out.println("------ path : "+path);
+		
 		File file = new File(uploadRoot+path);
 		if(file.exists() == false) file.mkdirs();
 		MultipartRequest mRequest = new MultipartRequest(
@@ -76,9 +80,9 @@ public class InsertRecipeController extends HttpServlet{
 			File f = mRequest.getFile(fName);
 			
 			// 파일을 선택하지 않은 경우 null
-			if(f == null) {
-				recipe.setPhoto(uploadRoot+"/profile/default/MainDefault");
-			}
+//			if(f == null) {
+//				recipe.setPhoto(uploadRoot+"/profile/default/MainDefault");
+//			}
 			if (f != null) {
 				// 첫번째 파일은 recipe photo에 저장.
 				if(fileCnt == 1) {
