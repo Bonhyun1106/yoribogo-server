@@ -1,6 +1,6 @@
 package kr.co.yoribogo.repository.vo;
 
-public class PageVO {
+public class PageVO2 {
 	private int pageNo = 1;
 	private String sortType;
 
@@ -17,9 +17,9 @@ public class PageVO {
 		this.pageNo = pageNo;
 	}
 	public int getBegin() {
-		return (this.pageNo - 1) * 9 + 1;
+		return (this.pageNo - 1) * 20 + 1;
 	}
 	public int getEnd() {
-		return this.pageNo * 9;
+		return this.pageNo * 20;
 	}
 }

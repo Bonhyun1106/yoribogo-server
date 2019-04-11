@@ -282,7 +282,7 @@
 			<c:forEach var='list' items='${recipe}'>
 		
 				<div class="recipe">
-					<a href="#.">
+					<a href="detail.do?no=${list.no}">
 						<div class="image">
 							<div class="quality">
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} <i
@@ -472,7 +472,7 @@
 						console.log(list.regDate);	
 						let date = moment(list.regDate).format("YY.MM.DD");
 						 	html += '<div class="recipe">';
-							html += '<a href="#.">';
+							html += '<a href="detail.do?no="' + list.no + '>';
 							html +=	'<div class="image">';
 							html +=	'<div class="quality">';
 							html +=	'<i class="fas fa-eye fa-2x"></i>';
