@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title> [admin] 회원현황-경고상태 회원관리</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member/memberreportlist.css" />
@@ -81,9 +82,9 @@
           </div></div>
         <div class="content2"><div class="top">경고 상태</div>
             <div class="bottom">
-              <div class="highlight">
+              <div class="highlight"> 
                <c:forEach var="list" items="${member}">
-                  <div><a class="button" href="#" onclick="remove();">강퇴</a></div> 
+                  <div><a class="button" id="${list.memNo}" href="#" >강퇴</a></div> 
                </c:forEach>
               </div>
             </div>
@@ -153,15 +154,14 @@
           copyright @ YORIBOGO Corp. All Right Reserved.
         </p>
   </div>  
-     
   </footer>  
 
 
-  <script>
-  
-    function remove() {
-      alert("강퇴하시겠습니까?");
-    }
+  <script>	
+		$(".button").on("click", function () {
+			$("#" + $(this).attr("id")).text("정지");
+		});
   </script>
+  
 </body>
 </html>
