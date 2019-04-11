@@ -181,10 +181,10 @@
 	      <div id="kby_search">
 	        <div class="kby_search">
 	          <form action="#" method="">
-	            	<input type="search" id="kby_search_box" placeholder="오늘 뭐 먹지?">
+	            	<input type="text" id="kby_search_box" placeholder="오늘 뭐 먹지?" />
 	           		<button><i class="fas fa-search fa-3x"></i></button>
 				<div id="kby_search_list">
-				
+					
 				</div>
 				
 	          </form>
@@ -325,8 +325,19 @@
 	      " ~ " + $( "#slider-range2" ).slider( "values", 1 ) + "kcal");
 	  } );
 	    
-	   	$("#kby_searchbox").keyup(function () {
-	   		
+	    
+	   	$("#kby_search_box").keyup(function () {
+	   		let input = $("#kby_search_box").val();
+	   		console.log(input);
+	   		$.ajax({
+				type: "POST",
+				url: "searchajax.do",
+				data: "search=" + input,
+				dataType: "json",
+				success: function (recipe) {
+					
+				}
+	   		});
 	   	});
 	</script>
 			

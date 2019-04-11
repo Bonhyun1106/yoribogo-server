@@ -400,7 +400,6 @@
 					let recipe = result[0];
 					let member = result[1];
 					let memId = "";
-					console.log(recipe);
 					let html = "";
 					for (let i = 0; i < recipe.length; i++) {
 						let list = recipe[i];
@@ -411,7 +410,6 @@
 								break;
 							}
 						}
-						console.log(list.regDate);	
 						let date = moment(list.regDate).format("YY.MM.DD");
 						 	html += '<div class="recipe">';
 							html += '<a href="detail.do?no="' + list.no + '>';
@@ -443,8 +441,6 @@
 							html +=	'</div>';
 							
 							html +=	'<img src="' + path + list.photo + '"/>';
-							console.log(path);
-							console.log(list.photo);
 							html +=	'</div>';
 							html +=	'<div class="body">';
 							html +=	'<div class="mid">';
@@ -467,8 +463,6 @@
 							html += '</div>';
 							html += '</a>';
 							html += '</div>';
-							console.log(html);
-							console.log(memId);
 							$(".wrapper").html(html);
 						} 
 					}
