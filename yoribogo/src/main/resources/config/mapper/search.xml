@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.yoribogo.board.dao.SearchMapper">
+<mapper namespace="kr.co.yoribogo.repository.dao.SearchMapper">
+	<resultMap id="recipeMap" type="recipe">
+		<result column="recipe_no" property="no" />
+		<result column="mem_no"	 property="memNo" />
+		<result column="recipe_title" property="title" />
+		<result column="recipe_summary" property="summary" />
+		<result column="recipe_view_cnt" property="viewCnt" />
+		<result column="recipe_like_cnt" property="likeCnt" />
+		<result column="recipe_reg_date" property="regDate" />
+		<result column="recipe_country" property="country" />
+		<result column="recipe_type" property="type" />
+		<result column="recipe_kcal" property="kcal" />
+		<result column="recipe_time" property="time" />
+		<result column="recipe_level" property="level" />
+		<result column="recipe_weather" property="weather" />
+		<result column="recipe_grade" property="grade" />
+		<result column="recipe_photo" property="photo" />
+	</resultMap>
 	
+	<resultMap id="cautionMap" type="caution">
+		<result column="caution_no" property="cautionNo" />
+		<result column="recipe_no"	 property="recipeNo" />
+		<result column="category_no" property="categoryNo" />
+	</resultMap>
+	
+	<resultMap id="categoryMap" type="category">
+		<result column="category_name" property="categoryName" />
+		<result column="category_dist_no" property="categoryDistNo" />
+		<result column="category_no" property="categoryNo" />
+	</resultMap>
+	
+	<select id="selectDetail" parameterType="recipe" resultMap="recipeMap">
+		select distinct r.recipe_title as recipe_title, r.recipe_no as recipe_no, r.recipe_summary as recipe_summary, r.MEM_NO as MEM_NO,
+		       r.RECIPE_VIEW_CNT as RECIPE_VIEW_CNT, r.RECIPE_LIKE_CNT as RECIPE_LIKE_CNT, r.RECIPE_REG_DATE as RECIPE_REG_DATE,
+		       r.RECIPE_LEVEL as RECIPE_LEVEL, r.RECIPE_GRADE as RECIPE_GRADE, r.RECIPE_PHOTO as RECIPE_PHOTO		  
+		  from tb_recipe r, tb_category c, tb_caution a
+		 where r.recipe_no = a.recipe_no
+		   and c.category_no = a.category_no
+		   and r.recipe_type = #{type}
+		   and r.recipe_level = #{level}
+		   and r.recipe_weather = #{weather}
+		   and r.recipe_country = #{country}
+		   and r.recipe_time between #{time1} and #{time2}
+		   and r.recipe_kcal between #{kcal1} and #{kcal2}
+		   
+		   and a.category_no in
+		   <foreach item="categoryNo" collection="categoryNos" open="(" separator="," close=")">
+		   	   #{categoryNo} 
+		   </foreach>
+	</select>
 </mapper>
 
 

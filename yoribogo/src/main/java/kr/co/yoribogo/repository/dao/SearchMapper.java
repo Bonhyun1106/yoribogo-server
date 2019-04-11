@@ -1,5 +1,9 @@
 package kr.co.yoribogo.repository.dao;
 
-public interface SearchMapper {
+import java.util.List;
 
+import kr.co.yoribogo.repository.vo.RecipeVO;
+
+public interface SearchMapper {
+	List<RecipeVO> selectDetail(RecipeVO recipeVO);
 }

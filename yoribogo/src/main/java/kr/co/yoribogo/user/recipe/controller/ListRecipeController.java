@@ -32,13 +32,34 @@ public class ListRecipeController extends HttpServlet {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			page.setPageNo(pageNo);
 		} catch (Exception e) {
-
+			
 		}
 		
+		PageResult pageResult = new PageResult(pageNo, mapper.selectRecipeCount());
+		
+		int count = mapper.selectRecipeCount();
+		int lastPage = (count%9 == 0) ? count / 9 : count / 9 + 1;
+		
+		// 요청한 페이지 번호에 해당하는 페이지 블럭 구하기
+		int tabSize = 10;
+		int currTab = (pageNo - 1) /tabSize + 1;
+		
+		int beginPage = (currTab - 1) * tabSize + 1;
+		int endPage = (currTab * tabSize > lastPage) ? lastPage : currTab * tabSize;
+		
+		boolean prev = beginPage != 1;
+		boolean next = endPage != lastPage;
+		
+		request.setAttribute("beginPage", beginPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("prev", prev);
+		request.setAttribute("next", next);
+		request.setAttribute("count", count);
+		request.setAttribute("lastPage", lastPage);
+
 		request.setAttribute("member", mapper.selectMember());
 		request.setAttribute("recipe", mapper.selectRecipe(page));
 		
-		PageResult pageResult = new PageResult(pageNo, mapper.selectRecipeCount());
 		request.setAttribute("pageResult", pageResult);
 
 		RequestDispatcher rd = request.getRequestDispatcher("list.jsp");

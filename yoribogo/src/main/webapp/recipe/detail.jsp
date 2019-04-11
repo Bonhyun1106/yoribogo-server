@@ -20,6 +20,7 @@
         <a id="logo" href="main.html"><img src="../images/logo-horizontal-300px.png" /></a>
         <a id="loginButton" href="login.html">로그인해주세요<i class="fas fa-user-circle fa-2x"></i></a>
     </span>
+    
     <span id="up"><a href="#"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
 
     <div id="all" class="all">

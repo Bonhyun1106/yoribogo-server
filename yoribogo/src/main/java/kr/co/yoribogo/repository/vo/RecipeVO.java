@@ -14,10 +14,65 @@ public class RecipeVO {
 	private String type;
 	private int kcal;
 	private int time;
+	private int kcal1;
+	private int kcal2;
+	private int time1;
+	private int time2;
 	private String level;
 	private String weather;
 	private double grade;
 	private String photo;
+	private int categoryNo;
+	private String[] categoryNos;	
+	
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
+	public String[] getCategoryNos() {
+		return categoryNos;
+	}
+
+	public void setCategoryNos(String[] categoryNos) {
+		this.categoryNos = categoryNos;
+	}
+
+	public int getKcal1() {
+		return kcal1;
+	}
+
+	public void setKcal1(int kcal1) {
+		this.kcal1 = kcal1;
+	}
+
+	public int getKcal2() {
+		return kcal2;
+	}
+
+	public void setKcal2(int kcal2) {
+		this.kcal2 = kcal2;
+	}
+
+	public int getTime1() {
+		return time1;
+	}
+
+	public void setTime1(int time1) {
+		this.time1 = time1;
+	}
+
+
+	public int getTime2() {
+		return time2;
+	}
+
+	public void setTime2(int time2) {
+		this.time2 = time2;
+	}
 
 	public double getGrade() {
 		return grade;

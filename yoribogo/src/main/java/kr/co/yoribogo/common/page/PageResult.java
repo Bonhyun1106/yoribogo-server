@@ -40,10 +40,10 @@ public class PageResult {
 	
 	private void setPageInfo() {
 		int lastPage;
-		if ((count % 10) == 0) {
-			lastPage = count / 10;
+		if ((count % 9) == 0) {
+			lastPage = count / 9;
 		} else {
-			lastPage = count / 10 + 1;
+			lastPage = count / 9 + 1;
 		}
 		
 		// 요청한 페이지 번호에 해당하는 페이지 블럭 구하기

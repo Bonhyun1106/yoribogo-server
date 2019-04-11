@@ -51,52 +51,6 @@ a {
 	overflow: hidden;
 }
 
-#menubar {
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	width: 100%;
-	height: 70px;
-	background: azure;
-	opacity: 0.7;
-}
-
-#logo {
-	position: absolute;
-	left: 2%;
-	width: 280px;
-	height: 100%;
-}
-
-#logo>img {
-	width: 133px;
-}
-
-#menubar>ul {
-	position: absolute;
-	right: 0;
-	top: 0;
-	line-height: 10px;
-}
-
-#menubar>ul>li {
-	display: inline-block;
-	width: 180px;
-	font-size: 40px;
-	text-align: center;
-}
-
-#menubar>ul>li>a {
-	line-height: 140px;
-	font-weight: bolder;
-	color: lightgray;
-	transition: .7s;
-}
-
-#menubar>ul>li>a:hover {
-	color: slategray;
-	text-decoration: unset;
-}
 
 .top {
 	height: 100px;
@@ -333,23 +287,6 @@ a {
 	align-items: center;
 }
 
-#loginButton {
-	position: absolute;
-	display: block;
-	top: 15px;
-	right: 50px;
-	color: tomato;
-	font-size: 15px;
-	font-weight: bolder;
-}
-
-#loginButton:hover {
-	text-decoration: none;
-}
-
-#loginButton:visited {
-	text-decoration: none;
-}
 
 #footer {
 	width: 90%;

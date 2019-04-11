@@ -1,15 +1,15 @@
 package kr.co.yoribogo.repository.vo;
 
 public class CautionVO {
-	private int cautionNO;
+	private int cautionNo;
     private int no;
     private int categoryNo;
     
-	public int getCautionNO() {
-		return cautionNO;
+	public int getCautionNo() {
+		return cautionNo;
 	}
-	public void setCautionNO(int cautionNO) {
-		this.cautionNO = cautionNO;
+	public void setCautionNO(int cautionNo) {
+		this.cautionNo = cautionNo;
 	}
 	public int getNo() {
 		return no;

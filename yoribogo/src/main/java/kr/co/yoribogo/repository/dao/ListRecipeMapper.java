@@ -10,5 +10,5 @@ public interface ListRecipeMapper {
 	List<RecipeVO> selectRecipe(PageVO pageVO);
 	int selectRecipeCount();
 	List<MemberVO> selectMember();
-	
+
 }
