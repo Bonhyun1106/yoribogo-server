@@ -19,7 +19,7 @@ public class UpdateRecipeFormController extends HttpServlet {
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		int no = 2; // request.getParameter();
+		int no = Integer.parseInt(request.getParameter("no"));
 		request.setAttribute("recipe", mapper.updateRecipe(no));
 		
 		request.setAttribute("ingredient", mapper.selectIngredient(no));

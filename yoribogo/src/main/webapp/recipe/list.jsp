@@ -282,13 +282,13 @@
 			<c:forEach var='list' items='${recipe}'>
 		
 				<div class="recipe">
-					<a href="#.">
+					<a href="detail.do?no=${list.no}">
 						<div class="image">
 							<div class="quality">
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} <i
 									class="fas fa-heart fa-2x"></i>${list.likeCnt} <i
 									class="fas fa-level-up-alt fa-2x"></i>${list.level}단계</div>
-							<img src="../images/${list.photo}.jpg" />
+							<img src="${pageContext.request.contextPath}${list.photo}" />
 						</div>
 
 						<div class="body">
@@ -370,6 +370,7 @@
 		let time2 = 60;
 		let kcal1 = 0;
 		let kcal2 = 1000;
+		let path = "${pageContext.request.contextPath}";
 		
 		console.log(time1);
 		$("#confirm").click(function () {
@@ -472,7 +473,7 @@
 						console.log(list.regDate);	
 						let date = moment(list.regDate).format("YY.MM.DD");
 						 	html += '<div class="recipe">';
-							html += '<a href="#.">';
+							html += '<a href="detail.do?no="' + list.no + '>';
 							html +=	'<div class="image">';
 							html +=	'<div class="quality">';
 							html +=	'<i class="fas fa-eye fa-2x"></i>';
@@ -482,7 +483,9 @@
 							html +=	'<i class="fas fa-level-up-alt fa-2x"></i>';
 							html +=	list.level + '단계';
 							html +=	'</div>';
-							html +=	'<img src="../images/' + list.photo + '.jpg" />';
+							
+							html +=	'<img src="' + path + list.photo + '"/>';
+							console.log(path);
 							console.log(list.photo);
 							html +=	'</div>';
 							html +=	'<div class="body">';

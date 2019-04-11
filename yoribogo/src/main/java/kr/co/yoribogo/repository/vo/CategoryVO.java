@@ -6,6 +6,7 @@ public class CategoryVO {
 	private String categoryName;
 	private String categoryDistNo;
 	private String categoryDistName;
+	
 	public String getCategoryNo() {
 		return categoryNo;
 	}

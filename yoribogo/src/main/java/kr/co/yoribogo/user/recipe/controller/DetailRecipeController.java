@@ -21,7 +21,8 @@ public class DetailRecipeController extends HttpServlet {
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-		int no = 42; // 가데이터. request.getParameter("no");
+//		int no = 42; // 가데이터. 
+		int no = Integer.parseInt(request.getParameter("no"));
 		
 		// 게시글 정보
 		RecipeVO rv = mapper.selectDetailRecipe(no);
@@ -31,7 +32,6 @@ public class DetailRecipeController extends HttpServlet {
 		request.setAttribute("image", mapper.selectImageBlock(no));
 		// 재료 정보
 		request.setAttribute("ingredient", mapper.selectIngredient(no));
-		
 		
 		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}

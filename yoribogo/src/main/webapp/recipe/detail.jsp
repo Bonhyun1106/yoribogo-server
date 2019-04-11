@@ -115,17 +115,17 @@
                 <div><img src="${user.memProfile}" name="idImg"/></div>
                 <div name="id">${user.memId}님</div>
             </div>
+            <div class="inputbox">
 	        <form name="commentForm" id="commentForm" method="post">
-	            <div class="inputbox">
-		        	<input type="hidden" id="recNo" name="recNo" value="${recipe.no}">
-		        	<input type="hidden" id="commId" name="commId" value="${user.memId}">
-	                <textarea rows="5" cols="100" placeholder="응원의 댓글을 달아보세요" name="commContent" id="commContent"></textarea>
-	                <!-- <div class="font">0/3000</div> -->
-	            </div>
-	            <div class="inputButton">
-	                <button id="inputButton">등록</button>
-	            </div>
+	        	<input type="hidden" id="recNo" name="recNo" value="${recipe.no}">
+	        	<input type="hidden" id="commId" name="commId" value="${user.memId}">
+                <textarea rows="5" cols="100" placeholder="응원의 댓글을 달아보세요" name="commContent" id="commContent"></textarea>
+                <!-- <div class="font">0/3000</div> -->
     	    </form>
+            </div>
+            <div class="inputButton">
+                <button id="inputButton">등록</button>
+            </div>
         </div>
 
 
@@ -231,18 +231,18 @@
 		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
-		                     +		'<div>'
-		                     +			'<div id="commBtn">'
-		                     +				'<div><button id="editCom" value="' + list[i].commentNo + '">수정</button></div>'
-		                     +				'<div><button id="delCom" value="' + list[i].commentNo + '">삭제</button></div>'
-		                     +			'</div>'
-		                     +		'</div>'
 		                     + 		'<div class="likecnt">'
 		                     +     		'<div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
 		                     +     		'<div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
 		                     +     		'<div class="no">'+ list[i].commentReportCount + '</div>'
 		                     + 		'</div>'
+		                     +		'<div>'
+		                     +			'<div id="commBtn">'
+		                     +				'<div><button id="editCom" value="' + list[i].commentNo + '">수정</button></div>'
+		                     +				'<div><button id="delCom" value="' + list[i].commentNo + '">삭제</button></div>'
+		                     +			'</div>'
+		                     +		'</div>'
 		                	 + '</div>';
 					}
 					$("#addComm").html(html);
