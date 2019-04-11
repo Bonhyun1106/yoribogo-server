@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title> [admin] 회원현황-경고상태 회원관리</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/recipe/listrecipe.css" />
@@ -154,6 +155,15 @@
         </p>
   </div>  
   </footer>
+  
+  <script>
+    $("button").on("click", function() {
+    	var param = $("#search").val()
+    	location.href='/yoribogo/admin/recipe/listrecipe.do?search='+ param
+    });
+
+    </script>
+    
 </body>
 </html>
     
