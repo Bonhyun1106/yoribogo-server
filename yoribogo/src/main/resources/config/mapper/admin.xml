@@ -103,34 +103,71 @@
       where rnum between #{begin} and #{end}
      </select>
      
-    
-    <select id="selectMemberCount" resultType="int">
+               
+    <select id="selectMemberCount" resultType="int" parameterType="page2" >
 		select count(*)
-		  from tb_member
+		  from ( select a.*
+					  from tb_member a
+                      <if test="memId != null">
+                     where mem_id like '%' || #{memId} || '%'             
+                 	  </if>
+               )
 	 </select>
+        
 	 
-	 
-	  <select id="selectReportMemberCount" resultType="int">
+	  <select id="selectReportMemberCount" resultType="int" parameterType="page2" >
 		select count(*)
-		  from tb_member
+		  from ( select a.*
+					  from tb_member a
+                      <if test="memId != null">
+                     where mem_id like '%' || #{memId} || '%'             
+                 	  </if>
+               )
 	 </select>	
 						
 	<!-- ========================== 2. 게시글 관리 =========================== -->
 			
-			
-	 <!-- 2-1.  게시글 관리 -->
-	<select id="selectListRecipe" parameterType="page" resultMap="recipeMap">
-		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, m.mem_id
+	<!-- select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, m.mem_id
            from tb_recipe r
            inner join tb_member m 
              on r.mem_no = m.mem_no
-             order by recipe_no desc
+             order by recipe_no desc -->
+             		
+             		
+    
+	 <!-- 2-1.  게시글 관리 -->
+	<select id="selectListRecipe" parameterType="page2" resultMap="recipeMap">
+		select r.recipe_no, r.recipe_title, r.recipe_reg_date, r.recipe_view_cnt, r.mem_id
+          from  (select rownum rnum, a.* 
+                   from ( select a.*, b.mem_id
+					        from tb_recipe a
+					            inner join tb_member b
+					            on a.mem_no = b.mem_no
+					        <if test="memId != null">
+                            where b.mem_id like '%' || #{memId}  || '%'
+                            </if>             
+                            order by a.mem_no, a.recipe_no desc) a) r
+          where rnum between #{begin} and #{end}
 	</select>
 	
+	<!-- 
 	
-	<select id="selectRecipeCount" resultType="int">
-        select count(*)
+	select count(*)
           from tb_recipe
+
+	 -->
+	 
+	 
+	<select id="selectRecipeCount" resultType="int" parameterType="page2">
+       select count(*)
+		  from ( select r.*, b.mem_id
+					  from tb_recipe r
+					 inner join tb_member b
+					    on r.mem_no = b.mem_no
+                      <if test="memId != null">
+                     where b.mem_id like '%' || #{memId} || '%'             
+                 	  </if>
+               )
 	</select>
 	
 	

@@ -207,6 +207,11 @@
     
 <script>
 	$(function() {
+		// null 값 처리
+		function nvl(str, defaultStr){
+	        if(typeof str == "undefined" || str == null || str == "") str = defaultStr;
+	        return str;
+	    };
 		
 		function getCommentList(){
 			var no = ${recipe.no};
@@ -222,6 +227,7 @@
 					let path = "${pageContext.request.contextPath}";
 					for(let i=0 ; i < list.length; i++){
  						html += '<div class="comment" id ="'+ list[i].commentNo + '">'
+ 							 + '<input type="hidden" id="commentNo" name="commentNo" value="'+ list[i].commentNo + '">'
 		                     + 		'<div class="commid">'
 		                     +      	"<div><img src='" 
 		                     + 				path + list[i].profile + ".png"
@@ -230,10 +236,12 @@
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
 		                     + 		'<div class="likecnt">'
-		                     +     		'<div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>'
+		                     +     		'<div><button id="commlikeBtn"><i class="far fa-thumbs-up fa-2x"></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
-		                     +     		'<div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
+		                     +     		'<input type="hidden" name="commlikeCnt" value="' + list[i].commentLikeCnt + '" />'
+		                     +     		'<div><button id="commreportBtn"><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
 		                     +     		'<div class="no">'+ list[i].commentReportCount + '</div>'
+		                     +     		'<input type="hidden" name="commreportCnt" value="' + list[i].commentLikeCnt + '" />'
 		                     + 		'</div>'
 		                     +		'<div>'
 		                     +			'<div id="commBtn">'
@@ -267,7 +275,7 @@
 		$(document).on("click","#delCom",function(){ 
 			let commentNo = $(this).val();
 			
-			console.log("선택 댓글", commentNo);
+			//console.log("선택 댓글", commentNo);
 			
 			$.ajax({
 				url : "deletecomment.do",
@@ -293,11 +301,35 @@
 			})
 		});
 		
-		// null 값 처리
-		function nvl(str, defaultStr){
-	        if(typeof str == "undefined" || str == null || str == "") str = defaultStr;
-	        return str;
-	    };
+		/* ==== 댓글 좋아요 ==== */
+		$(document).on("click", "#commlikeBtn", function() {
+			// 로그인 멤버번호, 댓글번호 넘겨주기
+			let commentNo = $("#commentNo").val();
+			let memNo = nvl(("${user.memNo}"), 99999);
+			
+			console.log("댓글번호 : ", commentNo);
+			console.log("멤버 번호(비회원 99999): ", memNo);
+			
+			if(memNo != 99999){
+					console.log("ajax 호출")
+					$.ajax({
+						url: "likecomment.do",
+						data : {memNo:memNo, commentNo:commentNo},
+						success: function(check){
+							if(check == 1){
+								alert("이 댓글은 이미 좋아요 했어요!");
+								return;
+							} else{
+								alert("좋아요!");
+								$("#commlikeBtn > i").css('color','red');
+								return;
+							}
+						}
+					})
+			} else{
+				alert("로그인 해주세요");
+			}
+		});
 
 		/* ====== 좋아요 ====== */
 		$("#like").click(function (){

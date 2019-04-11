@@ -22,6 +22,7 @@
 		<typeAlias alias="category" type="kr.co.yoribogo.repository.vo.CategoryVO" />
 		<typeAlias alias="like" type="kr.co.yoribogo.repository.vo.LikeVO" />
 		<typeAlias alias="caution" type="kr.co.yoribogo.repository.vo.CautionVO" />
+		<typeAlias alias="likeComment" type="kr.co.yoribogo.repository.vo.LikeCommentVO" />
 	</typeAliases>
 	 
 	<environments default="development">

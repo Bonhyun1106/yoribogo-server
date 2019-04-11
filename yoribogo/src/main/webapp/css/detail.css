@@ -268,10 +268,10 @@ body{
 .likecnt > div > button > i {
   color: grey;
 }
-.likecnt > div > button:focus > i{
+/* .likecnt > div > button:focus > i{
   font-weight: bold;
   color: red;
-}
+} */
 .yes, .no{
   color : black;
 }

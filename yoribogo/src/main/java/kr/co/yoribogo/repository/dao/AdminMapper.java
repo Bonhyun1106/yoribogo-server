@@ -35,7 +35,7 @@ public interface AdminMapper {
 	public List<RecipeVO> selectListRecipe(PageVO2 page);
 	
 	//3-1. 페이징
-	public int selectRecipeCount();
+	public int selectRecipeCount(PageVO2 page);
 	
 	// ===================3. 댓글 관리 ==============================
 	//1. 댓글 관리
