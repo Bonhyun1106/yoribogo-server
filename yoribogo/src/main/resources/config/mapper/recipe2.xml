@@ -216,7 +216,28 @@
 		from tb_comment
 		where comment_no = #{commentNo}
 	</delete>
-
+	
+	
+	<!-- 댓글 좋아요 -->
+	<resultMap id="likeCommentMap" type="likeComment">
+		<result column="like_comment_no" property="likeCommentNo" />
+		<result column="mem_no" property="memNo" />
+		<result column="recipe_no" property="recipeNo" />
+		<result column="comment_no" property="commentNo" />
+	</resultMap>
+	<insert id="likeComment" parameterType="likeComment">
+		insert into tb_like_comment(
+			like_comment_no, 
+			mem_no, 
+			recipe_no, 
+			comment_no
+		) values(
+			s_like_comment_no.nextval, 
+			#{memNo},
+			#{recipeNo},
+			#{commentNo}
+		)
+	</insert>
 
 	<!-- ================================== 게시글 좋아요 ======================================== -->
 	<resultMap type="like" id="likeMap">

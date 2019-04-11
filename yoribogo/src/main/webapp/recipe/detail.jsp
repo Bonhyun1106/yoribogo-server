@@ -222,6 +222,7 @@
 					let path = "${pageContext.request.contextPath}";
 					for(let i=0 ; i < list.length; i++){
  						html += '<div class="comment" id ="'+ list[i].commentNo + '">'
+ 							 + '<input type="hidden" name="commentNo" value="'+ list[i].commentNo + '">'
 		                     + 		'<div class="commid">'
 		                     +      	"<div><img src='" 
 		                     + 				path + list[i].profile + ".png"
@@ -232,8 +233,10 @@
 		                     + 		'<div class="likecnt">'
 		                     +     		'<div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
+		                     +     		'<input type="hidden" name="commlikeCnt" value="' + list[i].commentLikeCnt + '" />'
 		                     +     		'<div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
 		                     +     		'<div class="no">'+ list[i].commentReportCount + '</div>'
+		                     +     		'<input type="hidden" name="commreportCnt" value="' + list[i].commentLikeCnt + '" />'
 		                     + 		'</div>'
 		                     +		'<div>'
 		                     +			'<div id="commBtn">'
