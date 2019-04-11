@@ -229,6 +229,12 @@
 		insert into tb_like(like_no, mem_no, recipe_no
 		) values(s_like_no.nextval, #{memNo}, #{recipeNo})
 	</insert>
+	
+	<select id="checkLikeCnt" parameterType="int" resultType="int">
+		select count(*)
+		  from tb_like
+		 where mem_no = #{memNo}
+	</select>
 </mapper>
 
 

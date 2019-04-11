@@ -28,6 +28,9 @@ public interface RecipeMapper {
 	// 좋아요
 	void insertLikeCnt(LikeVO like);
 	
+	// 좋아요 중복 체크
+	int checkLikeCnt(int memNo);
+	
 	/** ===== 수 정 ===== */
 	RecipeVO updateRecipe(int no);
 	
