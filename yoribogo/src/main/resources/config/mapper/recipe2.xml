@@ -175,6 +175,23 @@
 		  order by comment_like_cnt desc
 	</select>
 	
+	<!-- 댓글 등록 -->
+	<insert id="insertComment" parameterType="comment">
+		insert into tb_comment(
+			comment_no,
+			recipe_no,
+			mem_no,
+			comment_reg_date,
+			comment_content
+		) values(
+			s_comment_no.nextval,
+			#{no},
+			#{memNo},
+			sysdate,
+			#{commentContent}
+		)
+	</insert>
+	
 </mapper>
 
 
