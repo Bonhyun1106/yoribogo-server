@@ -67,7 +67,7 @@
 		<result column="recipe_no" property="recipeNo" />
 		<result column="mem_id" property="memId" />
 		<result column="mem_profile" property="memProfile" />
-		<result column="recipe_title" property="title" />
+		<result column="recipe_title" property="recipeTitle" />
 		<result column="recipe_summary" property="recipeSummary" />
 		<result column="recipe_view_cnt" property="recipeViewCnt" />
 		<result column="recipe_like_cnt" property="recipeLikeCnt" />
