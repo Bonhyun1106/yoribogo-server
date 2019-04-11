@@ -370,7 +370,7 @@
 		let time2 = 60;
 		let kcal1 = 0;
 		let kcal2 = 1000;
-		let path = ${pageContext.request.contextPath};
+		let path = "${pageContext.request.contextPath}";
 		
 		console.log(time1);
 		$("#confirm").click(function () {
@@ -485,6 +485,7 @@
 							html +=	'</div>';
 							
 							html +=	'<img src="' + path + list.photo + '"/>';
+							console.log(path);
 							console.log(list.photo);
 							html +=	'</div>';
 							html +=	'<div class="body">';
