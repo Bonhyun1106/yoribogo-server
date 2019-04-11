@@ -17,7 +17,7 @@
    
 </head>
 <body>
-	<jsp:include page="../include/logoutmenubar.jsp" />
+	<jsp:include page="../include/menu.jsp"/>
     
   <span id = "up"><a href= "#main1"><i class="fas fa-angle-double-up fa-4x"></i></a></span>
   

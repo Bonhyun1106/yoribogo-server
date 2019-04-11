@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
+import kr.co.yoribogo.repository.vo.LikeVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
 @WebServlet("/recipe/detail.do")
@@ -19,11 +20,22 @@ public class DetailRecipeController extends HttpServlet {
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(RecipeMapper.class);
 	}
 	
+	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 		
-		// 글번호
+		// 글번호, 회원번호
 		int no = Integer.parseInt(request.getParameter("no"));
+		String mem = request.getParameter("memNo");
+		if(mem != null) {
+			// 좋아요 상태
+			int memNo = Integer.parseInt(mem);
+			LikeVO like = new LikeVO();
+			like.setMemNo(memNo);
+			like.setRecipeNo(no);
+			int likeCnt = mapper.checkLikeCnt(like);
+			request.setAttribute("likeCnt", likeCnt);
+		};
 		
 		// 게시글 정보
 		RecipeVO rv = mapper.selectDetailRecipe(no);

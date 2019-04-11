@@ -45,7 +45,7 @@
             </div>
         </div>
         <div id="likebar">
-            <button id="like">
+            <button id="like" class="<c:if test='likeCnt eq 1'>.hoverA</c:if>">
                 <i class="fas fa-heart fa-2x" id="likeIcon"></i>
             </button>
         </div>
