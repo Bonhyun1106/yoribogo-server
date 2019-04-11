@@ -67,6 +67,7 @@ public class SignupController extends HttpServlet{
 		File f = mRequest.getFile("profile");
 		
 		String[] tmp = mRequest.getParameterValues("favor");
+		
 		String [] move = tmp[0].replaceAll(","," ").split("#");
 		String [] favArr = new String[3];
 		for(int i = 0; i < move.length;i++) {

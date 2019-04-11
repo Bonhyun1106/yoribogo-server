@@ -315,60 +315,71 @@ body{
 }
 #favorite{
   width: 570px;
-  height: 400px;
+  height: 200px;
   margin : 30px 0 40px 0;
-  background: white;
+  background: rgba(255,255,255,0.2);
   border-radius: 5px;
   font-weight: bolder;
-  border : 1px solid gainsboro;
+  border : 1px solid white;
   
 }
 #favorite > div:nth-child(1){
   border-bottom: 1px solid #53e3a6;
   font-size: 20px;
-  color : gray;
-  width: 100%;
+  color:tomato;
   height: 45px;
   padding-top: 10px;
 }
 
+#fas{
+	border-radius : 3px;
+}
+.favorites{
+	background : tomato;
+	display: inline-block;
+	min-width: 40px;
+	border-radius : 3px;
+	margin : 10px;
+	transition: .2s;	
+	color : white;
+	padding : 6px;
+	font-size : 12px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align : center;
+}
+.favorites:hover{
+	background : #53e3a6;
+	color : white;
+}
 #favoriteSearch{
   border-bottom: 1px solid #53e3a6;
-  color : gray;
   width: 100%;
   height: 30px;
 }
-#favoriteThing{
-  margin-left: 10px;
-  display: inline-block;
-  min-width : 140px;
-  width: 140px;
-  height: 37px;
-  padding : 1px 10px 15px 1px;
-  text-align: left;
-  border-radius: 5px;
-  background: white;
-  color : tomato;
-}
-#favoriteThing > span{
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: lightgrey;
-}
-#favoriteThing:hover{
-  color: white;
-  background: #53e3a6;
-}
-
-#favorite > div:nth-child(3){
+#favorite{
   overflow: scroll;
   width: 100%;
   height: 300px;
 }
+#idChecked, #emailChecked, #passChecked, #pass2Checked{
+	transition: .2s;
+}
+
+
 .file-upload{
   display: none;
+}
+.catEle{
+	text-align-center;
+	display: inline-block;
+	transition:.2s;
+	background : tomato;
+	color: white;
+	font-weight: bold;
+	font-size : 15px;
+	border-radius : 3px;
+	padding: 5px;
 }
 #back{
 	text-decoration: none;

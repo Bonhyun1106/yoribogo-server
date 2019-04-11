@@ -110,30 +110,40 @@
     						$(".upload-button").on('click', function() {
     							$(".file-upload").click();
     						});
-    						
-    						let onoff = false;
-    		              	$(".favorites").click(function(){	              	
-    		              	   var index = $(".favorites").index(this);
-    		              	   if(!onoff){
-    		              	   		onoff = true;
-    		              	   }else{              		   
-    		              	   		onoff = false;
-    		              	   }
-    		              	  
-    		              	  var selectList = document.querySelector("#selectedFavorite");
-    			              $(".favorites:eq(" + index + ")").attr("check",onoff);
-    		              	  if($(this).attr("check")){
-    		              		  if(favor.length == 3){
-    			              		  favor.splice(0,1);
-    		              		  }
-    		              		  favor.push("#"+$(this).text().trim());
-    			              	  selectList.innerHTML ="<div class='catEle'>"+favor+"</div>";
-    		              	  }else{
-    		              		  
-    		              	  }
-    			              console.log(favor);
-    					});
-               		
+    						 $("#favoriteSearch").on("keyup",function() {
+    			                    var k = $(this).val();
+    			                    if(k==""){
+    			                    	return;
+    			                    }
+    								$(".favorites").hide();
+    								var temp = $(".categoryName:contains('" + k + "')");
+    			                    $(temp).parent().show();
+    			                });
+    					
+                  	});
+                  	 let onoff = false;
+                   	$(".favorites").click(function(){	              	
+                   	   var index = $(".favorites").index(this);
+                   	   if(!onoff){
+                   	   		onoff = true;
+                   	   }else{              		   
+                   	   		onoff = false;
+                   	   }
+                   	  
+                   	  var selectList = document.querySelector("#selectedFavorite");
+     	              $(".favorites:eq(" + index + ")").attr("check",onoff);
+                   	  if($(this).attr("check")){
+                   		  if(favor.length == 3){
+     	              		  favor.splice(0,1);
+                   		  }
+                   		  favor.push("#"+$(this).text().trim());
+     	              	  selectList.innerHTML ="<div class='catEle'>"+favor+"</div>";
+                   	  }else{
+                   		  
+                   	  }
+     	              console.log(favor);
+                   	});
+                  	
                		$("input[name='email']").on("keyup",function(){			
                	        if($(this).val().length >= 30) {
 
@@ -244,7 +254,7 @@
                          	    dot = dotTmp[1];
                           	}
                           	formData.append("email", email);
-                          	
+                          	formData.append("favor", favor);
                           	
 
           					console.log("추출 결과 : "+address + at + dot);

@@ -45,6 +45,7 @@
                         </tbody>
                     </table>
                     </div>
+                    
                     <button id="login-button">회원가입</button>
                     <a id="back" href="/yoribogo/login/loginform.do" >이전</a>
                 </form>

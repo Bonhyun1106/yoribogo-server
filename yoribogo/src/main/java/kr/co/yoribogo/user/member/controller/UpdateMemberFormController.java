@@ -21,12 +21,12 @@ public class UpdateMemberFormController extends HttpServlet{
 		mapper = MyAppSqlConfig.getSqlSession().getMapper(SignupMapper.class);
 	}
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		/*
+		
 		HttpSession session = request.getSession();
 		List<CategoryVO> categoryList = mapper.getCategoryList();
 		session.setAttribute("categoryList", categoryList);
 		System.out.println("category size : "+categoryList.size());
-		*/
+		
 		request.getRequestDispatcher("updateform.jsp").forward(request, response);	
 		}
 }
