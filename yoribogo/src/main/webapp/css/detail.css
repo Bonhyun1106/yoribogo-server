@@ -84,14 +84,16 @@ body{
   border : white;
 }
 
-/* #likebar > button:focus{
+/* #likebar > button:focus{ */
+.hover {
   background:white;
   border : 1px solid #ed1c24;
 }
-#likebar > button:focus > .fas{
+/* #likebar > button:focus > .fas{ */
+.hoverA {
   color : red;
   animation: transform .2s linear;
-} */
+}
 @keyframes transform{
   0% { transform: rotateY(0deg); }
   /* 25% { transform: rotateY(90deg);} */
