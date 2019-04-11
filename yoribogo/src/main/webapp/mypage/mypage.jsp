@@ -49,10 +49,11 @@
             <div class="recentPost_body">
 			<c:if test="${userRecipe.size() > 0}">
             	<c:forEach var="recipe" items="${userRecipe}" begin="0" end="2">
-                	<div class="profileBlock_body_inner" style="background-image: url(@!@backimage); background-size: cover;">
+                	<div class="profileBlock_body_inner" style="background-image: url(${pageContext.request.contextPath}${recipe.photo}); background-size: cover;">
                   		<div  class="innerWrapper">  
                   		<img id = "profileBlock_body_inner_profile" src="${pageContext.request.contextPath}${user.memProfile}.png"/>  
 		                   <div class="innerWrapper_inner">
+		                   	 <input type="hidden" name="likeRecipeNo" value="${likeRecipe.recipeNo}">
         		             <div><fmt:formatDate value="${recipe.regDate}" pattern="MM.dd hh:mm" /></div>
                  		     <div>${user.memId}</div>
                      		 <div><i class="fas fa-star"></i>${recipe.grade}/5</div>
@@ -81,10 +82,11 @@
           -->
          <c:if test="${userLikeRecipe.size() > 0}">
          	<c:forEach var="likeRecipe" items="${userLikeRecipe}">
-              <div class="profileBlock_body_inner" style="background-image: url(''); background-size: cover;">
+              <div class="profileBlock_body_inner" style="background-image: url(/yoribogo/${PageContext.request.contextPath}${likeRecipe.recipePhoto}); background-size: cover;">
                   <div  class="innerWrapper">  
-                  <img id = "profileBlock_body_inner_profile" src="${PageContext.request.contextPath}${likeRecipe.memProfile}"/>  
+                  <img id = "profileBlock_body_inner_profile" src="/yoribogo/${PageContext.request.contextPath}${likeRecipe.memProfile}.png"/>  
                    <div class="innerWrapper_inner">
+                     <input type="hidden" name="likeRecipeNo" value="${likeRecipe.recipeNo}">
                      <div><fmt:formatDate value="${likeRecipe.recipeRegDate}" pattern="MM.dd hh:mm" /></div>
                      <div>${likeRecipe.memId}</div>
                      <div><i class="fas fa-star"></i>${likeRecipe.recipeGrade}/5</div>
@@ -100,6 +102,15 @@
               </div>
       </div>
         <script>
+        $(".profileBlock_body_inner").click(function(){
+        	$.ajax({
+        		url:"/yoribogo/recipe/detail.do",
+        		data:"no="+$("input[name='likeRecipeNo']").val(),
+        		success: function(result){
+        			
+        		}
+        	});
+        });
             function stretchLong(){
               let div = document.querySelector(".whetherRecommendation_body");
               for(let i = 0; i < 3;i++){
