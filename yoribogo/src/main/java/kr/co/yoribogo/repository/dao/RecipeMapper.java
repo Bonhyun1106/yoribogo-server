@@ -42,5 +42,5 @@ public interface RecipeMapper {
 	// 댓글 삭제
 	void deleteComment(int commNo);
 
-	List<CategoryVO> getIngredientMap();
+	List<CategoryVO> getIngredientList();
 }

@@ -4,7 +4,7 @@
 <mapper namespace="kr.co.yoribogo.repository.dao.RecipeMapper">
 	<resultMap id="recipeMap" type="recipe">
 		<result column="recipe_no" property="no" />
-		<result column="mem_no"	 property="memNo" />
+		<result column="mem_no" property="memNo" />
 		<result column="recipe_title" property="title" />
 		<result column="recipe_summary" property="summary" />
 		<result column="recipe_view_cnt" property="viewCnt" />
@@ -19,10 +19,10 @@
 		<result column="recipe_photo" property="photo" />
 		<result column="mem_id" property="memId" />
 	</resultMap>
-	
+
 	<resultMap id="memberMap" type="member">
 		<result column="mem_no" property="memNo" />
-		<result column="mem_id"	property="memId" />
+		<result column="mem_id" property="memId" />
 		<result column="mem_password" property="memPassword" />
 		<result column="mem_email" property="memEmail" />
 		<result column="mem_favor1" property="memFavor1" />
@@ -33,123 +33,134 @@
 		<result column="mem_report_count" property="memReportCount" />
 		<result column="mem_is_out" property="memIsOut" />
 	</resultMap>
-	
+
 	<resultMap id="fileMap" type="file">
 		<result column="rec_block_no" property="blockNo" />
 		<result column="recipe_no" property="recipeNo" />
 		<result column="rec_block_content" property="blockCon" />
 		<result column="rec_block_img_link" property="blockImg" />
 	</resultMap>
-	
-	<!-- ================================== 등 록  ======================================== -->
+
+	<!-- ================================== 등 록 ======================================== -->
 	<insert id="insertRecipe" parameterType="recipe">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-	   		select s_recipe_no.nextval from dual
-	   	</selectKey>
+			select s_recipe_no.nextval from dual
+		</selectKey>
 		insert into tb_recipe(
-			recipe_no, 
-			mem_no,
-			recipe_title, 
-			recipe_summary, 
-			recipe_reg_date, 
-			recipe_country,
-			recipe_type,
-			recipe_kcal,
-			recipe_time,
-			recipe_level,
-			recipe_weather,
-			recipe_photo
+		recipe_no,
+		mem_no,
+		recipe_title,
+		recipe_summary,
+		recipe_reg_date,
+		recipe_country,
+		recipe_type,
+		recipe_kcal,
+		recipe_time,
+		recipe_level,
+		recipe_weather,
+		recipe_photo
 		) values(
-			#{no},
-			#{memNo},
-			#{title}, 
-			#{summary}, 
-			sysdate, 
-			#{country},
-			#{type},
-			#{kcal},
-			#{time},
-			#{level},
-			#{weather},
-			#{photo}
+		#{no},
+		#{memNo},
+		#{title},
+		#{summary},
+		sysdate,
+		#{country},
+		#{type},
+		#{kcal},
+		#{time},
+		#{level},
+		#{weather},
+		#{photo}
 		)
 	</insert>
-	
-	<!-- 이미지 파일 등록 -->	
-	<insert id="insertFile" parameterType="file">
-		insert into tb_recipe_block(
-			rec_block_no, recipe_no, rec_block_content, rec_block_img_link
-		) values(
-			s_rec_block_no.nextval, #{recipeNo}, #{blockCon}, #{blockImg}
-		)
-	</insert>
-	
-	
-	<!-- ================================== 상 세 조 회  ======================================== -->
-	<select id="selectDetailRecipe" parameterType="recipe" resultMap="recipeMap">
-		select recipe_no,
-               m.mem_id,
-			   recipe_title,
-			   recipe_summary,
-			   recipe_view_cnt,
-			   recipe_like_cnt,
-			   recipe_reg_date,
-			   (select category_name from tb_category where category_no = recipe_country) as recipe_country,
-			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
-			   recipe_kcal,
-			   recipe_time,
-			   recipe_photo,
-			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
-			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather
-    	  from tb_recipe
-    	 inner join tb_member m
-    	    on tb_recipe.mem_no = m.mem_no
-		 where recipe_no = #{no}
-	</select>
-	
-	<!-- 재료 조회  -->
 
-	<select id="selectIngredient" parameterType="int" resultType="String">
+	<!-- 이미지 파일 등록 -->
+	<insert id="insertFile" parameterType="file">
+		insert into
+		tb_recipe_block(
+		rec_block_no, recipe_no, rec_block_content, rec_block_img_link
+		) values(
+		s_rec_block_no.nextval, #{recipeNo}, #{blockCon}, #{blockImg}
+		)
+	</insert>
+
+
+	<!-- ================================== 상 세 조 회 ======================================== -->
+	<select id="selectDetailRecipe" parameterType="recipe"
+		resultMap="recipeMap">
+		select recipe_no,
+		m.mem_id,
+		recipe_title,
+		recipe_summary,
+		recipe_view_cnt,
+		recipe_like_cnt,
+		recipe_reg_date,
+		(select category_name from tb_category where category_no = recipe_country) as
+		recipe_country,
+		(select category_name from tb_category where category_no = recipe_type) as
+		recipe_type,
+		recipe_kcal,
+		recipe_time,
+		recipe_photo,
+		(select category_name from tb_category where category_no = recipe_level) as
+		recipe_level,
+		(select category_name from tb_category where category_no = recipe_weather) as
+		recipe_weather
+		from tb_recipe
+		inner join tb_member m
+		on tb_recipe.mem_no = m.mem_no
+		where recipe_no = #{no}
+	</select>
+
+	<!-- 재료 조회 -->
+
+	<select id="selectIngredient" parameterType="int"
+		resultType="String">
 		select category_name as categoryName
-		  from tb_category c
-		 inner join tb_ingredient i
-		    on c.category_no = i.category_no
-		 where i.recipe_no = #{no}
+		from tb_category c
+		inner join tb_ingredient i
+		on c.category_no = i.category_no
+		where i.recipe_no = #{no}
 	</select>
-	
-	<resultMap id="ingredientMap" type="category" >
-		<result column="category_name" property="categoryName"/>
-		<result column="category_no" property="categoryNo"/>
+
+	<resultMap id="ingredientMap" type="category">
+		<result column="category_name" property="categoryName" />
+		<result column="category_no" property="categoryNo" />
 	</resultMap>
-	
-	<select id="getIngredientMap" resultType="ingredientMap">
-		select category_no, category_name from tb_category 
-		 where category_dist_no = 1
-	</select>	
-	
+
+	<select id="getIngredientList" resultMap="ingredientMap">
+		select category_no,
+		category_name from tb_category
+		where category_dist_no = 1
+	</select>
+
 	<!-- 이미지 파일 가져오기 -->
-	<select id="selectImageBlock" parameterType="int" resultMap="fileMap">
+	<select id="selectImageBlock" parameterType="int"
+		resultMap="fileMap">
 		select *
-		  from tb_recipe_block
-		 where recipe_no = #{recipeNo}
+		from tb_recipe_block
+		where recipe_no = #{recipeNo}
 	</select>
-	
-	
+
+
 	<!-- ================================== 수 정 ======================================== -->
-	<select id="updateRecipe" parameterType="int" resultMap="recipeMap">
+	<select id="updateRecipe" parameterType="int"
+		resultMap="recipeMap">
 		select *
-    	  from tb_recipe
-		 where recipe_no = #{no}
+		from tb_recipe
+		where recipe_no = #{no}
 	</select>
-	
+
 	<!-- 재료 수정 -->
-	<select id="updateIngredient" parameterType="int" resultType="int">
+	<select id="updateIngredient" parameterType="int"
+		resultType="int">
 		select category_no
-		  from tb_ingredient
-		 where recipe_no = #{no}
+		from tb_ingredient
+		where recipe_no = #{no}
 	</select>
-	
-	
+
+
 	<!-- ================================== 댓 글 ======================================== -->
 	<resultMap id="commentMap" type="comment">
 		<result column="comment_no" property="commentNo" />
@@ -158,60 +169,62 @@
 		<result column="comment_like_cnt" property="commentLikeCnt" />
 		<result column="comment_reg_date" property="commentRegDate" />
 		<result column="comment_content" property="commentContent" />
-		<result column="comment_report_count" property="commentReportCount" />
+		<result column="comment_report_count"
+			property="commentReportCount" />
 		<result column="mem_id" property="memId" />
 		<result column="recipe_title" property="title" />
 		<result column="mem_profile" property="profile" />
 	</resultMap>
-	
+
 	<!-- 댓글 조회. 파라미터 : 글번호 -->
-	<select id="selectComment" parameterType="int" resultMap="commentMap">
-		 select comment_no, 
-		        comment_like_cnt, 
-		        comment_reg_date,
-		        comment_content, 
-		        comment_report_count,
-		        m.mem_id as "mem_id",
-		        m.mem_profile as "mem_profile"
-		   from tb_comment c
-		  inner join tb_member m
-		     on c.mem_no = m.mem_no
-		  where recipe_no = #{no}
-		  order by comment_like_cnt desc
+	<select id="selectComment" parameterType="int"
+		resultMap="commentMap">
+		select comment_no,
+		comment_like_cnt,
+		comment_reg_date,
+		comment_content,
+		comment_report_count,
+		m.mem_id as "mem_id",
+		m.mem_profile as "mem_profile"
+		from tb_comment c
+		inner join tb_member m
+		on c.mem_no = m.mem_no
+		where recipe_no = #{no}
+		order by comment_like_cnt desc
 	</select>
-	
+
 	<!-- 댓글 등록 -->
 	<insert id="insertComment" parameterType="comment">
 		insert into tb_comment(
-			comment_no,
-			recipe_no,
-			mem_no,
-			comment_reg_date,
-			comment_content
+		comment_no,
+		recipe_no,
+		mem_no,
+		comment_reg_date,
+		comment_content
 		) values(
-			s_comment_no.nextval,
-			#{no},
-			#{memNo},
-			sysdate,
-			#{commentContent}
+		s_comment_no.nextval,
+		#{no},
+		#{memNo},
+		sysdate,
+		#{commentContent}
 		)
 	</insert>
-	
+
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment" parameterType="int">
 		delete
-		  from tb_comment
-		 where comment_no = #{commentNo}
+		from tb_comment
+		where comment_no = #{commentNo}
 	</delete>
-	
-	
+
+
 	<!-- ================================== 게시글 좋아요 ======================================== -->
 	<resultMap type="like" id="likeMap">
 		<result column="like_no" property="likeNo" />
 		<result column="mem_no" property="memNo" />
 		<result column="recipe_no" property="recipeNo" />
 	</resultMap>
-	
+
 </mapper>
 
 

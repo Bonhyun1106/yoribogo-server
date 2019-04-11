@@ -139,7 +139,16 @@
                 <div><input type="text" name="ingredient" placeholder="재료를 입력하세요" /></div>
                 <div><i class="fas fa-plus-square fa-2x"></i></div>
             </div>
-            <div class="groceryList" name="ingrdList">호밀빵 2장, 아보카도, 양상추, 토마토, 발사믹소스</div>
+					<table>
+						<tbody>
+							<tr>
+								<c:forEach var="ingredient" items="${ingredientList}">
+									<td>${ingredient.categoryName}</td>
+								</c:forEach>            
+							</tr>
+						</tbody>						
+					</table>
+
         </div>
 
         <div id="content-wrapper">
