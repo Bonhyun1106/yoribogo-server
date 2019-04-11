@@ -72,7 +72,11 @@
 			<c:forEach var='list' items='${recipe}'>
 				
 				<div class="recipe">
+<<<<<<< Updated upstream
 					<a href="detail.do?no=${list.no}&memNo=${list.memNo}" >
+=======
+					<a href="detail.do?no=${list.no}&memNo=${user.memNo}" >
+>>>>>>> Stashed changes
 						<div class="image">
 							<div class="quality">
 								<i class="fas fa-eye fa-2x"></i>${list.viewCnt} 
