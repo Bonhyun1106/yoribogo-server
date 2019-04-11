@@ -35,7 +35,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="${pageContext.request.contextPath}${user.profile}" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${user.memProfile}" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -111,7 +111,7 @@
         <!-- ===========================댓글 등록 ============================ -->
         <div id="inputComm-wrapper">
             <div class="inputId">
-                <div><img src="${user.profile}" name="idImg"/></div>
+                <div><img src="${user.memProfile}" name="idImg"/></div>
                 <div name="id">${user.memId}님</div>
             </div>
 	        <form name="commentForm" id="commentForm" method="post">
@@ -209,6 +209,7 @@
     
 <script>
 	$(function() {
+		
 		function getCommentList(){
 			var no = ${recipe.no};
 			$.ajax({
@@ -221,7 +222,7 @@
 					console.dir(list);
 					let html = "";
 					for(let i=0 ; i < list.length; i++){
- 						html += '<div class="comment">'
+ 						html += '<div class="comment" id ="'+ list[i].commentNo + '">'
 		                     + 		'<div class="commid">'
 		                     +      	"<div><img src='" 
 		                     + 				list[i].profile 
@@ -229,11 +230,15 @@
 		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
+		                     +		'<div>'
+		                     +			'<div id="commBtn">'
+		                     +				'<div><button id="editCom" value="' + list[i].commentNo + '">수정</button></div>'
+		                     +				'<div><button id="delCom" value="' + list[i].commentNo + '">삭제</button></div>'
+		                     +			'</div>'
+		                     +		'</div>'
 		                     + 		'<div class="likecnt">'
 		                     +     		'<div><button><i class="far fa-thumbs-up fa-2x"></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
-		                     + 		'</div>'
-		                     + 		'<div class="likecnt">'
 		                     +     		'<div><button><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
 		                     +     		'<div class="no">'+ list[i].commentReportCount + '</div>'
 		                     + 		'</div>'
@@ -248,16 +253,43 @@
 		
 		// 댓글 등록
 		$("form").submit(function () {
-			/* let no = 42;	//${recipe.no}
-			let memNo = 1; //${user.memNo}
-			let commentContent = $("#commContent").innerText; */
 			$.ajax({
 				url: "insertcomment.do",
 				type : "post",
 				data : $(this).serialize(),
-				success: function(no){
+				success: function(){
 					getCommentList();
 					alert("등록되었습니다.");
+				}
+			})
+		});
+		
+		// 댓글 삭제
+		$(document).on("click","#delCom",function(){ 
+			let commentNo = $(this).val();
+			
+			console.log("선택 댓글", commentNo);
+			
+			$.ajax({
+				url : "deletecomment.do",
+				data : "commentNo=" + commentNo,
+				success: function() {
+					$("#"+commentNo).remove();
+					alert("삭제되었습니다.");
+				}
+			})
+		});
+		
+		// 댓글 수정   ??????????????????????????????????????????????????????
+		$(document).on("click", "#editCom", function() {
+			$("#commId1").html(`<textarea rows="5" cols="100" value="$(this).val()" name="editContent" id="editContent"></textarea>`);
+			
+			let commentNo = $(this).val();
+			$.ajax({
+				url : "updatecomment.do",
+				data : "commentNo=" + commentNo,
+				success: function() {
+					
 				}
 			})
 		});

@@ -1,15 +1,12 @@
 package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
@@ -25,7 +22,6 @@ public class InsertCommentController extends HttpServlet{
 		response.setContentType("text/html; charset=utf-8"); 
 		
 		System.out.println("---- insert comment 호출 ---- ");
-//		System.out.println(request.getParameter("no"));
 		System.out.println("!!!!!!!!!!!!!!!!!!" + request.getParameter("commContent"));
 		
 		CommentVO comm = new CommentVO();
@@ -35,9 +31,5 @@ public class InsertCommentController extends HttpServlet{
 		comm.setMemNo(1);	// 가데이터 회원번호 1
 		comm.setCommentContent(request.getParameter("commContent"));
 		mapper.insertComment(comm);
-		
-//		PrintWriter out = response.getWriter();
-//		out.println(new Gson().toJson("성공");
-//		out.close();
 	}
 }

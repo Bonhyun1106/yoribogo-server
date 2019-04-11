@@ -46,7 +46,7 @@
     <div style="height: 70px;"></div>
 
     <div id="all" class="all">
-        <div id="insert">당신의 레시피를 소개해주세요</div>
+        <div id="insert">${user.memId}님의 레시피를 소개해주세요</div>
         
         
         
@@ -93,17 +93,17 @@
                     <div>
                         <select name="type" id="type">
                             <option value="">선택하세요</option>
-                            <option value="4915">국/탕</option>
-                            <option value="4916">찌개</option>
-                            <option value="4917">반찬</option>
-                            <option value="4918">면</option>
-                            <option value="4919">만두</option>
-                            <option value="4920">밥</option>
-                            <option value="4921">샐러드</option>
-                            <option value="4922">스프</option>
-                            <option value="4923">음료</option>
-                            <option value="4924">빵/디저트</option>
-                            <option value="4925">기타</option>
+                            <option value="4915" <c:if test="${recipe.type == 4915}">selected</c:if> >국/탕</option>
+                            <option value="4916" <c:if test="${recipe.type == 4916}">selected</c:if> >찌개</option>
+                            <option value="4917" <c:if test="${recipe.type == 4917}">selected</c:if> >반찬</option>
+                            <option value="4918" <c:if test="${recipe.type == 4918}">selected</c:if> >면</option>
+                            <option value="4919" <c:if test="${recipe.type == 4919}">selected</c:if> >만두</option>
+                            <option value="4920" <c:if test="${recipe.type == 4920}">selected</c:if> >밥</option>
+                            <option value="4921" <c:if test="${recipe.type == 4921}">selected</c:if> >샐러드</option>
+                            <option value="4922" <c:if test="${recipe.type == 4922}">selected</c:if> >스프</option>
+                            <option value="4923" <c:if test="${recipe.type == 4923}">selected</c:if> >음료</option>
+                            <option value="4924" <c:if test="${recipe.type == 4924}">selected</c:if> >빵/디저트</option>
+                            <option value="4925" <c:if test="${recipe.type == 4925}">selected</c:if> >기타</option>
                         </select>
                     </div>
                 </div>
@@ -120,11 +120,11 @@
                     <div>
                         <select name="weather">
                             <option value="">선택하세요</option>
-                            <option value="4941">맑음</option>
-                            <option value="4942">비/흐림</option>
-                            <option value="4943">눈</option>
-                            <option value="4944">더운날</option>
-                            <option value="4945">추운날</option>
+                            <option value="4941" <c:if test="${recipe.weather == 4941}">selected</c:if> >맑음</option>
+                            <option value="4942" <c:if test="${recipe.weather == 4942}">selected</c:if> >비/흐림</option>
+                            <option value="4943" <c:if test="${recipe.weather == 4943}">selected</c:if> >눈</option>
+                            <option value="4944" <c:if test="${recipe.weather == 4944}">selected</c:if> >더운날</option>
+                            <option value="4945" <c:if test="${recipe.weather == 4945}">selected</c:if> >추운날</option>
                         </select>
                     </div>
                 </div>
@@ -133,11 +133,11 @@
                     <div>
                         <select name="level">
                             <option value="">선택하세요</option>
-                            <option value="4936">매우쉬움</option>
-                            <option value="4937">쉬움</option>
-                            <option value="4938">보통</option>
-                            <option value="4939">어려움</option>
-                            <option value="4940">매우어려움</option>
+                            <option value="4936" <c:if test="${recipe.level == 4936}">selected</c:if> >매우쉬움</option>
+                            <option value="4937" <c:if test="${recipe.level == 4937}">selected</c:if> >쉬움</option>
+                            <option value="4938" <c:if test="${recipe.level == 4938}">selected</c:if> >보통</option>
+                            <option value="4939" <c:if test="${recipe.level == 4939}">selected</c:if> >어려움</option>
+                            <option value="4940" <c:if test="${recipe.level == 4940}">selected</c:if> >매우어려움</option>
                         </select>
                     </div>
                 </div>
