@@ -22,8 +22,9 @@ public class LikeRecipeController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(" --- Like 서블릿 호출 --- ");
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
-//		int no = Integer.parseInt(request.getParameter("recipeNo"));
-		int no = 42;
+//		int memNo = 1;
+		int no = Integer.parseInt(request.getParameter("recipeNo"));
+//		int no = 42;
 		
 		LikeVO like = new LikeVO();
 		like.setMemNo(memNo);
