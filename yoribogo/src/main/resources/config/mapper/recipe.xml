@@ -86,6 +86,7 @@
 	<select id="selectMember" resultMap="memberMap">
 		select *
 		  from tb_member
+		  
 	</select>
 	
 	
