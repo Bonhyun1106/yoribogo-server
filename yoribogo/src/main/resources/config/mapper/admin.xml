@@ -152,21 +152,25 @@
 	
 	
 	<!-- 3-1. 댓글 관리 -->
-	<select id="selectListComment" parameterType="page" resultMap="commentMap">
-	select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_report_count
+	<select id="selectListComment" parameterType="page2" resultMap="commentMap">
+	select c.comment_no, r.recipe_title, c.mem_id, c.comment_content, c.comment_reg_date, c.comment_report_count
      from (select rownum rnum, a.* 
-             from ( select *
-                     from tb_comment  
-                     order by mem_no desc) a) c 
+             from ( select a.*, b.mem_id
+					  from tb_comment a
+					 inner join tb_member b
+					    on a.mem_no = b.mem_no
+                      <if test="memId != null">
+                     where b.mem_id like '%' || #{memId} || '%'             
+                 	  </if>
+                     order by a.mem_no, a.comment_no desc) a) c 
     inner join tb_recipe r 
        on c.MEM_NO = r.MEM_NO
-    inner join tb_member m 
-       on m.mem_no = c.mem_no 
+      and c.recipe_no = r.recipe_no
     where rnum between #{begin} and #{end}  
     </select>
 	
 	<!-- 3-2. 베스트 댓글 관리 -->
-	<select id="selectListBestComment" parameterType="page" resultMap="commentMap">        
+	<select id="selectListBestComment" parameterType="page2" resultMap="commentMap">        
         select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_like_cnt
          from (select rownum rnum, a.* 
              from ( select *
@@ -179,22 +183,16 @@
     where rnum between #{begin} and #{end}  
     </select>
 	
-	 <select id="selectCommentCount" resultType="int">
+	 <select id="selectCommentCount" resultType="int" parameterType="page2" >
 		select count(*)
-		  from tb_member
-	 </select>
-	 
-	  <!--댓글 검색 -->  
-	 <select id="selectCommentById" parameterType="string" resultMap="commentMap" >
-	 	select c.comment_no, r.recipe_title, m.mem_id, c.comment_content, c.comment_reg_date, c.comment_report_count
-         from tb_comment c, tb_member m, tb_recipe r
-            where c.mem_no = m.mem_no
-               and r.mem_no = m.mem_no
-               <where>
-                 <if test="mem_id!=null">
-                    m.mem_id like '%' || #{memId} || '%'             
-                 </if>
-               </where>
+		  from ( select a.*, b.mem_id
+					  from tb_comment a
+					 inner join tb_member b
+					    on a.mem_no = b.mem_no
+                      <if test="memId != null">
+                     where b.mem_id like '%' || #{memId} || '%'             
+                 	  </if>
+               )
 	 </select>
 	
 	

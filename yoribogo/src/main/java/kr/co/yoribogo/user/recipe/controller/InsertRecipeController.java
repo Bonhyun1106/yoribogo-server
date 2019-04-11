@@ -53,7 +53,7 @@ public class InsertRecipeController extends HttpServlet{
 		// 레시피 등록
 		RecipeVO recipe = new RecipeVO();
 		recipe.setNo(recipe.getNo());
-		recipe.setMemNo(1);	// 가데이터 1번 회원
+		recipe.setMemNo(Integer.parseInt(mRequest.getParameter("memNo")));	// 가데이터 1번 회원
 		recipe.setTitle(mRequest.getParameter("title"));
 		recipe.setSummary(mRequest.getParameter("summary"));
 		recipe.setCountry(mRequest.getParameter("country"));

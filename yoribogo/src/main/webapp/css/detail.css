@@ -218,7 +218,7 @@ body{
 /* 댓글 등록 */
 #inputComm-wrapper{
   display: grid;
-  grid-template-columns: .4fr 4.5fr 1fr;
+  grid-template-columns: .4fr 4fr 2fr;
   border : .5px solid lightgrey;
   /* margin-bottom: 30px; */
 }
@@ -247,7 +247,7 @@ body{
 }
 .inputbox > textarea{
   border : .5px solid lightgrey;
-  width: 820px; height: 50px;
+  width: 750px; height: 50px;
   resize : none;
 }
 .inputButton > button{
@@ -272,7 +272,7 @@ body{
 }
 .comment {
   display: grid;
-  grid-template-columns : 1fr 4fr .5fr 1fr;
+  grid-template-columns : 1fr 4fr 1fr .5fr;
  /*  height: 50px;
   line-height: 50px; */
   /* grid-template-rows: auto; */

@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-   <!-- 설정파일에서 사용할 프로퍼티의 파일의 경로 지정: classpath -->
-   <properties resource="config/mybatis/db.properties"/>
-   
-   <!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모 **-->
-   <typeAliases>
-      <typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
-      <typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
-      <typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
-      <typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
-      <typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
-      <typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
-      <typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
-      <typeAlias alias="ingredient" type="kr.co.yoribogo.repository.vo.IngredientVO" />
-      <typeAlias alias="block" type="kr.co.yoribogo.repository.vo.BlockVO" />
-      <typeAlias alias="category" type="kr.co.yoribogo.repository.vo.CategoryVO" />
-      <typeAlias alias="like" type="kr.co.yoribogo.repository.vo.LikeVO" />
-      <typeAlias alias="caution" type="kr.co.yoribogo.repository.vo.CautionVO" />
-   </typeAliases>
-    
-   <environments default="development">
-      <environment id="development">
-         <transactionManager type="JDBC"/>
-         <dataSource type="POOLED">
-            <property name="driver" value="${driver}" />
-            <property name="url" value="${url}" />
-            <property name="username" value="${username}" />
-            <property name="password" value="${password}" />
-         </dataSource>
-      </environment>
-   </environments>
+	<!-- 설정파일에서 사용할 프로퍼티의 파일의 경로 지정: classpath -->
+	<properties resource="config/mybatis/db.properties"/>
+	
+	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모 **-->
+	<typeAliases>
+		<typeAlias alias="member" type="kr.co.yoribogo.repository.vo.MemberVO" />
+		<typeAlias alias="page" type="kr.co.yoribogo.repository.vo.PageVO" />
+		<typeAlias alias="page2" type="kr.co.yoribogo.repository.vo.PageVO2" />
+		<typeAlias alias="recipe" type="kr.co.yoribogo.repository.vo.RecipeVO" />
+		<typeAlias alias="comment" type="kr.co.yoribogo.repository.vo.CommentVO" />
+		<typeAlias alias="notice" type="kr.co.yoribogo.repository.vo.NoticeVO" />
+		<typeAlias alias="banner" type="kr.co.yoribogo.repository.vo.BannerVO" />
+		<typeAlias alias="file" type="kr.co.yoribogo.repository.vo.FileVO" />
+		<typeAlias alias="ingredient" type="kr.co.yoribogo.repository.vo.IngredientVO" />
+		<typeAlias alias="block" type="kr.co.yoribogo.repository.vo.BlockVO" />
+		<typeAlias alias="category" type="kr.co.yoribogo.repository.vo.CategoryVO" />
+		<typeAlias alias="like" type="kr.co.yoribogo.repository.vo.LikeVO" />
+	</typeAliases>
+	 
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
 
-   <mappers>
-      <mapper resource="config/mapper/login.xml"/>
-      <mapper resource="config/mapper/signup.xml"/>
-      <mapper resource="config/mapper/recipe.xml"/>
-      <mapper resource="config/mapper/recipe2.xml"/>
-      <mapper resource="config/mapper/admin.xml"/>
-      <mapper resource="config/mapper/member.xml"/>
-      <mapper resource="config/mapper/search.xml"/>
-   </mappers>
+	<mappers>
+		<mapper resource="config/mapper/login.xml"/>
+		<mapper resource="config/mapper/signup.xml"/>
+		<mapper resource="config/mapper/recipe.xml"/>
+		<mapper resource="config/mapper/recipe2.xml"/>
+		<mapper resource="config/mapper/admin.xml"/>
+		<mapper resource="config/mapper/member.xml"/>
+	</mappers>
 </configuration>

@@ -3,7 +3,8 @@ package kr.co.yoribogo.repository.vo;
 public class PageVO2 {
 	private int pageNo = 1;
 	private String sortType;
-
+	private String memId;
+	
 	public String getSortType() {
 		return sortType;
 	}
@@ -21,5 +22,11 @@ public class PageVO2 {
 	}
 	public int getEnd() {
 		return this.pageNo * 20;
+	}
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
 }
