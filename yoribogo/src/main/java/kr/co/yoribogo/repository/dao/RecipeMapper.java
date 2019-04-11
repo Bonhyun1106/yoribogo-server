@@ -32,10 +32,14 @@ public interface RecipeMapper {
 	
 	
 	/** ================================ 댓 글  ============================================ */
+	// 댓글 조회
 	List<CommentVO> selectComment(int no);
 	
 	// 댓글 등록
-	int insertComment(CommentVO comment);
+	void insertComment(CommentVO comment);
+	
+	// 댓글 삭제
+	void deleteComment(int commNo);
 
 
 }
