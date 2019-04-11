@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.LoginMapper;
+import kr.co.yoribogo.repository.vo.LikeRecipeVO;
 import kr.co.yoribogo.repository.vo.MemberVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
@@ -44,14 +45,15 @@ public class LoginController extends HttpServlet {
 		int memNo = user.getMemNo();
 		System.out.println("LoginCotroller : login Success.");
 		List<RecipeVO> userRecipeList = mapper.selectRecipeByUser(memNo);
-		List<RecipeVO> userLikeRecipeList = mapper.selectLikeRecipeByUser(memNo);
+		List<LikeRecipeVO> userLikeRecipeList = mapper.selectLikeRecipeByUser(memNo);
 
 		System.out.println("작성한 레시피 개수 : " + userRecipeList.size());
 		System.out.println("좋아요 누른 레시피 개수 : " + userLikeRecipeList.size());
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		session.setAttribute("userRecipe", userRecipeList);
-		//session.setAttribute("userLikeRecipe", userLikeRecipeList);
+		session.setAttribute("userLikeRecipe", userLikeRecipeList);
 		
 		response.sendRedirect(request.getContextPath() + "/mypage/mypage.do");
 	

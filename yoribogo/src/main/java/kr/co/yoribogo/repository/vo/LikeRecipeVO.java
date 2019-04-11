@@ -1,16 +1,25 @@
 package kr.co.yoribogo.repository.vo;
 
+import java.util.Date;
+
 public class LikeRecipeVO {
 	 private String recipeNo;
      private String memId;
      private String memProfile;
 	 private String recipeTitle;
+	 private String recipePhoto;
 	 private String recipeSummary;
 	 private String recipeViewCnt;
 	 private String recipeLikeCnt;
-	 private String recipeRegDate;
+	 private Date recipeRegDate;
 	 private String recipeGrade;
 	 
+	public String getRecipePhoto() {
+		return recipePhoto;
+	}
+	public void setRecipePhoto(String recipePhoto) {
+		this.recipePhoto = recipePhoto;
+	}
 	public String getRecipeNo() {
 		return recipeNo;
 	}
@@ -53,10 +62,10 @@ public class LikeRecipeVO {
 	public void setRecipeLikeCnt(String recipeLikeCnt) {
 		this.recipeLikeCnt = recipeLikeCnt;
 	}
-	public String getRecipeRegDate() {
+	public Date getRecipeRegDate() {
 		return recipeRegDate;
 	}
-	public void setRecipeRegDate(String recipeRegDate) {
+	public void setRecipeRegDate(Date recipeRegDate) {
 		this.recipeRegDate = recipeRegDate;
 	}
 	public String getRecipeGrade() {

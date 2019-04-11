@@ -75,23 +75,29 @@
       </div>
 
       <div id = "like"> 
-        <h3 id= "likeTitle">좋아요 표시한 게시물</h3>
+        <h3 id= "likeTitle">총 ${userLikeRecipe.size()}개의 게시글에 좋아요를 눌렀습니다.</h3>
+
         <div class="whetherRecommendation">
           <div class="whetherRecommendation_body">
-              <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(images/foodthumbnail16.jpg); background-size: cover;">
+         <!-- 
+         ${PageContext.request.contextPath}${likeRecipe.recipePhoto}
+          -->
+         <c:if test="${userLikeRecipe.size() > 0}">
+         	<c:forEach var="likeRecipe" items="${userLikeRecipe}">
+              <div class="profileBlock_body_inner" style="background-image: url(''); background-size: cover;">
                   <div  class="innerWrapper">  
-                  <img id = "profileBlock_body_inner_profile" src="${PageContext.request.contextPath}${userLikeRecipe.memProfile}.png"/>  
+                  <img id = "profileBlock_body_inner_profile" src="${PageContext.request.contextPath}${likeRecipe.memProfile}"/>  
                    <div class="innerWrapper_inner">
-                     <div>${userLikeRecipe.recipeRegDate}</div>
-                     <div>${userLikeRecipe.memId}</div>
-                     <div><i class="fas fa-star"></i>${userLikeRecipe.recipeGrade}</div>
+                     <div><fmt:formatDate value="${likeRecipe.recipeRegDate}" pattern="MM.dd hh:mm" /></div>
+                     <div>${likeRecipe.memId}</div>
+                     <div><i class="fas fa-star"></i>${likeRecipe.recipeGrade}/5</div>
                     </div>
-                    <div class="paragraph">${userLikeRecipe.recipeSummary}</div>
+                    <div class="paragraph">${likeRecipe.recipeSummary}</div>
                   </div>
                 </div>
+            </c:forEach>
+		  </c:if>
                 
-                
-                  
                   
                 </div>
               </div>

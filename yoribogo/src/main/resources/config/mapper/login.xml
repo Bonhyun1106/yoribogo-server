@@ -73,11 +73,13 @@
 		<result column="recipe_like_cnt" property="recipeLikeCnt" />
 		<result column="recipe_reg_date" property="recipeRegDate" />
 		<result column="recipe_grade" property="recipeGrade" />
+		<result column="recipe_photo" property="recipePhoto" />
 	</resultMap>
 	 
 	 
 	 <select id="selectLikeRecipeByUser" parameterType="int" resultMap="likeRecipeMap">
 		select r.recipe_no,
+			   r.recipe_photo,
                (select mem_id from tb_member where mem_no = r.mem_no) as mem_id,
                (select mem_profile from tb_member where mem_no = r.mem_no) as mem_profile,
 			   r.recipe_title,
