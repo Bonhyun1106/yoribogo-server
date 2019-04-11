@@ -32,16 +32,18 @@
                     <input type="password" placeholder="비밀번호 확인" name="pass2"><span id="pass2Checked"></span>
                     
                     <div id = "favorite">
-                    <div>키워드</div>
+                    <div>세개의 선호 키워드를 선택해주세요.</div>
+                    <div id="selectedFavorite"></div>
                     <input id="favoriteSearch" type="text" placeholder="검색">
-                    <div>    
-                        
-                        <button id="favorites">
-                        <i class="fas fa-plus-square fa-2x"></i>
-                        <span>채식주의</span>
-                        </button>
-                        
-                    </div>
+                    <table>    
+                        <tobdy>
+                        <c:forEach var="cat" items="${categoryList}">
+                        	<tr class="favorites">
+                        		<td class="categoryName">${cat.categoryName}</td>
+                        	</tr>
+                        </c:forEach>
+                        </tobdy>
+                    </table>
                     </div>
                     <button id="login-button">회원가입</button>
                     <a id="back" href="/yoribogo/login/loginform.do" >이전</a>
@@ -53,7 +55,10 @@
                 let passFlag = false;
        			let pass2Flag = false;
        			let profilePic = "";
-
+				
+       			let favor = [];
+       			
+       			
 				$("#idChecked").html("");	
        			$("#emailChecked").html("");		
 				$("#passChecked").html("");	
@@ -67,6 +72,7 @@
            		let idReg = /^[A-za-z0-9]{5,10}/g;
            		
               	$(document).ready(function() {
+				$(".favorites").hide();
 						var readURL = function(input) {
 							if (input.files && input.files[0]) {
    							var reader = new FileReader();
@@ -85,8 +91,36 @@
 						$(".upload-button").on('click', function() {
 							$(".file-upload").click();
 						});
-					});
-           		
+		                $("#favoriteSearch").on("keyup",function() {
+		                    var k = $(this).val();
+							$(".favorites").hide();
+							var temp = $(".categoryName:contains('" + k + "')");
+		                    $(temp).parent().show();
+		                });
+				});
+	             let onoff = false;
+              	$(".favorites").click(function(){	              	
+              	   var index = $(".favorites").index(this);
+              	   if(!onoff){
+              	   		onoff = true;
+              	   }else{              		   
+              	   		onoff = false;
+              	   }
+              	  
+              	  var selectList = document.querySelector("#selectedFavorite");
+	              $(".favorites:eq(" + index + ")").attr("check",onoff);
+              	  if($(this).attr("check")){
+              		  if(favor.length == 3){
+	              		  favor.splice(0,1);
+              		  }
+              		  favor.push($(this).text().trim());
+	              	  selectList.innerHTML ="<div class='catEle'>"+favor+"</div>";
+              	  }else{
+              		  
+              	  }
+	              console.log(favor);
+              	});
+                
            		$("input[name='email']").on("keyup",function(){			
            	        if($(this).val().length >= 30) {
 
@@ -214,6 +248,7 @@
                	     	let form = $('.form')[0];
                       	let formData = new FormData(form);
                       	formData.append("email", email);
+                      	formData.append("favor", favor);
 						
                       	
                       	let atTmp = [];

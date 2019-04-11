@@ -250,44 +250,39 @@
   border-bottom: 1px solid #53e3a6;
   font-size: 20px;
   color:white;
-  width: 100%;
   height: 45px;
   padding-top: 10px;
 }
-
+#fas{
+	border-radius : 3px;
+}
+.favorites{
+	background : white;
+	display: inline-block;
+	min-width: 40px;
+	border-radius : 3px;
+	margin : 10px;
+	transition: .2s;	
+	color : tomato;
+	padding : 6px;
+	font-size : 12px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align : center;
+}
+.favorites:hover{
+	background : #53e3a6;
+	color : white;
+}
 #favoriteSearch{
   border-bottom: 1px solid #53e3a6;
   width: 100%;
   height: 30px;
 }
-#favoriteThing{
-  margin-left: 10px;
-  display: inline-block;
-  min-width : 140px;
-  width: 140px;
-  height: 37px;
-  padding : 1px 10px 15px 1px;
-  text-align: left;
-  border-radius: 5px;
-  background: white;
-  color : #53e3a6;
-}
-#favoriteThing > span{
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: lightgrey;
-}
-#favoriteThing:hover{
-  color: white;
-  background: #53e3a6;
-}
-
-#favorite > div:nth-child(3){
+#favorite{
   overflow: scroll;
   width: 100%;
-  height: 110px;
+  height: 300px;
 }
 
 #idChecked, #emailChecked, #passChecked, #pass2Checked{
@@ -297,4 +292,15 @@
 
 .file-upload{
   display: none;
+}
+.catEle{
+	text-align-center;
+	display: inline-block;
+	transition:.2s;
+	background : white;
+	color: tomato;
+	font-weight: bold;
+	font-size : 15px;
+	border-radius : 3px;
+	padding: 5px;
 }

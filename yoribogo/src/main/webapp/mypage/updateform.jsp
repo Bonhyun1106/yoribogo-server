@@ -215,8 +215,7 @@
                          	    at = dotTmp[0];
                          	    dot = dotTmp[1];
                           	}
-                          	formData.append("email", email);                      		
-    						
+                          	formData.append("email", email);
                           	
                           	
 

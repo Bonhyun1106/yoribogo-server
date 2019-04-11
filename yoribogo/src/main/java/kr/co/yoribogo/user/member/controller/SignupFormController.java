@@ -25,7 +25,8 @@ public class SignupFormController extends HttpServlet{
 		HttpSession session = request.getSession();
 		List<CategoryVO> categoryList = mapper.getCategoryList();
 		session.setAttribute("categoryList", categoryList);
-	
+		System.out.println("category size : "+categoryList.size());
+		
 		request.getRequestDispatcher("signupform.jsp").forward(request,response);
 		
 	}

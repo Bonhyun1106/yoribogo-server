@@ -17,10 +17,10 @@
 		 where mem_email =#{email}
 	</select>
 	<resultMap id="categoryMap" type="category">
-		<result column="c.category_no" property="categoryNo" />
-		<result column="c.category_name" property="categoryName" />
-		<result column="c.category_dist_no" property="categoryDistNo" />
-		<result column="m.category_dist_name" property="categoryDistName" />
+		<result column="category_no" property="categoryNo" />
+		<result column="category_name" property="categoryName" />
+		<result column="category_dist_no" property="categoryDistNo" />
+		<result column="category_dist_name" property="categoryDistName" />
 	</resultMap>
 	<select id="getCategoryList" resultMap="categoryMap">
 		select c.category_no, c.category_name, c.category_dist_no, m.category_dist_name
