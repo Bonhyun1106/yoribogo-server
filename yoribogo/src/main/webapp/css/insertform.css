@@ -284,3 +284,14 @@ table{
 	width: 100%;
 	border-bottom : 1px solid gainsboro;	
 }
+.ingEle{
+	text-align-center;
+	display: inline-block;
+	transition:.2s;
+	background : white;
+	color: tomato;
+	font-weight: bold;
+	font-size : 15px;
+	border-radius : 3px;
+	padding: 5px;
+}

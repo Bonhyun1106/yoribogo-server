@@ -29,7 +29,7 @@
           	
       	  	<button><div id="settingProfile" style="cursor: pointer;"><i class="fas fa-cog fa-3x"></i></div></button>
       	  </form>
-          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}"></img>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		

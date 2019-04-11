@@ -152,7 +152,7 @@
 					</table>
 			</div>
         </div>
-
+		<div id="selectedIngredient"></div>
         <div id="content-wrapper">
             <div id="add">
                 <div class="content-grid">
@@ -247,6 +247,40 @@
 		      reader.readAsDataURL(this.files[0]);
 		}
 	});
+    
+	let ingredientArr = [];
+    $(document).ready(function() {
+		$("input[name='ingredient']").on("keyup",function() {
+                  var k = $(this).val();
+                  console.log("입력 : "+ k);
+                  if(k==""){
+                  	return;
+                  }
+			var temp = $(".td_ingredient_name:contains('" + k + "')");
+                  $(temp).parent().show();
+              });
+				
+		});
+         let onoff = false;
+      	$(".tr_ingredient").click(function(){	              	
+      	   var index = $(".tr_ingredient").index(this);
+      	   if(!onoff){
+      	   		onoff = true;
+      	   }else{              		   
+      	   		onoff = false;
+      	   }
+      	  
+      	  var selectList = document.querySelector("#selectedIngredient");
+          $(".favorites:eq(" + index + ")").attr("check",onoff);
+      	  if($(this).attr("check")){
+      		  
+      		ingredientArr.push("#"+$(this).text().trim());
+          	selectList.innerHTML ="<div class='ingEle'>"+ingredientArr+"</div>";
+      	  }else{
+      		  
+      	  }
+          console.log(ingredientArr);
+      	});
     
 </script>
 </body>
