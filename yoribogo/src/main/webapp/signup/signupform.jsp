@@ -15,7 +15,7 @@
    <title>Document</title>
 </head>
 <body>
-  <jsp:include page="../include/logoutmenubar.jsp" />
+  <jsp:include page="../include/menu.jsp"/>
     <div class="wrapper">
             <div class="container">
                 <h1>Welcome</h1>
