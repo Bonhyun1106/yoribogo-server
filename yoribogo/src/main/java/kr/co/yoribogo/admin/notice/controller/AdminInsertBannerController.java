@@ -64,13 +64,13 @@ public AdminInsertBannerController() {
 			banner.setLink(mRequest.getOriginalFileName("banner"));
 		}
 				
-		banner.setTitle(mRequest.getParameter("title"));
-		banner.setContent(mRequest.getParameter("content"));
+		banner.setTitle("아보카도샌드위치");
+		banner.setContent("맛있는 아보카도 샌드위치");
 		
 		mapper.insertBanner(banner);
 		
 		
 		//작성하고 메인으로 가는지 아니면 걍 다시 배너 등록 창으로 오는지 
-		response.sendRedirect(request.getContextPath() + "/admin/notice/bannerform.do");
+		response.sendRedirect(request.getContextPath() + "/main.do");
 	}
 }
