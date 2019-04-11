@@ -238,6 +238,14 @@
 			#{commentNo}
 		)
 	</insert>
+	
+	<!-- 댓글 좋아요 중복 체크 -->
+	<select id="checkLikeCommentCnt" parameterType="likeComment" resultType="int">
+		select count(*)
+		  from tb_like_comment
+		 where mem_no = #{memNo}
+		   and comment_no = #{commentNo}
+	</select>
 
 	<!-- ================================== 게시글 좋아요 ======================================== -->
 	<resultMap type="like" id="likeMap">

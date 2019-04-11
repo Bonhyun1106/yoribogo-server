@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.yoribogo.repository.vo.CategoryVO;
 import kr.co.yoribogo.repository.vo.CommentVO;
 import kr.co.yoribogo.repository.vo.FileVO;
+import kr.co.yoribogo.repository.vo.LikeCommentVO;
 import kr.co.yoribogo.repository.vo.LikeVO;
 import kr.co.yoribogo.repository.vo.RecipeVO;
 
@@ -48,6 +49,12 @@ public interface RecipeMapper {
 	
 	// 댓글 삭제
 	void deleteComment(int commNo);
-
+	
+	// 댓글 좋아요
+	void likeComment(LikeCommentVO likeComment);
+	
+	// 댓글 좋아요 중복체크
+	int checkLikeCommentCnt(LikeCommentVO likeComment);
+	
 	List<CategoryVO> getIngredientList();
 }

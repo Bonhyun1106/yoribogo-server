@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
+import kr.co.yoribogo.repository.vo.LikeCommentVO;
 
 @WebServlet("/recipe/likecomment.do")
 public class LikeCommentController extends HttpServlet {
@@ -24,10 +25,28 @@ public class LikeCommentController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		System.out.println(" --- LikeComment 서블릿 호출 --- ");
 		System.out.println("---- memNo : " + request.getParameter("memNo"));		// 로그인 회원 번호
-		System.out.println("---- recipeNo : " + request.getParameter("commentNo"));	// 코멘트번호
+		System.out.println("---- commentNo : " + request.getParameter("commentNo"));	// 코멘트번호
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		int commNo = Integer.parseInt(request.getParameter("commentNo"));
+		
+		LikeCommentVO likecomment = new LikeCommentVO();
+		likecomment.setMemNo(memNo);
+		likecomment.setCommentNo(commNo);
+				
+		// 중복체크 0이면 없는 것..
+		int likeCommCnt = mapper.checkLikeCommentCnt(likecomment); 
+		System.out.println("likeCnt 결과!!!! " + likeCommCnt);
+		if(likeCommCnt == 0) {
+			System.out.println("0번. 중복없음.");
+			mapper.likeComment(likecomment);
+			out.println(0);
+			return;
+		}
+		System.out.println("1번. 중복있음");
+		out.println(1);
+		out.close();
+		
 	
 	}
 	
