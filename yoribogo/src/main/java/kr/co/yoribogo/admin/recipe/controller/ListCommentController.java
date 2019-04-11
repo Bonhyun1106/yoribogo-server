@@ -30,10 +30,11 @@ private AdminMapper mapper;
 		try {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			page.setPageNo(pageNo);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			
+		}
 
 		page.setMemId(request.getParameter("search"));
-		
 		// 게시물 목록 가져오기
 		request.setAttribute("comment", mapper.selectListComment(page));
 		request.setAttribute("pageResult", new AdminPageResult(pageNo, mapper.selectCommentCount(page)));
@@ -42,5 +43,4 @@ private AdminMapper mapper;
 		       .forward(request, response);
 			
 	}
-	
 }
