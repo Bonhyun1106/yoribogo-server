@@ -580,3 +580,14 @@ body {
     border-radius: 25px;
     margin-left : 15px;
   }
+  
+  #noneloginButton {
+  	text-align: center;
+    top: 15px;
+    width: 200px;
+    color: tomato;
+    font-size: 15px;
+	font-weight: bolder;
+	display: flex;
+	align-items: center;
+  }
