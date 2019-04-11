@@ -52,8 +52,10 @@
 		   </foreach>
 	</select>
 	
-	<select id="select">
-	
+	<select id="searchRecipe" parameterType="String" resultMap="recipeMap">
+		select * 
+		  from tb_recipe
+		 where recipe_title like '%' || #{title} || '%' 
 	</select>
 </mapper>
 
