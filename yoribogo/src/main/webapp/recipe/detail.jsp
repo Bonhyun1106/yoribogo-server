@@ -110,23 +110,23 @@
 
         <div id="line"></div>
         <!-- ===========================댓글 등록 ============================ -->
+        <form name="commentForm" id="commentForm" method="post">
         <div id="inputComm-wrapper">
             <div class="inputId">
-                <div><img src="${user.memProfile}" name="idImg"/></div>
+                <div><img src="${pageContext.request.contextPath}${user.memProfile}.png" name="idImg"/></div>
                 <div name="id">${user.memId}님</div>
             </div>
             <div class="inputbox">
-	        <form name="commentForm" id="commentForm" method="post">
 	        	<input type="hidden" id="recNo" name="recNo" value="${recipe.no}">
-	        	<input type="hidden" id="commId" name="commId" value="${user.memId}">
+	        	<input type="hidden" id="commId" name="commId" value="${user.memNo}">
                 <textarea rows="5" cols="100" placeholder="응원의 댓글을 달아보세요" name="commContent" id="commContent"></textarea>
                 <!-- <div class="font">0/3000</div> -->
-    	    </form>
             </div>
             <div class="inputButton">
                 <button id="inputButton">등록</button>
             </div>
         </div>
+   	    </form>
 
 
         <!-- ===========================하단======================== -->
@@ -214,7 +214,7 @@
 		function getCommentList(){
 			var no = ${recipe.no};
 			$.ajax({
-				url:"list-comment.do",
+				url:"listcomment.do",
 				/* type: "post", */
 				data:"no="+ no,
 				dataType:"json",
@@ -222,11 +222,12 @@
 					console.log("list", list);
 					console.dir(list);
 					let html = "";
+					let path = "${pageContext.request.contextPath}";
 					for(let i=0 ; i < list.length; i++){
  						html += '<div class="comment" id ="'+ list[i].commentNo + '">'
 		                     + 		'<div class="commid">'
 		                     +      	"<div><img src='" 
-		                     + 				list[i].profile 
+		                     + 				path + list[i].profile + ".png"
 		                     + 			"'></div>"
 		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
 		                     +		'</div>'

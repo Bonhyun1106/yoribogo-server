@@ -21,13 +21,15 @@ public class InsertCommentController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8"); 
 		
-//		System.out.println("---- insert comment 호출 ---- ");
-//		System.out.println("!!!!!!!!!!!!!!!!!!" + request.getParameter("commContent"));
+		System.out.println("---- insert comment 호출 ---- ");
+		System.out.println("!!!!!!!!!!!!!!!!!!" + request.getParameter("recNo"));
+		System.out.println("!!!!!!!!!!!!!!!!!!" + request.getParameter("commId"));
+		System.out.println("!!!!!!!!!!!!!!!!!!" + request.getParameter("commContent"));
 		
 		CommentVO comm = new CommentVO();
-		comm.setNo(Integer.parseInt(request.getParameter("no")));
+		comm.setNo(Integer.parseInt(request.getParameter("recNo")));
 //		comm.setNo(42);	// 가데이터  글번호42
-		comm.setMemNo(Integer.parseInt(request.getParameter("memNo")));
+		comm.setMemNo(Integer.parseInt(request.getParameter("commId")));
 //		comm.setMemNo(1);	// 가데이터 회원번호 1
 		comm.setCommentContent(request.getParameter("commContent"));
 		mapper.insertComment(comm);

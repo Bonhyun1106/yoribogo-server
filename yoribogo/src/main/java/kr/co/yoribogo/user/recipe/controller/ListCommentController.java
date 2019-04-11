@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.repository.dao.RecipeMapper;
 
-@WebServlet("/recipe/list-comment.do")
+@WebServlet("/recipe/listcomment.do")
 public class ListCommentController extends HttpServlet{
 	private RecipeMapper mapper;
 	public ListCommentController() {
@@ -26,8 +26,8 @@ public class ListCommentController extends HttpServlet{
 		
 		System.out.println(" ------ comment 호출 ------ ");
 		int no = Integer.parseInt(request.getParameter("no"));
-//		System.out.println("Comment no : " + no);
-//		System.out.println("Comment DB" + mapper.selectComment(no));
+		System.out.println("Comment no : " + no);
+		System.out.println("Comment DB" + mapper.selectComment(no));
 		
 		
 		PrintWriter out = response.getWriter();
