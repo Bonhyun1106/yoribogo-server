@@ -95,15 +95,17 @@
                   </div>
                 </div>
             </c:forEach>
-            <div id="moreInfo2"style="cursor: pointer;" onclick="location.href='/yoribogo/recipe/likerecipe.do?memno=${user.memNo}'">
-          <i class="fas fa-chevron-down fa-2x"></i>
-      		</div>
 		  </c:if>
                 
                   
                 </div>
               </div>
       </div>
+       <c:if test="${userLikeRecipe.size() ne 0}">
+            <div id="moreInfo2"style="cursor: pointer;" onclick="location.href='/yoribogo/recipe/list.do'">
+          <i class="fas fa-chevron-down fa-2x"></i>
+      		</div>
+        </c:if>
         <script>
         $(".profileBlock_body_inner").click(function(){
         	$.ajax({
