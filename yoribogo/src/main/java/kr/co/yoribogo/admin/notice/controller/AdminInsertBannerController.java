@@ -71,6 +71,6 @@ public AdminInsertBannerController() {
 		
 		
 		//작성하고 메인으로 가는지 아니면 걍 다시 배너 등록 창으로 오는지 
-		response.sendRedirect(request.getContextPath() + "/main.do");
+		response.sendRedirect(request.getContextPath() + "/main/main.do");
 	}
 }

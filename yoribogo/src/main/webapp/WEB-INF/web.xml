@@ -26,8 +26,9 @@
   			/admin/member/listmember.do;
   			/admin/member/listmemberreport.do;
   			/admin/recipe/listrecipe.do;
-  			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
+  			/admin/notice/write.do;
+  			/admin/notice/insertbanner.do;
   			/admin/notice/bannerform.do;
   			/admin/recipe/listcomment.do;
 			/admin/recipe/listbestcomment.do;
@@ -56,9 +57,10 @@
   			/admin/member/listmember.do;
   			/admin/member/listmemberreport.do;
   			/admin/recipe/listrecipe.do;
-  			/admin/notice/insertbanner.do;
   			/admin/notice/noticeform.do;
   			/admin/notice/bannerform.do;
+  			/admin/notice/insertbanner.do;
+  			/admin/notice/write.do;
   			/admin/recipe/listcomment.do;
 			/admin/recipe/listbestcomment.do;
   			/login/login.do;

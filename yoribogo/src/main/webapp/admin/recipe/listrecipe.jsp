@@ -112,7 +112,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="search_input">
           <div class="container-4">
-            <input type="search" id="search" placeholder="제목으로 검색!" />
+            <input type="search" id="search" placeholder="작성자로 검색!" />
             <button class="icon"><i class="fa fa-search"></i></button>
           </div>
   </div>
