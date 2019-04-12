@@ -52,6 +52,7 @@
   		<param-name>pages</param-name>
   		<param-value>
   			/main/main.do;
+  			/recipe/list.do;
   			/admin/member/listmember.do;
   			/admin/member/listmemberreport.do;
   			/admin/recipe/listrecipe.do;
