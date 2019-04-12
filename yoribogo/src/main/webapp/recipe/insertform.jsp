@@ -159,7 +159,7 @@
             <div id="add">
                 <div class="content-grid">
                     <div id="con-img1">
-                        <input type="file" name="contentImg1" id="contentImg1" placeholder="파일을 첨부하세요" />
+                        <input type="file" name="contentImg1" id="contentImg1" placeholder="파일을 첨부하세요" onchange="uploadImgFile(1)" />
                         <img name="con-img1">
                     </div>
                     <div id="con-txt1">
@@ -236,7 +236,7 @@
     /* ================  이미지 미리보기 처리   ======================================================================= */
     
     function uploadImgFile(cnt) {
-    	alert(cnt);
+    	/* alert(cnt); */
     	var e = window.event;
     	
 		 if (e.target.files && e.target.files[0]) {
