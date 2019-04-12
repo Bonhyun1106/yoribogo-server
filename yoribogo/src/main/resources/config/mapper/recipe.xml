@@ -90,6 +90,49 @@
 	</select>
 	
 	
+	 <resultMap id="likeRecipeMap" type="likeRecipe">
+		<result column="recipe_no" property="recipeNo" />
+		<result column="mem_id" property="memId" />
+		<result column="mem_profile" property="memProfile" />
+		<result column="recipe_title" property="recipeTitle" />
+		<result column="recipe_summary" property="recipeSummary" />
+		<result column="recipe_view_cnt" property="recipeViewCnt" />
+		<result column="recipe_like_cnt" property="recipeLikeCnt" />
+		<result column="recipe_reg_date" property="recipeRegDate" />
+		<result column="recipe_grade" property="recipeGrade" />
+		<result column="recipe_photo" property="recipePhoto" />
+		<result column="recipe_country" property="country" />
+		<result column="recipe_type" property="type" />
+		<result column="recipe_kcal" property="kcal" />
+		<result column="recipe_time" property="time" />
+		<result column="recipe_level" property="level" />
+		<result column="recipe_weather" property="weather" />
+	</resultMap>
+	
+	<select id="selectLikeRecipe" parameterType="int" resultMap="likeRecipeMap">
+	
+		select r.recipe_no,
+			   r.recipe_photo,
+               (select mem_id from tb_member where mem_no = r.mem_no) as mem_id,
+               (select mem_profile from tb_member where mem_no = r.mem_no) as mem_profile,
+			   r.recipe_title,
+			   r.recipe_summary,
+			   r.recipe_view_cnt,
+			   r.recipe_like_cnt,
+			   r.recipe_reg_date,
+			   (select category_name from tb_category where category_no = recipe_country) as recipe_country,
+			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
+			   recipe_kcal,
+			   recipe_time,
+			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
+			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather,
+			   r.recipe_grade
+		 from tb_recipe r, tb_member m, tb_like l
+		where l.recipe_no = r.recipe_no and l.mem_no = m.mem_no and m.mem_no = #{memNo}  
+	</select>
+
+	
+	
 </mapper>
 
 

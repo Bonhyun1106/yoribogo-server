@@ -13,7 +13,42 @@ public class LikeRecipeVO {
 	 private String recipeLikeCnt;
 	 private Date recipeRegDate;
 	 private String recipeGrade;
+	 private String recipeCountry;
+	 private String recipeType;
+	 private String recipeKcal;
+	 private String recipeTime;
+	 private String recipeLevel;
 	 
+	public String getRecipeCountry() {
+		return recipeCountry;
+	}
+	public void setRecipeCountry(String recipeCountry) {
+		this.recipeCountry = recipeCountry;
+	}
+	public String getRecipeType() {
+		return recipeType;
+	}
+	public void setRecipeType(String recipeType) {
+		this.recipeType = recipeType;
+	}
+	public String getRecipeKcal() {
+		return recipeKcal;
+	}
+	public void setRecipeKcal(String recipeKcal) {
+		this.recipeKcal = recipeKcal;
+	}
+	public String getRecipeTime() {
+		return recipeTime;
+	}
+	public void setRecipeTime(String recipeTime) {
+		this.recipeTime = recipeTime;
+	}
+	public String getRecipeLevel() {
+		return recipeLevel;
+	}
+	public void setRecipeLevel(String recipeLevel) {
+		this.recipeLevel = recipeLevel;
+	}
 	public String getRecipePhoto() {
 		return recipePhoto;
 	}

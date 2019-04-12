@@ -95,6 +95,9 @@
                   </div>
                 </div>
             </c:forEach>
+            <div id="moreInfo2"style="cursor: pointer;">
+          <i class="fas fa-chevron-down fa-2x"></i>
+      		</div>
 		  </c:if>
                 
                   
@@ -111,16 +114,12 @@
         		}
         	});
         });
-            function stretchLong(){
-              let div = document.querySelector(".whetherRecommendation_body");
-              for(let i = 0; i < 3;i++){
 
-              }
-            }
+        $("#moreInfo2").click(function(){
+        		location.href = "/yoribogo/recipe/likerecipe.do";
+        });
           </script>
-      <div id="moreInfo2"style="cursor: pointer;" onclick="stretchLong();">
-          <i class="fas fa-chevron-down fa-2x"></i>
-      </div>
+      
 
     </div>
 </div>
