@@ -23,10 +23,13 @@ public class InsertRecipeFormController extends HttpServlet {
 	}
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
 		List<CategoryVO> ingredientList = mapper.getIngredientList();
 		HttpSession session = request.getSession();
 		session.setAttribute("ingredientList", ingredientList);
 		System.out.println("ingredientList size : "+ingredientList.size());
 		request.getRequestDispatcher("insertform.jsp").forward(request, response);
+		
+		
 	}
 }

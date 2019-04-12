@@ -33,7 +33,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="${pageContext.request.contextPath}${user.memProfile}" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${user.memProfile}.png" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div id="likebar">
-            <button id="like" class="<c:if test='likeCnt eq 1'>.hoverA</c:if>">
+            <button id="like" <c:if test='${likeCnt == 1}'>class='.hoverA'</c:if> >
                 <i class="fas fa-heart fa-2x" id="likeIcon"></i>
             </button>
         </div>

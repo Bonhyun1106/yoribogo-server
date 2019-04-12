@@ -33,7 +33,7 @@ public class DetailRecipeController extends HttpServlet {
 			LikeVO like = new LikeVO();
 			like.setMemNo(memNo);
 			like.setRecipeNo(no);
-			int likeCnt = mapper.checkLikeCnt(like);
+			int likeCnt = mapper.checkLikeCnt(like);	// 1이면 이미 좋아요한 상태
 			request.setAttribute("likeCnt", likeCnt);
 		};
 		
