@@ -233,6 +233,7 @@
 		                     + 				path + list[i].profile + ".png"
 		                     + 			"'></div>"
 		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
+		                     +      	'<input type="hidden" id="commWriterId" name="commWriterId" value="'+list[i].memNo+'">' 
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
 		                     + 		'<div class="likecnt">'
@@ -271,11 +272,46 @@
 			})
 		});
 		
-		// 댓글 삭제
+		// 댓글 삭제 ===================================================
 		$(document).on("click","#delCom",function(){ 
-			let commentNo = $(this).val();
 			
-			//console.log("선택 댓글", commentNo);
+			// 로그인 회원번호 == 댓글작성자 회원번호
+			let memNo = nvl(("${user.memNo}"), 99999);
+			let commWriter = $("#commWriterId").val();
+			let commNo = $("#delCom").val();
+			
+			console.log("멤버 번호(비회원 99999): ", memNo);
+			console.log("댓글 작성자 : ", commWriter);
+			console.log("삭제할 댓글 번호: ", commNo);
+			
+			if(memNo != 99999){
+					console.log("ajax 호출");
+					$.ajax({
+						url: "deletecomment.do",
+						data : {memNo:memNo, commWriter:commWriter, commNo:commNo},
+						success: function(check){
+							if(check == 1){
+								$("#"+commentNo).remove();
+								alert("삭제되었습니다.");
+								return;
+							} else{
+								alert("댓글 작성자만 삭제할 수 있어요!");
+								return;
+							}
+						}
+					})
+			} else{
+				alert("로그인 해주세요");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			$.ajax({
 				url : "deletecomment.do",
