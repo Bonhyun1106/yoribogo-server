@@ -109,12 +109,14 @@
 		<result column="recipe_weather" property="weather" />
 	</resultMap>
 	
-	<select id="selectLikeRecipe" parameterType="int" resultMap="likeRecipeMap">
+	<select id="selectLikeRecipe" parameterType="page3" resultMap="likeRecipeMap">
 	
-		select r.recipe_no,
-			   r.recipe_photo,
-               (select mem_id from tb_member where mem_no = r.mem_no) as mem_id,
-               (select mem_profile from tb_member where mem_no = r.mem_no) as mem_profile,
+		select *
+from (select rownum rnum, a.*
+                from (select r.recipe_no,
+                             r.recipe_photo,
+                            (select mem_id from tb_member where mem_no = r.mem_no) as mem_id,
+                            (select mem_profile from tb_member where mem_no = r.mem_no) as mem_profile,
 			   r.recipe_title,
 			   r.recipe_summary,
 			   r.recipe_view_cnt,
@@ -122,13 +124,43 @@
 			   r.recipe_reg_date,
 			   (select category_name from tb_category where category_no = recipe_country) as recipe_country,
 			   (select category_name from tb_category where category_no = recipe_type) as recipe_type,
-			   recipe_kcal,
-			   recipe_time,
+			   r.recipe_kcal,
+			   r.recipe_time,
 			   (select category_name from tb_category where category_no = recipe_level) as recipe_level,
 			   (select category_name from tb_category where category_no = recipe_weather) as recipe_weather,
 			   r.recipe_grade
-		 from tb_recipe r, tb_member m, tb_like l
-		where l.recipe_no = r.recipe_no and l.mem_no = m.mem_no and m.mem_no = #{memNo}  
+			   from tb_recipe r, tb_member m, tb_like l
+               where l.recipe_no = r.recipe_no and l.mem_no = m.mem_no and m.mem_no = 58
+               <choose>
+								<when test="sortType == 'latestASC'">
+									order by r.recipe_no asc
+								</when>
+								<when test="sortType == 'gradeDESC'">
+									order by r.recipe_grade desc
+								</when>
+								<when test="sortType == 'gradeASC'">
+									order by r.recipe_grade asc
+								</when>
+								<when test="sortType == 'likeDESC'">
+									order by r.recipe_like_cnt desc
+								</when>
+								<when test="sortType == 'likeASC'">
+									order by r.recipe_like_cnt asc
+								</when>
+								<when test="sortType == 'levelDESC'">
+									order by recipe_level desc
+								</when>
+								<when test="sortType == 'levelASC'">
+									order by recipe_level asc
+								</when>
+								<otherwise>
+									order by recipe_no desc
+								</otherwise>
+							</choose>
+			   ) a
+    )
+  where rnum between #{begin} and #{end}
+		
 	</select>
 
 	
