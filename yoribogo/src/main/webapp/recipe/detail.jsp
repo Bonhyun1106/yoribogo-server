@@ -214,7 +214,9 @@
 	    };
 		
 		function getCommentList(){
+			alert("¥Ò±€ »£√‚");
 			var no = ${recipe.no};
+			
 			$.ajax({
 				url:"listcomment.do",
 				/* type: "post", */

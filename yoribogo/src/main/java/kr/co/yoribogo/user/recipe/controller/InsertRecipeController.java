@@ -112,7 +112,7 @@ public class InsertRecipeController extends HttpServlet{
 		
 		response.sendRedirect("list.do");
 		*/
-request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		
 		String uploadPath = request.getServletContext().getRealPath("/images");
 		System.out.println("uploadPath : ");
@@ -121,7 +121,7 @@ request.setCharacterEncoding("utf-8");
 		String uploadRoot = "/images";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String path = "/recipe" + sdf.format(new Date());
-		File file = new File(uploadRoot+path);
+		File file = new File(uploadPath+path);
 		if(file.exists() == false) file.mkdirs();
 		MultipartRequest mRequest = new MultipartRequest(
 					request,
