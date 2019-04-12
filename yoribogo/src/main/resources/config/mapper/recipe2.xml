@@ -179,16 +179,17 @@
 	<!-- 댓글 조회. 파라미터 : 글번호 -->
 	<select id="selectComment" parameterType="int"
 		resultMap="commentMap">
-		select comment_no,
-		comment_like_cnt,
-		comment_reg_date,
-		comment_content,
-		comment_report_count,
-		m.mem_id as "mem_id",
-		m.mem_profile as "mem_profile"
-		from tb_comment c
+		select c.comment_no,
+			   c.mem_no,
+				c.comment_like_cnt,
+				c.comment_reg_date,
+				c.comment_content,
+				c.comment_report_count,
+				m.mem_id as "mem_id",
+				m.mem_profile as "mem_profile"
+		 from tb_comment c
 		inner join tb_member m
-		on c.mem_no = m.mem_no
+		   on c.mem_no = m.mem_no
 		where recipe_no = #{no}
 		order by comment_like_cnt desc
 	</select>
@@ -209,12 +210,14 @@
 		#{commentContent}
 		)
 	</insert>
+	
 
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment" parameterType="int">
-		delete
-		from tb_comment
-		where comment_no = #{commentNo}
+	   delete
+		 from tb_comment
+	    where comment_no = #{commentNo}
+		  and mem_no = #{memNo}
 	</delete>
 	
 	

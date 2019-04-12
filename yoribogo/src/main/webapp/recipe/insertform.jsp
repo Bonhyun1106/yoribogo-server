@@ -159,7 +159,7 @@
             <div id="add">
                 <div class="content-grid">
                     <div id="con-img1">
-                        <input type="file" name="contentImg1" id="contentImg1" placeholder="파일을 첨부하세요" />
+                        <input type="file" name="contentImg1" id="contentImg1" placeholder="파일을 첨부하세요" onchange="uploadImgFile(1)" />
                         <img name="con-img1">
                     </div>
                     <div id="con-txt1">
@@ -222,27 +222,35 @@
         cnt++;
         $("#add").append(
             '<div class="content-grid">'
-            +   '<div id="con-img${cnt}">'
-            +      '<input type="file" name="contentImg${cnt}" id="contentImg${cnt}" placeholder="파일을 첨부하세요" />'
-            +       '<img name="con-img${cnt}">'
+            +   '<div id="con-img' + cnt + '">'
+            +      '<input type="file" name="contentImg' + cnt + '" id="contentImg' + cnt + '" placeholder="파일을 첨부하세요" onchange="uploadImgFile(' + cnt + ')"/>'
+            +       '<img name="con-img' + cnt + '" class="imgUpload">'
             +   '</div>'
-            +   '<div id="con-txt${cnt}">'
-            +       '<textarea name="con-txt${cnt}" placeholder="내용을 입력하세요"></textarea>'
+            +   '<div id="con-txt' + cnt + '">'
+            +       '<textarea name="con-txt' + cnt + '" placeholder="내용을 입력하세요"></textarea>'
             +   '</div>'
             +'</div>'
         );
     });
 
-    $("#delBox").click(function () {
-        if ($("div.content-grid").length == 1) {
-            alert("내용을 입력해 주세요!");
-            return false;
-        }
-        $("div.content-grid:last-child").remove();
-    });
+    /* ================  이미지 미리보기 처리   ======================================================================= */
     
+    function uploadImgFile(cnt) {
+    	/* alert(cnt); */
+    	var e = window.event;
+    	
+		 if (e.target.files && e.target.files[0]) {
+			  var reader = new FileReader();
+
+			  reader.onload = function(e) {
+			         $("img[name='con-img"+cnt+"']").attr('src', e.target.result);
+			  }
+		      reader.readAsDataURL(e.target.files[0]);
+		}
+	};
     
-    $("#contentImg1").change(function() {
+	
+    /* $("#contentImg1").change(function() {
 		 if (this.files && this.files[0]) {
 			  var reader = new FileReader();
 
@@ -251,7 +259,18 @@
 			  }
 		      reader.readAsDataURL(this.files[0]);
 		}
-	});
+	}); */
+    
+    
+    
+    $("#delBox").click(function () {
+        if ($("div.content-grid").length == 1) {
+            alert("내용을 입력해 주세요!");
+            return false;
+        }
+        $("div.content-grid:last-child").remove();
+    });
+    
     
 	let ingredientArr = [];
     $(document).ready(function() {

@@ -33,8 +33,10 @@ public class DetailRecipeController extends HttpServlet {
 			LikeVO like = new LikeVO();
 			like.setMemNo(memNo);
 			like.setRecipeNo(no);
-			int likeCnt = mapper.checkLikeCnt(like);
+			int likeCnt = mapper.checkLikeCnt(like);	// 1이면 이미 좋아요한 상태
+			int commentLikeCnt = mapper.checkLikeCnt(like);
 			request.setAttribute("likeCnt", likeCnt);
+			request.setAttribute("commentLikeCnt", commentLikeCnt);	// 댓글 좋아요 상태
 		};
 		
 		// 게시글 정보

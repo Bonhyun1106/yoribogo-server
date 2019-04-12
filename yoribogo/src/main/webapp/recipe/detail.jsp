@@ -33,7 +33,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="${pageContext.request.contextPath}${user.memProfile}" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${user.memProfile}.png" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -45,8 +45,8 @@
             </div>
         </div>
         <div id="likebar">
-            <button id="like" class="<c:if test='likeCnt eq 1'>.hoverA</c:if>">
-                <i class="fas fa-heart fa-2x" id="likeIcon"></i>
+            <button id="like" <c:if test='${likeCnt == 1}'>style='background:white; border : 1px solid #ed1c24;'</c:if> >
+                <i class="fas fa-heart fa-2x" id="likeIcon" <c:if test='${likeCnt == 1}'>style='color:red;'</c:if>></i>
             </button>
         </div>
 
@@ -214,7 +214,9 @@
 	    };
 		
 		function getCommentList(){
+			alert("댓글 호출");
 			var no = ${recipe.no};
+			
 			$.ajax({
 				url:"listcomment.do",
 				/* type: "post", */
@@ -233,10 +235,12 @@
 		                     + 				path + list[i].profile + ".png"
 		                     + 			"'></div>"
 		                     +      	'<div name="commId1">' + list[i].memId + '</div>'
+		                     +      	'<input type="hidden" id="commWriterId" name="commWriterId" value="'+list[i].memNo+'">' 
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
 		                     + 		'<div class="likecnt">'
-		                     +     		'<div><button id="commlikeBtn"><i class="far fa-thumbs-up fa-2x"></i></button></div>'
+		                     +     		'<div><button id="commlikeBtn"><i class="far fa-thumbs-up fa-2x" <c:if test='${commentLikeCnt == 1}'>style='color:red;'</c:if>'
+		                     +			'></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
 		                     +     		'<input type="hidden" name="commlikeCnt" value="' + list[i].commentLikeCnt + '" />'
 		                     +     		'<div><button id="commreportBtn"><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
@@ -271,11 +275,46 @@
 			})
 		});
 		
-		// 댓글 삭제
+		// 댓글 삭제 ===================================================
 		$(document).on("click","#delCom",function(){ 
-			let commentNo = $(this).val();
 			
-			//console.log("선택 댓글", commentNo);
+			// 로그인 회원번호 == 댓글작성자 회원번호
+			let memNo = nvl(("${user.memNo}"), 99999);
+			let commWriter = $("#commWriterId").val();
+			let commNo = $("#delCom").val();
+			
+			console.log("멤버 번호(비회원 99999): ", memNo);
+			console.log("댓글 작성자 : ", commWriter);
+			console.log("삭제할 댓글 번호: ", commNo);
+			
+			if(memNo != 99999){
+					console.log("ajax 호출");
+					$.ajax({
+						url: "deletecomment.do",
+						data : {memNo:memNo, commWriter:commWriter, commNo:commNo},
+						success: function(check){
+							if(check == 1){
+								$("#"+commentNo).remove();
+								alert("삭제되었습니다.");
+								return;
+							} else{
+								alert("댓글 작성자만 삭제할 수 있어요!");
+								return;
+							}
+						}
+					})
+			} else{
+				alert("로그인 해주세요");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			$.ajax({
 				url : "deletecomment.do",

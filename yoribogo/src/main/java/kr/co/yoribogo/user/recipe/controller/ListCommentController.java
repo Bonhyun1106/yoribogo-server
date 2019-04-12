@@ -32,6 +32,7 @@ public class ListCommentController extends HttpServlet{
 		
 		PrintWriter out = response.getWriter();
 		out.println(new Gson().toJson(mapper.selectComment(no)));
+		System.out.println(new Gson().toJson(mapper.selectComment(no)));
 		out.close();
 	}
 }
