@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="../script/jquery-3.3.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
@@ -73,21 +75,48 @@
 
           <p>최근에 등록된 레시피를 찾아보세요.</p>
           <hr>
-          <div class="recentPost">
+          <div class="recentPost" >
               <div class="recentPost_body">
               <!-- 3개가 필요함 -->
-                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(../images/foodthumbnail1.jpg); background-size: cover;">
-                    <div  class="innerWrapper">  
+               <c:forEach var="rec" items="${recipe}">
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">
                     <img id = "profileBlock_body_inner_profile" src="../images/profile19.jpg"/>  
                      <div class="innerWrapper_inner">
-                       <div>방금</div>
-                       <div>kwj1234</div>
-                       <div><i class="fas fa-star"></i>3.1/5</div>
+                       <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
                       </div>
-                      <div class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id velit illum voluptates quibusdam quam veniam quia.</div>
+                      <div class="paragraph">${rec.summary}</div>
                     </div>
                   </div>
-  
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">
+                    <img id = "profileBlock_body_inner_profile" src="../images/profile19.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';" style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">
+                    <img id = "profileBlock_body_inner_profile" src="../images/profile19.jpg"/>  
+                     <div class="innerWrapper_inner">
+                         <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+          	  </c:forEach>
+                  
                   
                 </div>
             </div>
@@ -108,38 +137,42 @@
           </span>
           <span class = "main3_pic">
             <img src = "../images/food1.jpg"/>
+             <c:forEach var="rec" items="${recipe}">
                 <p>
-                  <a>Molestiae, magni
+                  <a> ${rec.title}
                   </a>
                   <br>
                   <br>
                   <br>
                   <br>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus magnam earum dolore id quisquam iusto?
+                  ${rec.summary}
                 </p>
+                </c:forEach>
             </span>
             <span class = "main3_pic">
               <img src = "../images/food2.jpg"/>
+               <c:forEach var="rec" items="${recipe}">
                   <p>
-                      <a>rem provident incidunt.
+                      <a> ${rec.title}
                          </a>
                         <br>  
                         <br>  
                         <br>  
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi illo, corrupti fugiat doloribus odio sunt!
-                        </p>
-                
+                        ${rec.summary}
+                   </p>
+                </c:forEach>
               </span>
               <span class = "main3_pic">
                 <img src = "../images/food4.jpg"/>
+                <c:forEach var="rec" items="${recipe}">
                   <p>
-                    <a>Lorem ipsum dolor sit amet.</a>  
+                    <a>${rec.title}</a>  
                     <br>
                     <br>
                     <br>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, eum.
+                 	  ${rec.summary}
                     </p>
-
+   				</c:forEach>
             </span>
           </div>
           <img src = "../images/logo-horizontal-300px.png" width="300px"/>
@@ -154,23 +187,118 @@
             <div class="whetherRecommendation_body">
            
            		<!-- 최초 실행 시 총 9개가 화면에 출력 -->
-           
-                <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(../images/foodthumbnail4.jpg); background-size: cover;">
+            <c:forEach var="rec" items="${recipe}">
+                <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
                     <div  class="innerWrapper">  
                     <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
                      <div class="innerWrapper_inner">
-                       <div>방금</div>
-                       <div>kwj1234</div>
-                       <div><i class="fas fa-star"></i>3.1/5</div>
+                       <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
                       </div>
-                      <div class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id velit illum voluptates quibusdam quam veniam quia.</div>
+                      <div class="paragraph">${rec.summary}</div>
                     </div>
                   </div>
                   
-    
-  
-                    
-                    
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                       <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="profileBlock_body_inner"  onclick="location.href='detail.html';"  style="background-image: url(${rec.photo}); background-size: cover;">
+                    <div  class="innerWrapper">  
+                    <img id = "profileBlock_body_inner_profile" src="../images/짱구.jpg"/>  
+                     <div class="innerWrapper_inner">
+                        <div><fmt:formatDate value="${rec.regDate}" pattern="yy.MM.dd" /></div>
+                       <div>${rec.memId}</div>
+                       <div><i class="fas fa-star"></i>${rec.grade}</div>
+                      </div>
+                      <div class="paragraph">${rec.summary}</div>
+                    </div>
+                  </div>
+                  
+    		</c:forEach> 
+    		
+    		
            </div>
       </div>
       </div>
@@ -183,7 +311,9 @@
         <div id="statistics">
             <div id="statistics_king">
                 <img id="king" src="../images/짱구.jpg"></img>
-                <h2>kwj1234</h2>
+              <c:forEach var="recipe" items="${recipe}">
+                <h2>${recipe.memId}님</h2>
+              </c:forEach>
                 <h2>축하드립니다!</h2>
             </div>
         </div>

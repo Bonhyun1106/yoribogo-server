@@ -1,8 +1,6 @@
 package kr.co.yoribogo.admin.notice.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
+import kr.co.yoribogo.common.page.PageResult;
 import kr.co.yoribogo.repository.dao.AdminMapper;
 import kr.co.yoribogo.repository.vo.BannerVO;
+import kr.co.yoribogo.repository.vo.PageVO3;
 
 
 @WebServlet("/main/main.do")
@@ -44,9 +44,21 @@ public AdminMainformController() {
 		banner.setContent("맛있는 빠네빠네 빠네빠네 버렸어요~~");
 		banner.setLink("/images/food1.jpg");
 
+		PageVO3 page = new PageVO3();
+		
+		int pageNo = 1;
+		try {
+			pageNo = Integer.parseInt(
+					request.getParameter("pageNo"));
+			page.setPageNo(pageNo);
+		} catch (Exception e) {}
+		
 		mapper.insertBanner(banner);
 		request.setAttribute("banner", banner);
-
+		request.setAttribute("recipe", mapper.selectListMainImage());
+//		request.setAttribute("pageResult", new PageResult(pageNo, 
+//				mapper.selectMainCount(page)));
+		
 		
 		request.getRequestDispatcher("main.jsp").forward(request, response);
 		

@@ -32,8 +32,10 @@
 		<result column="recipe_kcal" property="kcal" />
 		<result column="recipe_time" property="time" />
 		<result column="recipe_level" property="level" />
+		<result column="recipe_grade" property="grade" />
 		<result column="recipe_weather" property="weather" />
 		<result column="mem_id" property="memId" />		
+		<result column="recipe_photo" property="photo" />	
 	</resultMap>
 	
 	
@@ -237,6 +239,30 @@
                  	  </if>
                )
 	 </select>
+	
+	
+	<!-- ====================== 메인 ===================================== -->
+	
+	<!-- 메인페이지 최신순 사진 정렬 -->
+	<select id="selectListMainImage" resultMap="recipeMap">
+	   select *
+      from (select rownum rnum, a.* 
+             from ( select *
+                     from tb_recipe r inner join TB_MEMBER m on r.MEM_NO = m.MEM_NO 
+                     order by recipe_reg_date desc) a)   
+       where rnum between 1 and 3  
+	</select>
+	
+	
+	<!-- 메인페이지 페이징 -->
+	<select id="selectMainCount" resultType="int" parameterType="page3" >
+	 	select count(*)
+		  from ( select r.*
+					  from tb_recipe r
+                      inner join TB_MEMBER m on r.MEM_NO = m.MEM_NO            
+               )
+	</select>
+	
 	
 	
 </mapper>
