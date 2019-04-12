@@ -101,7 +101,7 @@
 		<result column="recipe_reg_date" property="recipeRegDate" />
 		<result column="recipe_grade" property="recipeGrade" />
 		<result column="recipe_photo" property="recipePhoto" />
-		<result column="recipe_country" property="country" />
+		<result column="recipe_country" property="recipeCountry" />
 		<result column="recipe_type" property="type" />
 		<result column="recipe_kcal" property="kcal" />
 		<result column="recipe_time" property="time" />

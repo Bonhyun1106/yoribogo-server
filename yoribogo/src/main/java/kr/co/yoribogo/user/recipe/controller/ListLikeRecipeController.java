@@ -1,7 +1,6 @@
 package kr.co.yoribogo.user.recipe.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.yoribogo.common.db.MyAppSqlConfig;
 import kr.co.yoribogo.common.page.PageResult;
 import kr.co.yoribogo.repository.dao.ListRecipeMapper;
-import kr.co.yoribogo.repository.vo.LikeRecipeVO;
-import kr.co.yoribogo.repository.vo.PageVO;
+import kr.co.yoribogo.repository.vo.PageVO3;
 
 @WebServlet("/recipe/likerecipe.do")
 public class ListLikeRecipeController  extends HttpServlet {
@@ -25,10 +23,13 @@ public class ListLikeRecipeController  extends HttpServlet {
 	}
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PageVO page = new PageVO();
+		response.setContentType("text/html; charset=utf-8"); 
+		PageVO3 page = new PageVO3();
+		page.setMemNo(Integer.parseInt(request.getParameter("memno")));
+		
+		
 		int pageNo = 1;
-		int memNo = 0;
-		List<LikeRecipeVO> recipeList = mapper.selectLikeRecipe(memNo);
+		
 		try {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			page.setPageNo(pageNo);
@@ -36,7 +37,7 @@ public class ListLikeRecipeController  extends HttpServlet {
 			
 		}
 		
-		PageResult pageResult = new PageResult(pageNo,recipeList.size());
+		PageResult pageResult = new PageResult(pageNo, mapper.selectRecipeCount());
 		
 		int count = mapper.selectRecipeCount();
 		int lastPage = (count%9 == 0) ? count / 9 : count / 9 + 1;
@@ -59,11 +60,11 @@ public class ListLikeRecipeController  extends HttpServlet {
 		request.setAttribute("lastPage", lastPage);
 
 		request.setAttribute("member", mapper.selectMember());
-		request.setAttribute("recipe", recipeList);
+		request.setAttribute("recipe", mapper.selectLikeRecipe(page));
 		
 		request.setAttribute("pageResult", pageResult);
 
-		RequestDispatcher rd = request.getRequestDispatcher("likerecipelist.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
 		rd.forward(request, response);
 	}
 }

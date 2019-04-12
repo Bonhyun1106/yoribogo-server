@@ -95,7 +95,7 @@
                   </div>
                 </div>
             </c:forEach>
-            <div id="moreInfo2"style="cursor: pointer;">
+            <div id="moreInfo2"style="cursor: pointer;" onclick="location.href='/yoribogo/recipe/likerecipe.do?memno=${user.memNo}'">
           <i class="fas fa-chevron-down fa-2x"></i>
       		</div>
 		  </c:if>
@@ -115,9 +115,7 @@
         	});
         });
 
-        $("#moreInfo2").click(function(){
-        		location.href = "/yoribogo/recipe/likerecipe.do";
-        });
+       
           </script>
       
 
