@@ -15,6 +15,7 @@
   			/recipe/updateform.do;
   			/recipe/listajax.do;
   			/recipe/list.do;
+  			/recipe/likerecipe.do;
   			/login/login.do;
   			/login/loginform.do;
   			/main/main.do;
