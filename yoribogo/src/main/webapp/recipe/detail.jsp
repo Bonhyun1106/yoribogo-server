@@ -45,8 +45,8 @@
             </div>
         </div>
         <div id="likebar">
-            <button id="like" <c:if test='${likeCnt == 1}'>class='.hoverA'</c:if> >
-                <i class="fas fa-heart fa-2x" id="likeIcon"></i>
+            <button id="like" <c:if test='${likeCnt == 1}'>style='background:white; border : 1px solid #ed1c24;'</c:if> >
+                <i class="fas fa-heart fa-2x" id="likeIcon" <c:if test='${likeCnt == 1}'>style='color:red;'</c:if>></i>
             </button>
         </div>
 
@@ -237,7 +237,8 @@
 		                     +		'</div>'
 		                     + 		'<div>' + list[i].commentContent + '</div>'
 		                     + 		'<div class="likecnt">'
-		                     +     		'<div><button id="commlikeBtn"><i class="far fa-thumbs-up fa-2x"></i></button></div>'
+		                     +     		'<div><button id="commlikeBtn"><i class="far fa-thumbs-up fa-2x" <c:if test='${commentLikeCnt == 1}'>style='color:red;'</c:if>'
+		                     +			'></i></button></div>'
 		                     +     		'<div class="yes">' + list[i].commentLikeCnt + '</div>'
 		                     +     		'<input type="hidden" name="commlikeCnt" value="' + list[i].commentLikeCnt + '" />'
 		                     +     		'<div><button id="commreportBtn"><i class="far fa-thumbs-down fa-2x"></i></i></button></div>'
