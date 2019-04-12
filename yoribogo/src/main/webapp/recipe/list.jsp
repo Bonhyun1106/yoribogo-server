@@ -176,7 +176,6 @@
 	
 	<script>
 	
-	
 		$("input").on("click", function () {
 		let sort = $('input[name="sort"]:checked').attr("value");
 			$.ajax({
@@ -251,8 +250,8 @@
 							html += '</div>';
 							html += '</a>';
 							html += '</div>';
-							$(".wrapper").html(html);
 						} 
+							$(".wrapper").html(html);
 					}
 				});
 			});

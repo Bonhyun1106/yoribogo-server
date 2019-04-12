@@ -609,9 +609,94 @@ body {
 
 #kby_search_list {
 	position:absolute;
-	left: 50%;
-	color:red;
+	width: 400px;
+	max-height: 500px;
+	overflow:hidden;	
+}
+
+.search {
+  height: 100px;
+  width: 100%;
+  background: #FDFEFE;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.search-img-wrap {
+  height: 100%;
+  width: 100px;
+  min-width: 100px;
+  border-right: solid #efefef 1px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00aff0;
+  background: #46d4ff;
+  background: #F5F7FA;
+}
+
+.search-img-frame {
+  border: solid #FDFEFE 3px;
+  border: solid #cdced0 1px;
+  border-radius :80px;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.search-img {
+	position: absolute; top:0; left: 0;
+	border-radius:80px;
+width: 100%;
+height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.search-info {
+  width: 100%;
+  padding: 10px 0 0 20px;
+}
+
+.search-info h3 {
+  margin: 12px 0;
+}
+
+.flex-container {
+  margin-top: -5%;	
+  display: flex;
+  flex-direction: column;
+}
+
+.search-info-name {
+  height: 100%;
+  border-bottom: solid #efefef 1px;
+}
+
+.search-info-details {
+  height: 100%;
+  position: relative;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.search-info-name > a{
+	color:grey;
+	font-weight:bold;
+	
+}
+
+.search-info-name > a:hover{
+	color:tomato;
+	font-weight:bold;
+	
 }
 
 
+.search-info-name >h3 {
+  font-size: 1.7em;
+}
 

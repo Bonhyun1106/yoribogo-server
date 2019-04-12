@@ -186,7 +186,6 @@
 				<div id="kby_search_list">
 					
 				</div>
-				
 	          </form>
 	        </div>
 	      </div>
@@ -240,6 +239,8 @@
 		let path = "${pageContext.request.contextPath}";
 		let level;
 		let user = "${sessionScope.user.memId}";
+		let userNo = "${user.memNo}";
+		
 		console.log("user : " + user);
 		console.log(typeof user);
 // 		let userProfile = "${pageContext.request.contextPath}${sessionScope.user.memProfile}";
@@ -325,17 +326,49 @@
 	      " ~ " + $( "#slider-range2" ).slider( "values", 1 ) + "kcal");
 	  } );
 	    
+		$("#kby_search_box").focus(function () {
+			$("#kby_search_list").css("max-height", "500px");
+		})
+		$("#kby_search_box").blur(function () {
+			$("#kby_search_list").css({"max-height":"0px","transition":".5s"});
+		})
 	    
 	   	$("#kby_search_box").keyup(function () {
 	   		let input = $("#kby_search_box").val();
+	   		if (input == "") {
+	   			return;
+	   		}
+	   		let result = "";
 	   		console.log(input);
 	   		$.ajax({
 				type: "POST",
 				url: "searchajax.do",
 				data: "search=" + input,
 				dataType: "json",
-				success: function (recipe) {
-					
+				success: function (search) {
+					for (let i = 0; i < search.length; i++) {
+						let list = search[i];
+						let summary = list.summary;
+						if (summary.length > 12) {
+							summary = summary.substring(0, 10) + "..";
+						}
+						result += '<div class="search material-drop-shadow">';
+						result += '<div class="search-img-wrap">';
+						result += '<div class="search-img-frame">';
+						result += '<img class="search-img" src="../images/f1.jpg" />';
+						result += '</div>';
+						result += '</div>';
+						result += '<div class="search-info flex-container">';
+						result += '<div class="search-info-name">';
+						result += '<a href="detail.do?no=' + list.no + '&memNo=' + userNo + '"><h3>' + list.title + '</h3></a>';
+						result += '</div>';
+						result += '<div class="search-info-details">';
+						result += '<p>' + summary + '</p>';
+						result += '</div>';
+						result += '</div>';
+						result += '</div>';
+					}
+				 		$("#kby_search_list").html(result);
 				}
 	   		});
 	   	});
