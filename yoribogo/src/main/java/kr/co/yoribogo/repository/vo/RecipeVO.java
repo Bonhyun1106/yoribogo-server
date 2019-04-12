@@ -7,6 +7,14 @@ public class RecipeVO {
 	private int memNo;
 	private String title;
 	private String summary;
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
 	private int viewCnt; // default 0
 	private int likeCnt; // default 0
 	private Date regDate;// sysdate
@@ -23,6 +31,7 @@ public class RecipeVO {
 	private double grade;
 	private String photo;
 	private int categoryNo;
+	private String profile;
 	private String[] categoryNos;	
 	
 	public int getCategoryNo() {

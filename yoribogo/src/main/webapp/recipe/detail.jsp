@@ -33,7 +33,7 @@
                 </div>
                 <div class="idimg">
                     <div>
-                        <img src="${pageContext.request.contextPath}${user.memProfile}.png" name="recIdImg"/>
+                        <img src="${pageContext.request.contextPath}${user.memProfile}" name="recIdImg"/>
                     </div>
                     <div>
                         <a href="#" name="recId">${recipe.memId}</a>
@@ -110,7 +110,7 @@
         <form name="commentForm" id="commentForm" method="post">
         <div id="inputComm-wrapper">
             <div class="inputId">
-                <div><img src="${pageContext.request.contextPath}${user.memProfile}.png" name="idImg"/></div>
+                <div><img src="${pageContext.request.contextPath}${user.memProfile}" name="idImg"/></div>
                 <div name="id">${user.memId}님</div>
             </div>
             <div class="inputbox">
@@ -193,7 +193,7 @@
 
     <footer style="position: relative; width: 100%; background: gray; height: 300px; color:white;">
         <div id="footer">
-            <img src="images/logo-vertical-300px.png" style="width: 80px;" />
+            <img src="${pageContext.request.contextPath}/images/logo-vertical-300px.png" style="width: 80px;" />
             <p>
                 YORIBOGO Receipes
                 <br>개인정보관리책임자: 김우중
@@ -214,7 +214,7 @@
 	    };
 		
 		function getCommentList(){
-			alert("댓글 호출");
+			//alert("댓글 호출");
 			var no = ${recipe.no};
 			
 			$.ajax({

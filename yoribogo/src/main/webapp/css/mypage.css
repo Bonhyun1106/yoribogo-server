@@ -294,3 +294,12 @@ body{
 .fa-star{
   color : #f7943a;
 }
+
+#interest {
+	color: white;
+}
+
+#interestlist{
+	color: white;
+	 font-style: italic;
+}

@@ -21,7 +21,7 @@
   
   <span id="header">
           <div>
-          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		
@@ -61,7 +61,7 @@
 
 <footer style="width: 100%; background: gray; height: 300px; color: white;">
     <div id="footer">
-        <img src = "images/logo-vertical-300px.png" style="width: 80px;"/>
+        <img src = "${pageContext.request.contextPath}/images/logo-vertical-300px.png" style="width: 80px;"/>
         <p>
             YORIBOGO Receipes
             <br>개인정보관리책임자: 김우중

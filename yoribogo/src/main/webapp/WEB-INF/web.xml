@@ -52,6 +52,10 @@
   	<init-param>
   		<param-name>pages</param-name>
   		<param-value>
+  			/signup/checkemail.do;
+  			/signup/checkid.do;
+  			/signup/signupform.do;
+  			/signup/signupsuccess.do;
   			/main/main.do;
   			/recipe/list.do;
   			/admin/member/listmember.do;

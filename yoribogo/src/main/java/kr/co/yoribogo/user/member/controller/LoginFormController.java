@@ -13,6 +13,7 @@ public class LoginFormController extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//  loginform.jsp를 호출하는 클래스
+		request.getSession().invalidate();
 		request.getRequestDispatcher("loginform.jsp").forward(request, response);
 		
 	}

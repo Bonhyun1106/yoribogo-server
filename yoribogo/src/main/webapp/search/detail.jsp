@@ -348,7 +348,7 @@
 	<footer
 		style="position: relative; width: 100%; background: gray; height: 300px; color: white;">
 		<div id="footer">
-			<img src="images/logo-vertical-300px.png" style="width: 80px;" />
+			<img src="${pageContext.request.contextPath}/images/logo-vertical-300px.png" style="width: 80px;" />
 			<p>
 				YORIBOGO Receipes <br>개인정보관리책임자: 김우중 <br>고객센터:
 				010-4955-6029(평일:13:30 ~ 14:30 토요일:12:00 ~ 12:01) FAX: 02-000-000

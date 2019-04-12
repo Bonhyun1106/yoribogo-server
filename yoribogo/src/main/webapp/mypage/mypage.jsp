@@ -17,7 +17,7 @@
 </head>
 <body>
    
-	<jsp:include page="../include/menu.jsp"/>
+	<jsp:include page="/include/menu.jsp"/>
     
   
   <span id="header">
@@ -26,7 +26,7 @@
           	
       	  	<button><div id="settingProfile" style="cursor: pointer;"><i class="fas fa-cog fa-3x"></i></div></button>
       	  </form>
-          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}.png"></img>
+          <img id="profile" src="${pageContext.request.contextPath}${user.memProfile}"></img>
           <h2 id="id"> ${user.memId}</h2>
           <c:if test="${userRecipe.size() > 0}">
 	          <p id="countRecipe">${userRecipe.size()}개의 레시피를 만듬</p>		
@@ -34,6 +34,9 @@
 		  <c:if test="${userRecipe.size() == 0}">
 		  	  <p id="countRecipe">아직 레시피를 등록하지 않으셨습니다!</p>		
 		  </c:if>
+		  <br>
+		  <div id="interest"><h2>*관심사*</h2></div>
+		  <div id="interestlist"><h2>${user.memFavor1}  ${user.memFavor2}  ${user.memFavor3}</h2></div>
       </div>
       
     </span>
@@ -49,9 +52,9 @@
             <div class="recentPost_body">
 			<c:if test="${userRecipe.size() > 0}">
             	<c:forEach var="recipe" items="${userRecipe}" begin="0" end="2">
-                	<div class="profileBlock_body_inner" style="background-image: url(${pageContext.request.contextPath}${recipe.photo}); background-size: cover;">
+                	<div class="profileBlock_body_inner" style="background-image: url('${pageContext.request.contextPath}${recipe.photo}'); background-size: cover;">
                   		<div  class="innerWrapper">  
-                  		<img id = "profileBlock_body_inner_profile" src="${pageContext.request.contextPath}${user.memProfile}.png"/>  
+                  		<img id = "profileBlock_body_inner_profile" src="${pageContext.request.contextPath}${user.memProfile}"/>  
 		                   <div class="innerWrapper_inner">
 		                   	 <input type="hidden" name="likeRecipeNo" value="${likeRecipe.recipeNo}">
         		             <div><fmt:formatDate value="${recipe.regDate}" pattern="MM.dd hh:mm" /></div>
@@ -62,7 +65,7 @@
                   		</div>
                 	</div>
                 </c:forEach>
-             <div id="moreInfo" style="cursor: pointer;">
+             <div id="moreInfo" style="cursor: pointer;" onclick="location.href='/yoribogo/recipe/list.do'">
                  <i class="fas fa-chevron-right"></i>
              </div>
 		  	</c:if>
@@ -84,7 +87,7 @@
          	<c:forEach var="likeRecipe" items="${userLikeRecipe}">
               <div class="profileBlock_body_inner" style="background-image: url(/yoribogo/${PageContext.request.contextPath}${likeRecipe.recipePhoto}); background-size: cover;">
                   <div  class="innerWrapper">  
-                  <img id = "profileBlock_body_inner_profile" src="/yoribogo/${PageContext.request.contextPath}${likeRecipe.memProfile}.png"/>  
+                  <img id = "profileBlock_body_inner_profile" src="/yoribogo/${PageContext.request.contextPath}${likeRecipe.memProfile}"/>  
                    <div class="innerWrapper_inner">
                      <input type="hidden" name="likeRecipeNo" value="${likeRecipe.recipeNo}">
                      <div><fmt:formatDate value="${likeRecipe.recipeRegDate}" pattern="MM.dd hh:mm" /></div>
@@ -107,15 +110,7 @@
       		</div>
         </c:if>
         <script>
-        $(".profileBlock_body_inner").click(function(){
-        	$.ajax({
-        		url:"/yoribogo/recipe/detail.do",
-        		data:"no="+$("input[name='likeRecipeNo']").val(),
-        		success: function(result){
-        			
-        		}
-        	});
-        });
+      
 
        
           </script>
@@ -126,7 +121,7 @@
 
 <footer style="width: 100%; background: gray; height: 300px; color: white;">
     <div id="footer">
-        <img src = "images/logo-vertical-300px.png" style="width: 80px;"/>
+        <img src = "${pageContext.request.contextPath}/images/logo-vertical-300px.png" style="width: 80px;"/>
         <p>
             YORIBOGO Receipes
             <br>개인정보관리책임자: 김우중

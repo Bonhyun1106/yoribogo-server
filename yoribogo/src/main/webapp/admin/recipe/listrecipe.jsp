@@ -144,7 +144,7 @@
 
  <footer style="position: relative; width: 100%; background: gray; height: 300px; color:white;">
   <div id="footer">
-      <img src = "../images/logo-vertical-300px.png" style="width: 80px;"/>
+      <img src = "${pageContext.request.contextPath}/images/logo-vertical-300px.png" style="width: 80px;"/>
       <p>
           YORIBOGO Receipes
           <br>개인정보관리책임자: 김우중

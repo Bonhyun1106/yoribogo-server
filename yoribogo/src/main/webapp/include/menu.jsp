@@ -23,7 +23,7 @@
 
 	<span id="menubar">
 	    <div>
-	    <a id="logo" href="main.html"><img src="../images/logo-horizontal-300px.png" /></a>
+	    <a id="logo" href="/yoribogo/main/main.do"><img src="${pageContext.request.contextPath}/images/logo-horizontal-300px.png" /></a>
 	    </div>
 	
 	    <div class="kby_wrapper">
@@ -209,10 +209,12 @@
 	    <div>
 	      <c:choose>
 	      	<c:when test="${user eq null}">
-		      <a id ="noneloginButton" href="/yoribogo/login/loginform.do">로그인해주세요<i class="fas fa-user-circle fa-2x"></i></a> 
+		      <a id ="k_noneloginButton" href="/yoribogo/login/loginform.do">로그인해주세요<i class="fas fa-user-circle fa-2x"></i></a> 
 	      	</c:when>
 	      	<c:otherwise>
-	      	  <a id="loginButton" href="mypage.html"><span>${sessionScope.user.memId}</span>
+	      	  
+		      <a id ="k_noneloginButton" href="/yoribogo/login/loginform.do" style="right:70px;">로그아웃</a> 
+	      	  <a id="loginButton" href="/yoribogo/mypage/mypage.do"><span>${sessionScope.user.memId}</span>
 		      <img id="loginSuccess" src="${pageContext.request.contextPath}${sessionScope.user.memProfile}" /></a>
 	      	</c:otherwise>
 	      </c:choose>
@@ -346,29 +348,59 @@
 				data: "search=" + input,
 				dataType: "json",
 				success: function (search) {
-					for (let i = 0; i < search.length; i++) {
-						let list = search[i];
-						let summary = list.summary;
-						if (summary.length > 12) {
-							summary = summary.substring(0, 10) + "..";
+// 					if (search.length < 3) {
+// 						for (let i = 0; i < search.length; i++) {
+// 							let list = search[i];
+// 							let summary = list.summary;
+// 							if (summary.length > 12) {
+// 								summary = summary.substring(0, 10) + "..";
+// 							}
+// 							result += '<div class="search material-drop-shadow">';
+// 							result += '<div class="search-img-wrap">';
+// 							result += '<div class="search-img-frame">';
+// 							result += '<img class="search-img" src="' + path + list.photo + '"/>';
+// 							let str = '<img class="search-img" src="' + path + list.photo + '"/>';
+// 							result += '</div>';
+// 							result += '</div>';
+// 							result += '<div class="search-info flex-container">';
+// 							result += '<div class="search-info-name">';
+// 							result += '<a href="detail.do?no=' + list.no + '&memNo=' + userNo + '"><h3>' + list.title + '</h3></a>';
+// 							result += '</div>';
+// 							result += '<div class="search-info-details">';
+// 							result += '<p>' + summary + '</p>';
+// 							result += '</div>';
+// 							result += '</div>';
+// 							result += '</div>';
+// 						}
+// 					} else {
+						for (let i = 0; i < search.length; i++) {
+							let list = search[i];
+							let summary = list.summary;
+							if (summary.length > 12) {
+								summary = summary.substring(0, 10) + "..";
+							}
+							result += '<div class="search material-drop-shadow">';
+							result += '<div class="search-img-wrap">';
+							result += '<div class="search-img-frame">';
+							result += '<img class="search-img" src="' + path + list.photo + '"/>';
+							result += '</div>';
+							result += '</div>';
+							result += '<div class="search-info flex-container">';
+							result += '<div class="search-info-name">';
+							result += '<a href="detail.do?no=' + list.no + '&memNo=' + userNo + '"><h3>' + list.title + '</h3></a>';
+							result += '</div>';
+							result += '<div class="search-info-details">';
+							result += '<p>' + summary + '</p>';
+							result += '</div>';
+							result += '</div>';
+							result += '</div>';
 						}
-						result += '<div class="search material-drop-shadow">';
-						result += '<div class="search-img-wrap">';
-						result += '<div class="search-img-frame">';
-						result += '<img class="search-img" src="../images/f1.jpg" />';
-						result += '</div>';
-						result += '</div>';
-						result += '<div class="search-info flex-container">';
-						result += '<div class="search-info-name">';
-						result += '<a href="detail.do?no=' + list.no + '&memNo=' + userNo + '"><h3>' + list.title + '</h3></a>';
-						result += '</div>';
-						result += '<div class="search-info-details">';
-						result += '<p>' + summary + '</p>';
-						result += '</div>';
-						result += '</div>';
-						result += '</div>';
-					}
-				 		$("#kby_search_list").html(result);
+// 						result += '<div class="search-img-wrap">';
+// 						result += '<a href="detail.do?no=' + list.no + '&memNo=' + userNo + '"><h3>더보기</h3></a>';
+// 						result += '</div>';
+// 						result += '<div>더보기</div>'
+					
+			 		$("#kby_search_list").html(result);
 				}
 	   		});
 	   	});

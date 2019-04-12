@@ -108,7 +108,7 @@ public class SignupController extends HttpServlet{
 				"| input email : " + member.getMemEmail()
 				);
 		if(f == null) {
-			member.setMemProfile(uploadRoot+"/profile/default/profileDefault");
+			member.setMemProfile(uploadRoot+"/profile/default/profileDefault.png");
 		}
 		
 		mapper.insertMember(member);

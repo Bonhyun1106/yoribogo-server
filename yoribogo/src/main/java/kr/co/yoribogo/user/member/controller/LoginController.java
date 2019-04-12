@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		session.setAttribute("userRecipe", userRecipeList);
+		session.setAttribute("userRecipe", mapper.selectRecipeByUser(memNo));
 		session.setAttribute("userLikeRecipe", userLikeRecipeList);
 		
 		response.sendRedirect(request.getContextPath() + "/mypage/mypage.do");
